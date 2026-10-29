@@ -140,12 +140,19 @@ Example: `"args": ["-y", "s3eidat-tools-mcp", "--root", "/Users/me/Documents"]`.
 ## Tools
 
 <!-- tools:start -->
-**3 tools.** Full reference: [docs/tools.md](docs/tools.md).
+**136 tools.** Full reference: [docs/tools.md](docs/tools.md).
 
 | Group | Count | Tools |
 |---|---|---|
-| Text | 2 | `text_case`, `text_word_count` |
-| Developer: utilities | 1 | `hash_compute` |
+| PDF | 17 | `pdf_compress`, `pdf_extract_pages`, `pdf_form_fields`, `pdf_form_fill`, `pdf_from_images`, `pdf_info`, `pdf_merge`, `pdf_metadata_read`, `pdf_metadata_write`, `pdf_organize`, `pdf_page_numbers`, `pdf_rotate`, `pdf_sign_image`, `pdf_split`, `pdf_to_images`, `pdf_to_text`, `pdf_watermark` |
+| Images | 16 | `image_ascii_art`, `image_ascii_banner`, `image_compress`, `image_convert`, `image_crop`, `image_exif_read`, `image_exif_strip`, `image_favicon_set`, `image_from_base64`, `image_palette`, `image_placeholder`, `image_resize`, `image_rotate`, `image_svg_to_png`, `image_to_base64`, `image_watermark` |
+| Text | 15 | `text_arabic`, `text_case`, `text_citation`, `text_clean`, `text_diff`, `text_escape`, `text_fancy`, `text_layout_fix`, `text_lorem`, `text_morse`, `text_number_to_words`, `text_readability`, `text_slugify`, `text_social_count`, `text_word_count` |
+| Developer: data formats | 15 | `css_format`, `csv_to_json`, `curl_to_code`, `html_format`, `json_format`, `json_query`, `json_to_csv`, `json_to_types`, `json_to_yaml`, `markdown_table`, `markdown_table_parse`, `sql_format`, `xml_format`, `xml_query`, `yaml_to_json` |
+| Developer: utilities | 23 | `base_convert`, `base64_decode`, `base64_encode`, `bytes_convert`, `chmod_calc`, `cron_explain`, `css_clamp`, `css_units`, `gitignore_generate`, `hash_compute`, `http_status`, `id_generate`, `id_inspect`, `ip_in_range`, `jwt_decode`, `meta_tags_generate`, `regex_test`, `subnet_calc`, `time_convert`, `url_decode`, `url_encode`, `url_parse`, `useragent_parse` |
+| Calculators | 24 | `calc_age`, `calc_bmi`, `calc_cash_count`, `calc_compound_interest`, `calc_date_diff`, `calc_discount`, `calc_due_date`, `calc_equation`, `calc_expression`, `calc_fraction`, `calc_fuel_cost`, `calc_gpa`, `calc_hijri`, `calc_hours`, `calc_loan`, `calc_percentage`, `calc_primes`, `calc_roman`, `calc_salary`, `calc_sleep`, `calc_split_bill`, `calc_stats`, `calc_unit_convert`, `calc_zakat` |
+| Everyday & security | 15 | `crypto_file_decrypt`, `crypto_file_encrypt`, `crypto_stego_hide`, `crypto_stego_reveal`, `crypto_text_decrypt`, `crypto_text_encrypt`, `password_check`, `password_generate`, `prayer_times`, `qibla_direction`, `random_dice`, `random_pick`, `random_teams`, `secret_santa_draw`, `time_world_clock` |
+| QR & barcodes | 4 | `barcode_generate`, `qr_generate`, `qr_read`, `qr_wifi` |
+| Document makers | 7 | `doc_attendance_sheet`, `doc_business_cards`, `doc_calendar`, `doc_invoice`, `doc_labels`, `doc_receipt`, `doc_resume` |
 <!-- tools:end -->
 
 Every tool's description links the matching web tool on https://s3eidat.github.io for people who prefer a visual version.

@@ -133,7 +133,7 @@ writeFileSync(join(root, 'docs/tools.md'), md);
 // ---------- tools.json ----------
 writeFileSync(
   join(root, 'docs/tools.json'),
-  JSON.stringify({ name: pkg.name, version: pkg.version, count: docs.length, groups: grouped.map(({ key, title, blurb, tools }) => ({ key, title, blurb, tools })) }, null, 1),
+  JSON.stringify({ name: pkg.name, version: pkg.version, count: docs.length, groups: grouped.map(({ key, title, blurb, tools }) => ({ key, title, blurb, tools: tools.map(({ inputs, outputs, ...t }) => t) })) }),
 );
 
 // ---------- tools.html ----------
