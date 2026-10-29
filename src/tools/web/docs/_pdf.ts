@@ -226,7 +226,7 @@ export async function embedImage(doc: PDFDocument, value: string | undefined, ct
       const { default: sharp } = await import('sharp');
       const meta = await sharp(b).metadata();
       if (Math.max(meta.width ?? 0, meta.height ?? 0) <= maxPx && !(isPng && meta.bitsPerSample === 16)) {
-        return isJpg ? await doc.embedJpg(b) : await doc.embedPng(b);
+        return isJpg ? await doc.embedJpg(new Uint8Array(b)) /* own buffer: pdf-lib ignores byteOffset */ : await doc.embedPng(b);
       }
     }
     const { default: sharp } = await import('sharp');

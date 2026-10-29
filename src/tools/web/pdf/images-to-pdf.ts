@@ -92,7 +92,7 @@ export function pageFor(w: number, hh: number, opt: PageOpt) {
 export async function build(prepared: Prepared[], opt: PageOpt) {
   const doc = await PDFDocument.create();
   for (const im of prepared) {
-    const img = im.kind === 'png' ? await doc.embedPng(im.bytes) : await doc.embedJpg(im.bytes);
+    const img = im.kind === 'png' ? await doc.embedPng(im.bytes) : await doc.embedJpg(new Uint8Array(im.bytes)) /* pdf-lib's JPEG reader ignores byteOffset: give it its own buffer */;
     const g = pageFor(im.w, im.h, opt);
     doc.addPage([g.pw, g.ph]).drawImage(img, { x: g.x, y: g.y, width: g.w, height: g.h });
   }

@@ -34,7 +34,7 @@ export async function compress(js: PdfJsDoc, opt: { dpi: number; q: number; gray
     const page = await js.getPage(i), vp1 = page.getViewport({ scale: 1 });
     const c = await renderToCanvas(page, scaleFor(vp1, opt.dpi));
     if (opt.gray) toGray(c);
-    const img = await out.embedJpg(await c.encode('jpeg', opt.q));
+    const img = await out.embedJpg(new Uint8Array(await c.encode('jpeg', opt.q))) /* own buffer: pdf-lib ignores byteOffset */;
     out.addPage([vp1.width, vp1.height]).drawImage(img, { x: 0, y: 0, width: vp1.width, height: vp1.height });
     page.cleanup();
   }
