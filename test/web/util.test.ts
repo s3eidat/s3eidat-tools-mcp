@@ -73,3 +73,12 @@ describe('safeName', async () => {
     expect(safeName('a/b')).toBe('a-b');
   });
 });
+
+describe('parseArgs', async () => {
+  const { parseArgs } = await import('../../src/server.js');
+  it('treats empty and placeholder folders as unset', () => {
+    expect(parseArgs(['--root', '', '--out-dir', '${user_config.out_dir}'])).toMatchObject({ root: undefined, outDir: undefined });
+    expect(parseArgs(['--root=/tmp/x', '--http', '--port', '9000'])).toMatchObject({ root: '/tmp/x', http: true, port: 9000 });
+    expect(() => parseArgs(['--nope'])).toThrow(/Unknown option/);
+  });
+});

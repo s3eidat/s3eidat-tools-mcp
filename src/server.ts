@@ -71,6 +71,9 @@ export interface CliOptions {
   version: boolean;
 }
 
+/** Empty values and unfilled template placeholders (e.g. an optional Claude Desktop setting) mean "not set". */
+const optional = (v: string) => (v.trim() === '' || /^\$\{[^}]*\}$/.test(v.trim()) ? undefined : v);
+
 export function parseArgs(argv: string[]): CliOptions {
   const o: CliOptions = { http: false, port: 8787, host: '127.0.0.1', list: false, help: false, version: false };
   for (let i = 0; i < argv.length; i++) {
@@ -85,8 +88,8 @@ export function parseArgs(argv: string[]): CliOptions {
       case '--http': o.http = true; break;
       case '--port': o.port = Number(val()); break;
       case '--host': o.host = val(); break;
-      case '--root': o.root = val(); break;
-      case '--out-dir': o.outDir = val(); break;
+      case '--root': o.root = optional(val()); break;
+      case '--out-dir': o.outDir = optional(val()); break;
       case '--max-mb': o.maxMb = Number(val()); break;
       case '--only': o.only = val().split(',').map((s) => s.trim()).filter(Boolean); break;
       case '--list': o.list = true; break;
