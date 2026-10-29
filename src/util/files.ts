@@ -142,8 +142,9 @@ function uniqueName(dir: string, name: string) {
 
 /** Safe file name from any string. */
 export function safeName(s: string, fallback = 'output') {
-  const clean = s.replace(/[\\/:*?"<>|\x00-\x1f]+/g, '-').replace(/^\.+/, '').trim().slice(0, 120);
-  return clean || fallback;
+  // Separators are replaced, so "." and ".." are the only names that could point elsewhere; dotfiles are fine.
+  const clean = s.replace(/[\\/:*?"<>|\x00-\x1f]+/g, '-').trim().slice(0, 120);
+  return /^\.*$/.test(clean) ? fallback : clean;
 }
 
 /** Replace the extension of a file name. */

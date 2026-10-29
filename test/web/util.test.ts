@@ -63,3 +63,13 @@ describe('pdf.js', () => {
     expect(img.data.subarray(1, 4).toString()).toBe('PNG');
   });
 });
+
+describe('safeName', async () => {
+  const { safeName } = await import('../../src/util/files.js');
+  it('keeps dotfiles, blocks dot-only and separators', () => {
+    expect(safeName('.gitignore')).toBe('.gitignore');
+    expect(safeName('..')).toBe('output');
+    expect(safeName('../../etc/passwd')).toBe('..-..-etc-passwd');
+    expect(safeName('a/b')).toBe('a-b');
+  });
+});
