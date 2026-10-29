@@ -25,7 +25,7 @@
  * Throw `ToolError` (or any Error) for a clean `isError: true` result.
  */
 import { readdir } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import type { z } from 'zod';
 import type { ToolContext } from './util/context.js';
@@ -69,6 +69,8 @@ export interface ToolModule<I extends ZodObjectAny = ZodObjectAny, O extends Zod
   description: string;
   /** Slug of the matching tool on https://s3eidat.github.io/<slug>/ (if any). */
   webSlug?: string;
+  /** Docs grouping (e.g. "pdf", "image", "ai"). Filled in from the folder by loadTools() when not set. */
+  group?: string;
   inputSchema: I;
   outputSchema?: O;
   annotations: ToolAnnotations;
@@ -136,6 +138,10 @@ export function loadTools(toolsDir = join(here, 'tools')): Promise<ToolModule[]>
         if (!NAME_RE.test(t.name)) throw new Error(`${file}: tool name "${t.name}" must be snake_case with a group prefix`);
         if (seen.has(t.name)) throw new Error(`Duplicate tool name "${t.name}" in ${file} and ${seen.get(t.name)}`);
         seen.set(t.name, file);
+        if (!t.group) {
+          const parts = relative(toolsDir, dirname(file)).split(sep);
+          t.group = (parts[0] === 'web' ? parts[1] : parts[0]) || 'misc';
+        }
         tools.push(t);
       }
     }

@@ -1,0 +1,540 @@
+{
+ "name": "s3eidat-tools-mcp",
+ "version": "0.1.0",
+ "count": 3,
+ "groups": [
+  {
+   "key": "text",
+   "title": "Text",
+   "blurb": "Counting, case, slugs, cleaning, diffs, readability, Arabic tools, numbers to words, citations.",
+   "tools": [
+    {
+     "name": "text_case",
+     "title": "Case convert",
+     "group": "text",
+     "description": "Convert text case: upper, lower, title (smart: keeps small words lower and iPhone/NASA as typed), sentence, camel, pascal, snake, kebab, constant, alternate, inverse. Works line by line and handles Unicode (Arabic, accents, ß). Web version: https://s3eidat.github.io/case-convert/",
+     "web": "https://s3eidat.github.io/case-convert/",
+     "annotations": {
+      "readOnlyHint": true,
+      "idempotentHint": true,
+      "openWorldHint": false
+     },
+     "inputs": [
+      {
+       "name": "text",
+       "type": "string",
+       "required": true,
+       "description": "Text to convert."
+      },
+      {
+       "name": "mode",
+       "type": "\"upper\" | \"lower\" | \"title\" | \"sentence\" | \"camel\" | \"pascal\" | \"snake\" | \"kebab\" | \"constant\" | \"alternate\" | \"inverse\"",
+       "required": true,
+       "description": "Target case."
+      }
+     ],
+     "outputs": [
+      {
+       "name": "result",
+       "type": "string",
+       "required": true,
+       "description": ""
+      }
+     ],
+     "inputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string",
+        "description": "Text to convert."
+       },
+       "mode": {
+        "type": "string",
+        "enum": [
+         "upper",
+         "lower",
+         "title",
+         "sentence",
+         "camel",
+         "pascal",
+         "snake",
+         "kebab",
+         "constant",
+         "alternate",
+         "inverse"
+        ],
+        "description": "Target case."
+       }
+      },
+      "required": [
+       "text",
+       "mode"
+      ]
+     },
+     "outputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+       "result": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "result"
+      ]
+     },
+     "examples": [
+      {
+       "input": {
+        "text": "a tale OF two cities",
+        "mode": "title"
+       },
+       "output": {
+        "result": "A Tale of Two Cities"
+       }
+      },
+      {
+       "input": {
+        "text": "XMLParser handler",
+        "mode": "snake"
+       },
+       "output": {
+        "result": "xml_parser_handler"
+       }
+      }
+     ]
+    },
+    {
+     "name": "text_word_count",
+     "title": "Word count",
+     "group": "text",
+     "description": "Count words, characters (with and without spaces), sentences, paragraphs, lines and unique words; estimate reading (238 wpm) and speaking (150 wpm) time; list the most used keywords with density. Works for English and Arabic (tashkeel ignored). Give \"text\" or a text file \"path\". Web version: https://s3eidat.github.io/word-count/",
+     "web": "https://s3eidat.github.io/word-count/",
+     "annotations": {
+      "readOnlyHint": true,
+      "idempotentHint": true,
+      "openWorldHint": false
+     },
+     "inputs": [
+      {
+       "name": "text",
+       "type": "string",
+       "required": false,
+       "description": "The text to analyse."
+      },
+      {
+       "name": "path",
+       "type": "string",
+       "required": false,
+       "description": "Or: a path to a UTF-8 text file."
+      },
+      {
+       "name": "keywords",
+       "type": "integer",
+       "required": false,
+       "default": 12,
+       "description": "How many top keywords to return (0 = none)."
+      },
+      {
+       "name": "includeStopWords",
+       "type": "boolean",
+       "required": false,
+       "default": false,
+       "description": "Count common words like \"the\"/\"في\" as keywords."
+      }
+     ],
+     "outputs": [
+      {
+       "name": "words",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "characters",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "charactersNoSpaces",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "sentences",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "paragraphs",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "lines",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "uniqueWords",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "averageWordLength",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "longestWord",
+       "type": "string",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "readingTimeSeconds",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "speakingTimeSeconds",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "keywords",
+       "type": "object[]",
+       "required": true,
+       "description": ""
+      }
+     ],
+     "inputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+       "text": {
+        "description": "The text to analyse.",
+        "type": "string"
+       },
+       "path": {
+        "description": "Or: a path to a UTF-8 text file.",
+        "type": "string"
+       },
+       "keywords": {
+        "default": 12,
+        "description": "How many top keywords to return (0 = none).",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "includeStopWords": {
+        "default": false,
+        "description": "Count common words like \"the\"/\"في\" as keywords.",
+        "type": "boolean"
+       }
+      }
+     },
+     "outputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+       "words": {
+        "type": "number"
+       },
+       "characters": {
+        "type": "number"
+       },
+       "charactersNoSpaces": {
+        "type": "number"
+       },
+       "sentences": {
+        "type": "number"
+       },
+       "paragraphs": {
+        "type": "number"
+       },
+       "lines": {
+        "type": "number"
+       },
+       "uniqueWords": {
+        "type": "number"
+       },
+       "averageWordLength": {
+        "type": "number"
+       },
+       "longestWord": {
+        "type": "string"
+       },
+       "readingTimeSeconds": {
+        "type": "number"
+       },
+       "speakingTimeSeconds": {
+        "type": "number"
+       },
+       "keywords": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "word": {
+           "type": "string"
+          },
+          "count": {
+           "type": "number"
+          },
+          "density": {
+           "type": "number"
+          }
+         },
+         "required": [
+          "word",
+          "count",
+          "density"
+         ]
+        }
+       }
+      },
+      "required": [
+       "words",
+       "characters",
+       "charactersNoSpaces",
+       "sentences",
+       "paragraphs",
+       "lines",
+       "uniqueWords",
+       "averageWordLength",
+       "longestWord",
+       "readingTimeSeconds",
+       "speakingTimeSeconds",
+       "keywords"
+      ]
+     },
+     "examples": [
+      {
+       "input": {
+        "text": "Hello world. This is a test! Is it?\n\nNew paragraph here."
+       },
+       "note": "11 words, 4 sentences, 2 paragraphs",
+       "output": {
+        "words": 11,
+        "characters": 56,
+        "charactersNoSpaces": 45,
+        "sentences": 4,
+        "paragraphs": 2,
+        "lines": 3,
+        "uniqueWords": 10,
+        "averageWordLength": 3.73,
+        "longestWord": "paragraph",
+        "readingTimeSeconds": 3,
+        "speakingTimeSeconds": 4,
+        "keywords": [
+         {
+          "word": "hello",
+          "count": 1,
+          "density": 9.09
+         },
+         {
+          "word": "new",
+          "count": 1,
+          "density": 9.09
+         },
+         {
+          "word": "paragraph",
+          "count": 1,
+          "density": 9.09
+         },
+         {
+          "word": "test",
+          "count": 1,
+          "density": 9.09
+         },
+         {
+          "word": "world",
+          "count": 1,
+          "density": 9.09
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "dev",
+   "title": "Developer: utilities",
+   "blurb": "Hashes, Base64, URLs, JWT, IDs, regex, cron, timestamps, subnets, chmod, HTTP status, .gitignore.",
+   "tools": [
+    {
+     "name": "hash_compute",
+     "title": "Hash (MD5 / SHA)",
+     "group": "dev",
+     "description": "Compute MD5, SHA-1, SHA-256 and SHA-512 of text or a file (path or base64), optionally an HMAC with a key, and check against an expected checksum (hex in any case/spacing, \"SHA256 (file) = …\" lines, or base64). Web version: https://s3eidat.github.io/hash-lab/",
+     "web": "https://s3eidat.github.io/hash-lab/",
+     "annotations": {
+      "readOnlyHint": true,
+      "idempotentHint": true,
+      "openWorldHint": false
+     },
+     "inputs": [
+      {
+       "name": "text",
+       "type": "string",
+       "required": false,
+       "description": "Text to hash (UTF-8)."
+      },
+      {
+       "name": "file",
+       "type": "string",
+       "required": false,
+       "description": "Or: a file to hash: local path or base64."
+      },
+      {
+       "name": "hmacKey",
+       "type": "string",
+       "required": false,
+       "description": "If set, also compute HMAC with this key."
+      },
+      {
+       "name": "hmacAlgorithm",
+       "type": "\"SHA-1\" | \"SHA-256\" | \"SHA-384\" | \"SHA-512\"",
+       "required": false,
+       "default": "SHA-256",
+       "description": ""
+      },
+      {
+       "name": "format",
+       "type": "\"hex\" | \"HEX\" | \"base64\"",
+       "required": false,
+       "default": "hex",
+       "description": "Output encoding."
+      },
+      {
+       "name": "expected",
+       "type": "string",
+       "required": false,
+       "description": "A checksum to compare against; the result says which algorithm matched."
+      }
+     ],
+     "outputs": [
+      {
+       "name": "bytes",
+       "type": "number",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "hashes",
+       "type": "object",
+       "required": true,
+       "description": ""
+      },
+      {
+       "name": "match",
+       "type": "string | null",
+       "required": false,
+       "description": ""
+      }
+     ],
+     "inputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+       "text": {
+        "description": "Text to hash (UTF-8).",
+        "type": "string"
+       },
+       "file": {
+        "description": "Or: a file to hash: local path or base64.",
+        "type": "string"
+       },
+       "hmacKey": {
+        "description": "If set, also compute HMAC with this key.",
+        "type": "string"
+       },
+       "hmacAlgorithm": {
+        "default": "SHA-256",
+        "type": "string",
+        "enum": [
+         "SHA-1",
+         "SHA-256",
+         "SHA-384",
+         "SHA-512"
+        ]
+       },
+       "format": {
+        "default": "hex",
+        "description": "Output encoding.",
+        "type": "string",
+        "enum": [
+         "hex",
+         "HEX",
+         "base64"
+        ]
+       },
+       "expected": {
+        "description": "A checksum to compare against; the result says which algorithm matched.",
+        "type": "string"
+       }
+      }
+     },
+     "outputSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+       "bytes": {
+        "type": "number"
+       },
+       "hashes": {
+        "type": "object",
+        "propertyNames": {
+         "type": "string"
+        },
+        "additionalProperties": {
+         "type": "string"
+        }
+       },
+       "match": {
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      },
+      "required": [
+       "bytes",
+       "hashes"
+      ]
+     },
+     "examples": [
+      {
+       "input": {
+        "text": "abc"
+       },
+       "note": "SHA-256 = ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+       "output": {
+        "bytes": 3,
+        "hashes": {
+         "MD5": "900150983cd24fb0d6963f7d28e17f72",
+         "SHA-1": "a9993e364706816aba3e25717850c26c9cd0d89d",
+         "SHA-256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+         "SHA-512": "ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

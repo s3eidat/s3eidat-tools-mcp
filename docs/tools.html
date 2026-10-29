@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All tools · S3eidat Tools MCP</title>
+<meta name="description" content="Reference for all 3 S3eidat Tools MCP tools: inputs, outputs and examples.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./"><span class="dot">S3</span>S3eidat Tools MCP</a>
+  <nav class="nav">
+    <a href="./">Home</a>
+    <a href="tools.html" aria-current="page">Tools</a>
+    <a href="skill.html">Skill</a>
+    <a href="https://github.com/s3eidat/s3eidat-tools-mcp">GitHub</a>
+    <a href="https://s3eidat.github.io/">Web tools</a>
+    <a class="coffee" href="https://s3eidat.github.io/coffee/">☕ Support</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<h1>All tools</h1><p class="lead">3 tools in 2 groups. Every one runs on your machine. Click a tool for its inputs and an example.</p>
+<input id="q" class="search" type="search" placeholder="Filter tools: pdf, resize, arabic, qr…" aria-label="Filter tools" autocomplete="off">
+<nav class="chips"><a href="#text">Text <span>2</span></a><a href="#dev">Developer: utilities <span>1</span></a></nav><section class="group" id="text"><h2>Text</h2><p class="muted">Counting, case, slugs, cleaning, diffs, readability, Arabic tools, numbers to words, citations.</p><details class="tool" id="text_case" data-q="text_case case convert convert text case: upper, lower, title (smart: keeps small words lower and iphone/nasa as typed), sentence, camel, pascal, snake, kebab, constant, alternate, inverse. works line by line and handles unicode (arabic, accents, ß). web version: https://s3eidat.github.io/case-convert/"><summary><code>text_case</code><span>Case convert</span></summary><div class="tool-body"><p>Convert text case: upper, lower, title (smart: keeps small words lower and iPhone/NASA as typed), sentence, camel, pascal, snake, kebab, constant, alternate, inverse. Works line by line and handles Unicode (Arabic, accents, ß). Web version: <a href="https://s3eidat.github.io/case-convert/">https://s3eidat.github.io/case-convert/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code> <b class="req">required</b></td><td>string</td><td>Text to convert.</td></tr><tr><td><code>mode</code> <b class="req">required</b></td><td>&quot;upper&quot; | &quot;lower&quot; | &quot;title&quot; | &quot;sentence&quot; | &quot;camel&quot; | &quot;pascal&quot; | &quot;snake&quot; | &quot;kebab&quot; | &quot;constant&quot; | &quot;alternate&quot; | &quot;inverse&quot;</td><td>Target case.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;a tale OF two cities&quot;,
+  &quot;mode&quot;: &quot;title&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;result&quot;: &quot;A Tale of Two Cities&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;XMLParser handler&quot;,
+  &quot;mode&quot;: &quot;snake&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;result&quot;: &quot;xml_parser_handler&quot;
+}</pre></div></details><details class="tool" id="text_word_count" data-q="text_word_count word count count words, characters (with and without spaces), sentences, paragraphs, lines and unique words; estimate reading (238 wpm) and speaking (150 wpm) time; list the most used keywords with density. works for english and arabic (tashkeel ignored). give &quot;text&quot; or a text file &quot;path&quot;. web version: https://s3eidat.github.io/word-count/"><summary><code>text_word_count</code><span>Word count</span></summary><div class="tool-body"><p>Count words, characters (with and without spaces), sentences, paragraphs, lines and unique words; estimate reading (238 wpm) and speaking (150 wpm) time; list the most used keywords with density. Works for English and Arabic (tashkeel ignored). Give &quot;text&quot; or a text file &quot;path&quot;. Web version: <a href="https://s3eidat.github.io/word-count/">https://s3eidat.github.io/word-count/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The text to analyse.</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a path to a UTF-8 text file.</td></tr><tr><td><code>keywords</code></td><td>integer<br><small>default 12</small></td><td>How many top keywords to return (0 = none).</td></tr><tr><td><code>includeStopWords</code></td><td>boolean<br><small>default false</small></td><td>Count common words like &quot;the&quot;/&quot;في&quot; as keywords.</td></tr></tbody></table><p class="muted">Example: 11 words, 4 sentences, 2 paragraphs</p><pre>{
+  &quot;text&quot;: &quot;Hello world. This is a test! Is it?\n\nNew paragraph here.&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;words&quot;: 11,
+  &quot;characters&quot;: 56,
+  &quot;charactersNoSpaces&quot;: 45,
+  &quot;sentences&quot;: 4,
+  &quot;paragraphs&quot;: 2,
+  &quot;lines&quot;: 3,
+  &quot;uniqueWords&quot;: 10,
+  &quot;averageWordLength&quot;: 3.73,
+  &quot;longestWord&quot;: &quot;paragraph&quot;,
+  &quot;readingTimeSeconds&quot;: 3,
+  &quot;speakingTimeSeconds&quot;: 4,
+  &quot;keywords&quot;: [
+    {
+      &quot;word&quot;: &quot;hello&quot;,
+      &quot;count&quot;: 1,
+      &quot;density&quot;: 9.09
+    },
+    {
+      &quot;word&quot;: &quot;new&quot;,
+      &quot;count&quot;: 1,
+      &quot;density&quot;: 9.09
+    },
+    {
+      &quot;word&quot;: &quot;paragraph&quot;,
+      &quot;count&quot;: 1,
+      &quot;density&quot;: 9.09
+    },
+    {
+      &quot;word&quot;: &quot;test&quot;,
+      &quot;count&quot;: 1,
+      &quot;density&quot;: 9.09
+    },
+    {
+      &quot;word&quot;: &quot;world&quot;,
+      &quot;count&quot;: 1,
+      &quot;density&quot;: 9.09
+    }
+  ]
+}</pre></div></details></section><section class="group" id="dev"><h2>Developer: utilities</h2><p class="muted">Hashes, Base64, URLs, JWT, IDs, regex, cron, timestamps, subnets, chmod, HTTP status, .gitignore.</p><details class="tool" id="hash_compute" data-q="hash_compute hash (md5 / sha) compute md5, sha-1, sha-256 and sha-512 of text or a file (path or base64), optionally an hmac with a key, and check against an expected checksum (hex in any case/spacing, &quot;sha256 (file) = …&quot; lines, or base64). web version: https://s3eidat.github.io/hash-lab/"><summary><code>hash_compute</code><span>Hash (MD5 / SHA)</span></summary><div class="tool-body"><p>Compute MD5, SHA-1, SHA-256 and SHA-512 of text or a file (path or base64), optionally an HMAC with a key, and check against an expected checksum (hex in any case/spacing, &quot;SHA256 (file) = …&quot; lines, or base64). Web version: <a href="https://s3eidat.github.io/hash-lab/">https://s3eidat.github.io/hash-lab/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>Text to hash (UTF-8).</td></tr><tr><td><code>file</code></td><td>string</td><td>Or: a file to hash: local path or base64.</td></tr><tr><td><code>hmacKey</code></td><td>string</td><td>If set, also compute HMAC with this key.</td></tr><tr><td><code>hmacAlgorithm</code></td><td>&quot;SHA-1&quot; | &quot;SHA-256&quot; | &quot;SHA-384&quot; | &quot;SHA-512&quot;<br><small>default &quot;SHA-256&quot;</small></td><td></td></tr><tr><td><code>format</code></td><td>&quot;hex&quot; | &quot;HEX&quot; | &quot;base64&quot;<br><small>default &quot;hex&quot;</small></td><td>Output encoding.</td></tr><tr><td><code>expected</code></td><td>string</td><td>A checksum to compare against; the result says which algorithm matched.</td></tr></tbody></table><p class="muted">Example: SHA-256 = ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</p><pre>{
+  &quot;text&quot;: &quot;abc&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;bytes&quot;: 3,
+  &quot;hashes&quot;: {
+    &quot;MD5&quot;: &quot;900150983cd24fb0d6963f7d28e17f72&quot;,
+    &quot;SHA-1&quot;: &quot;a9993e364706816aba3e25717850c26c9cd0d89d&quot;,
+    &quot;SHA-256&quot;: &quot;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&quot;,
+    &quot;SHA-512&quot;: &quot;ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f&quot;
+  }
+}</pre></div></details></section><script>
+const q=document.getElementById('q');q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();
+document.querySelectorAll('.tool').forEach(d=>{d.hidden=v&&!v.split(/\s+/).every(w=>d.dataset.q.includes(w))});
+document.querySelectorAll('.group').forEach(s=>{s.hidden=!s.querySelector('.tool:not([hidden])')})});
+if(location.hash){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS')el.open=true}
+</script>
+<aside class="ad"><p><b>s3eidatGPT</b>: summarise PDFs, write, translate and ask questions with AI. Try it free.</p><a class="btn" href="https://ai.s3eidat.com/?ref=s3tools-mcp">Open s3eidatGPT</a></aside>
+</div></main>
+<footer><div class="wrap">
+  <span>S3eidat Tools MCP · MIT · runs on your machine, files never uploaded · no trackers</span>
+  <span><a href="https://s3eidat.github.io/">All web tools</a> · <a href="llms.txt">llms.txt</a> · <a href="tools.md">tools.md</a> · <a href="https://s3eidat.github.io/coffee/">Buy me a coffee</a></span>
+</div></footer>
+</body>
+</html>

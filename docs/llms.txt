@@ -1,0 +1,24 @@
+# S3eidat Tools MCP
+
+> S3eidat Tools as a local MCP server: PDF, image, text, developer and calculator tools for AI assistants. Runs on your machine; files are never uploaded.
+
+Install: `npx -y s3eidat-tools-mcp` (stdio MCP server; `--http` for Streamable HTTP on 127.0.0.1:8787/mcp). Claude Code: `claude mcp add s3eidat -- npx -y s3eidat-tools-mcp`.
+File inputs: local path or base64. File outputs: written to the given `output` path (or a temp folder); results return the path. No network, no telemetry.
+
+## Docs
+
+- [README](https://github.com/s3eidat/s3eidat-tools-mcp#readme): install for every AI client
+- [Tools reference](https://s3eidat.github.io/s3eidat-tools-mcp/tools.md): every tool with inputs, outputs, examples
+- [Tools JSON](https://s3eidat.github.io/s3eidat-tools-mcp/tools.json): machine-readable schemas
+- [Skill](https://github.com/s3eidat/s3eidat-tools-mcp/tree/main/skills/s3eidat-tools): which tool for which job
+- [Web tools](https://s3eidat.github.io/): the same tools in the browser, for humans
+
+## Text
+
+- `text_case`: Case convert (web: https://s3eidat.github.io/case-convert/)
+- `text_word_count`: Word count (web: https://s3eidat.github.io/word-count/)
+
+## Developer: utilities
+
+- `hash_compute`: Hash (MD5 / SHA) (web: https://s3eidat.github.io/hash-lab/)
+

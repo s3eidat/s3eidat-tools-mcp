@@ -1,0 +1,88 @@
+<section class="hero">
+  <span class="pill">MCP server · free · private · {{count}} tools</span>
+  <h1>S3eidat Tools for your AI assistant</h1>
+  <p class="lead">The tools from <a href="https://s3eidat.github.io/">s3eidat.github.io</a>, as an MCP server your AI can call:
+  PDF, images, text, developer chores, calculators, QR codes and document makers. It runs on your own machine, so your
+  files are never uploaded. No account, no API key, no telemetry.</p>
+  <div class="btns"><a class="btn primary" href="#install">Install</a><a class="btn" href="tools.html">Browse the {{count}} tools</a><a class="btn" href="skill.html">Get the skill</a></div>
+  <pre>npx -y s3eidat-tools-mcp</pre>
+</section>
+
+<div class="cards">
+{{groups}}
+</div>
+
+<h2 id="install">Install</h2>
+<p class="muted">Needs <a href="https://nodejs.org">Node.js</a> 20.19+ (22+ recommended). Pick your app:</p>
+<div class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-tab="claude-code">Claude Code</button>
+  <button role="tab" aria-selected="false" data-tab="claude-desktop">Claude Desktop</button>
+  <button role="tab" aria-selected="false" data-tab="cursor">Cursor</button>
+  <button role="tab" aria-selected="false" data-tab="vscode">VS Code</button>
+  <button role="tab" aria-selected="false" data-tab="windsurf">Windsurf</button>
+  <button role="tab" aria-selected="false" data-tab="codex">Codex CLI</button>
+  <button role="tab" aria-selected="false" data-tab="gemini">Gemini CLI</button>
+  <button role="tab" aria-selected="false" data-tab="http">Other (HTTP)</button>
+</div>
+<div class="panel" data-panel="claude-code"><pre>claude mcp add s3eidat -s user -- npx -y s3eidat-tools-mcp</pre></div>
+<div class="panel" data-panel="claude-desktop" hidden><p>Settings → Developer → Edit Config → add this to <code>claude_desktop_config.json</code>, then restart Claude.</p><pre>{
+  "mcpServers": {
+    "s3eidat": { "command": "npx", "args": ["-y", "s3eidat-tools-mcp"] }
+  }
+}</pre><p class="muted">Windows: if <code>npx</code> isn't found, use <code>"command": "cmd"</code> and <code>"args": ["/c", "npx", "-y", "s3eidat-tools-mcp"]</code>.</p></div>
+<div class="panel" data-panel="cursor" hidden><p><code>~/.cursor/mcp.json</code> (all projects) or <code>.cursor/mcp.json</code>:</p><pre>{
+  "mcpServers": {
+    "s3eidat": { "command": "npx", "args": ["-y", "s3eidat-tools-mcp"] }
+  }
+}</pre></div>
+<div class="panel" data-panel="vscode" hidden><pre>code --add-mcp '{"name":"s3eidat","command":"npx","args":["-y","s3eidat-tools-mcp"]}'</pre><p>or <code>.vscode/mcp.json</code>:</p><pre>{
+  "servers": {
+    "s3eidat": { "type": "stdio", "command": "npx", "args": ["-y", "s3eidat-tools-mcp"] }
+  }
+}</pre></div>
+<div class="panel" data-panel="windsurf" hidden><p><code>~/.codeium/windsurf/mcp_config.json</code>:</p><pre>{
+  "mcpServers": {
+    "s3eidat": { "command": "npx", "args": ["-y", "s3eidat-tools-mcp"] }
+  }
+}</pre></div>
+<div class="panel" data-panel="codex" hidden><pre>codex mcp add s3eidat -- npx -y s3eidat-tools-mcp</pre></div>
+<div class="panel" data-panel="gemini" hidden><p><code>~/.gemini/settings.json</code>:</p><pre>{
+  "mcpServers": {
+    "s3eidat": { "command": "npx", "args": ["-y", "s3eidat-tools-mcp"] }
+  }
+}</pre></div>
+<div class="panel" data-panel="http" hidden><pre>npx -y s3eidat-tools-mcp --http --port 8787</pre><p>Then connect your client to <code>http://127.0.0.1:8787/mcp</code>. It listens on your machine only.</p></div>
+
+<h2>Things to ask</h2>
+<ul>
+  <li>"Merge these three PDFs, compress the result and add page numbers."</li>
+  <li>"Turn every photo in ~/Desktop/receipts into one PDF."</li>
+  <li>"Resize this image to 1200 px wide as WebP and strip the GPS data."</li>
+  <li>"Format this JSON and convert it to YAML." · "What does <code>*/15 9-17 * * 1-5</code> mean?"</li>
+  <li>"Monthly payment on 250,000 at 5.2% over 25 years?" · "Prayer times in Amman tomorrow."</li>
+  <li>"Make a QR code for my Wi-Fi." · "Make an invoice PDF for these items."</li>
+</ul>
+
+<h2>Private by design</h2>
+<div class="cards">
+  <div class="card"><h3>Local</h3><p>The server is a Node process on your machine. Files are read and written on your disk, never uploaded.</p></div>
+  <div class="card"><h3>Sandbox it</h3><p><code>--root ~/Documents</code> keeps every read and write inside one folder.</p></div>
+  <div class="card"><h3>No telemetry</h3><p>No analytics, no accounts, no keys. The few agent tools that use the network are marked so your app asks first.</p></div>
+  <div class="card"><h3>Same results as the web</h3><p>Each tool is ported from its web version with the same self-tests, and links to it for humans.</p></div>
+</div>
+
+<h2>Options</h2>
+<table><thead><tr><th>Option</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>--root &lt;dir&gt;</code></td><td>Only allow reading and writing inside this folder.</td></tr>
+<tr><td><code>--out-dir &lt;dir&gt;</code></td><td>Default folder for outputs (otherwise a temp folder).</td></tr>
+<tr><td><code>--max-mb &lt;n&gt;</code></td><td>Largest input file in MB (default 200).</td></tr>
+<tr><td><code>--only pdf_,image_</code></td><td>Only expose tools with these name prefixes.</td></tr>
+<tr><td><code>--http --port 8787</code></td><td>Serve Streamable HTTP on 127.0.0.1 instead of stdio.</td></tr>
+</tbody></table>
+
+<script>
+document.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-tab]').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+  document.querySelectorAll('[data-panel]').forEach(p => { p.hidden = p.dataset.panel !== b.dataset.tab; });
+}));
+</script>
