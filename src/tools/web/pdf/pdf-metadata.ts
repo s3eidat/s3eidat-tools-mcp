@@ -2,7 +2,7 @@ import { inflateSync } from 'node:zlib';
 import { z } from 'zod';
 import { PDFArray, PDFDict, PDFDocument, PDFHexString, PDFName, PDFRef, PDFStream, PDFString, type PDFObject } from 'pdf-lib';
 import { defineTool, webUrl } from '../../../registry.js';
-import { baseName, fileInput, openPdf, outputPath, pdfFileOutput, returnBase64, savePdf } from './_common.js';
+import { baseName, fileInput, infoDict, openPdf, outputPath, pdfFileOutput, returnBase64, savePdf } from './_common.js';
 
 // Ported from https://github.com/s3eidat/pdf-metadata (app.js): same fields, edit rules and "strip" clean-up
 // (info dict, XMP, page-level PieceInfo, document ID, then drop every unreachable object).
@@ -10,8 +10,7 @@ const STD = ['Title', 'Author', 'Subject', 'Keywords', 'Creator', 'Producer'] as
 const DATES = ['CreationDate', 'ModDate'] as const;
 const KNOWN: string[] = [...STD, ...DATES, 'Trapped'];
 const N = (k: string) => PDFName.of(k);
-/** pdf-lib keeps getInfoDict() private in its typings; the website calls it directly. */
-export const infoDict = (doc: PDFDocument) => (doc as unknown as { getInfoDict(): PDFDict }).getInfoDict();
+export { infoDict };
 
 function text(v: PDFObject | undefined): string {
   if (!v) return '';

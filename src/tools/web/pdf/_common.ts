@@ -3,7 +3,7 @@
  * Ported from the s3eidat.github.io PDF tools so page ranges, placement maths and messages match the website.
  */
 import { z } from 'zod';
-import { PDFDocument, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
+import { PDFDocument, rgb, type PDFDict, type PDFFont, type PDFPage } from 'pdf-lib';
 import { ToolError, type ToolContext } from '../../../registry.js';
 import { fileInput, outputPath, readInput, returnBase64, writeOutput, type InputFile } from '../../../util/files.js';
 import { loadPdfLib } from '../../../util/pdf.js';
@@ -218,3 +218,6 @@ export async function toPng(bytes: Buffer) {
 export async function closeJs(js: { loadingTask: { destroy(): Promise<void> } }) {
   try { await js.loadingTask.destroy(); } catch { /* already gone */ }
 }
+
+/** pdf-lib keeps getInfoDict() private in its typings; the website calls it directly. */
+export const infoDict = (doc: PDFDocument) => (doc as unknown as { getInfoDict(): PDFDict }).getInfoDict();
