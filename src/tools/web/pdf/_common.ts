@@ -213,3 +213,8 @@ export async function toPng(bytes: Buffer) {
     throw new ToolError(`The image couldn't be read: ${e instanceof Error ? e.message : String(e)}`);
   }
 }
+
+/** Free a pdf.js document (its worker-side data too). */
+export async function closeJs(js: { loadingTask: { destroy(): Promise<void> } }) {
+  try { await js.loadingTask.destroy(); } catch { /* already gone */ }
+}
