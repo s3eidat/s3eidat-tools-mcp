@@ -30,7 +30,31 @@ export function isPdf(bytes: Uint8Array) {
 type PdfJs = typeof import('pdfjs-dist/legacy/build/pdf.mjs');
 let pdfjsP: Promise<PdfJs> | undefined;
 
+/** Node 20 lacks a few APIs pdf.js 6 uses; add them before it loads. */
+function polyfillForPdfJs() {
+  const P = Promise as unknown as { withResolvers?: () => unknown };
+  if (typeof P.withResolvers !== 'function') {
+    P.withResolvers = function withResolvers<T>() {
+      let resolve!: (v: T | PromiseLike<T>) => void, reject!: (e?: unknown) => void;
+      const promise = new Promise<T>((res, rej) => { resolve = res; reject = rej; });
+      return { promise, resolve, reject };
+    };
+  }
+  // Used by the pdf.js worker when it ships font data; without it rendering a second page hangs on Node 20.
+  const AB = ArrayBuffer.prototype as unknown as { transferToFixedLength?: unknown; transfer?: unknown };
+  if (typeof AB.transferToFixedLength !== 'function') {
+    const copy = function (this: ArrayBuffer, len = this.byteLength) {
+      const out = new ArrayBuffer(len);
+      new Uint8Array(out).set(new Uint8Array(this, 0, Math.min(len, this.byteLength)));
+      return out;
+    };
+    Object.defineProperty(ArrayBuffer.prototype, 'transferToFixedLength', { value: copy, configurable: true, writable: true });
+    if (typeof AB.transfer !== 'function') Object.defineProperty(ArrayBuffer.prototype, 'transfer', { value: copy, configurable: true, writable: true });
+  }
+}
+
 export function pdfjs(): Promise<PdfJs> {
+  polyfillForPdfJs();
   pdfjsP ??= import('pdfjs-dist/legacy/build/pdf.mjs');
   return pdfjsP;
 }
