@@ -143,7 +143,7 @@ export function encode(s: Sharp, fmt: OutFormat, quality = 92, opt: { bg?: strin
 }
 
 /** The format a "keep" setting maps to: same as the input when it is one of `allowed`, else PNG. */
-export function keepFormat(img: Img, allowed: readonly OutFormat[] = ['jpeg', 'png', 'webp']): OutFormat {
+export function keepFormat(img: Pick<Img, 'format'>, allowed: readonly OutFormat[] = ['jpeg', 'png', 'webp']): OutFormat {
   return (allowed as readonly string[]).includes(img.format) ? (img.format as OutFormat) : 'png';
 }
 
