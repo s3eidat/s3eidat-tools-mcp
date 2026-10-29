@@ -5,21 +5,21 @@ import { z } from 'zod';
 import { ToolError } from '../../../registry.js';
 
 /**
- * The website's number parser: accepts "250,000", "6.5", Arabic-Indic and Persian digits, the Arabic decimal mark (٫),
- * thousands marks (٬ , _ space), a leading minus sign (−), a trailing % and exponents. NaN when it is not a number.
+ * The website's number parser: accepts "250,000", "6.5", Arabic-Indic and Persian digits, the Arabic decimal mark (U+066B),
+ * thousands marks (U+066C, comma, _, space), a leading minus sign (−), a trailing % and exponents. NaN when it is not a number.
  */
 export function num(v: unknown): number {
   if (typeof v === 'number') return v;
   const s = String(v == null ? '' : v)
-    .replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 0x660))
-    .replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 0x6f0))
-    .replace(/٫/g, '.')
-    .replace(/[,\s_٬%]/g, '')
+    .replace(/[\u0660-\u0669]/g, (d) => String(d.charCodeAt(0) - 0x660))
+    .replace(/[\u06f0-\u06f9]/g, (d) => String(d.charCodeAt(0) - 0x6f0))
+    .replace(/\u066b/g, '.')
+    .replace(/[,\s_\u066c%]/g, '')
     .replace(/^[−–]/, '-');
   return /^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(s) ? parseFloat(s) : NaN;
 }
 
-/** Zod: a number, or a string the website would accept ("1,200", "٦٫٥"). */
+/** Zod: a number, or a string the website would accept ("1,200", or 6.5 in Arabic-Indic digits). */
 export const numLike = (desc: string) => z.union([z.number(), z.string()]).describe(desc);
 export const optNumLike = (desc: string) => z.union([z.number(), z.string()]).optional().describe(desc);
 

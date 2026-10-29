@@ -61,11 +61,11 @@ export function approx(a: Q, places: number) {
 }
 export const percent = (v: Q) => decimal(mul(v, R(100))).text + '%';
 
-const arDigits = (s: string) => s.replace(/[٠-٩]/g, (c) => String(c.charCodeAt(0) - 0x660));
+const arDigits = (s: string) => s.replace(/[\u0660-\u0669]/g, (c) => String(c.charCodeAt(0) - 0x660));
 interface DecInfo { ip: string; fp: string; rp: string; all?: bigint; head?: bigint }
 /** Parse a decimal like "-1.2(34)", "0.(3)", "12.5", "3". */
 export function parseDecimal(s: string) {
-  const m = /^\s*([+-]?)(\d*)(?:\.(\d*)(?:\((\d+)\))?)?\s*$/.exec(arDigits(String(s)).replace(/٫/g, '.').replace(/,/g, ''));
+  const m = /^\s*([+-]?)(\d*)(?:\.(\d*)(?:\((\d+)\))?)?\s*$/.exec(arDigits(String(s)).replace(/\u066b/g, '.').replace(/,/g, ''));
   if (!m || (!m[2] && !m[3] && !m[4])) return null;
   const sign = m[1] === '-' ? -1n : 1n, ip = m[2] || '0', fp = m[3] || '', rp = m[4] || '';
   const info: DecInfo = { ip, fp, rp };
@@ -86,7 +86,7 @@ type Tok = { t: 'num'; v: Q; lit: Lit } | { t: 'op'; v: string };
 export type Step = { op: 'mixed'; lit: Extract<Lit, { kind: 'mixed' }>; r: Q } | { op: 'simp'; a: Q; r: Q } | { op: 'dec'; text: string; r: Q } | { op: string; a: Q; b: Q; r: Q };
 
 function tokenize(src: string): Tok[] {
-  const s = arDigits(String(src).replace(/[−–]/g, '-').replace(/[×·]/g, '*').replace(/[÷:]/g, '÷')).replace(/٫/g, '.');
+  const s = arDigits(String(src).replace(/[−–]/g, '-').replace(/[×·]/g, '*').replace(/[÷:]/g, '÷')).replace(/\u066b/g, '.');
   const out: Tok[] = [];
   let i = 0, m: RegExpExecArray | null;
   while (i < s.length) {

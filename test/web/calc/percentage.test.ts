@@ -23,7 +23,7 @@ describe('calc_percentage (percentage-calc self-test)', () => {
     expect(fmt(1234.5)).toBe('1,234.5');
     expect(num('1,000')).toBe(1000);
     expect(num('−5')).toBe(-5);
-    expect(num('١٥')).toBe(15);
+    expect(num('\u0661\u0665')).toBe(15);
   });
   it('answers every question type as a tool', async () => {
     expect((await run(tool, { mode: 'percent_of', percent: 15, value: 200 })).result).toBe(30);

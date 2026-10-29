@@ -37,13 +37,13 @@ describe('calc_hijri (hijri-converter self-test)', () => {
   it('runs as a tool, both ways', async () => {
     const h = await run(tool, { mode: 'to_hijri', date: '2000-01-01', arabicDigits: false });
     expect(h.day.hijri).toMatchObject({ year: 1420, month: 9, day: 24, monthName: 'Ramadan', iso: '1420-09-24', text: 'Saturday, 24 Ramadan 1420 AH' });
-    expect(h.day.hijri.arabic).toBe('السبت 24 رمضان 1420 هـ');
+    expect(h.day.hijri.arabic).toBe('\u0627\u0644\u0633\u0628\u062a 24 \u0631\u0645\u0636\u0627\u0646 1420 \u0647\u0640');
     expect(h.day.approximate).toBe(false);
     const g = await run(tool, { mode: 'to_gregorian', hijriYear: 1447, hijriMonth: 9, hijriDay: 1 });
     expect(g.day.gregorian).toMatchObject({ date: '2026-02-18', weekday: 'Wednesday', text: 'Wednesday, 18 February 2026' });
-    expect(g.day.gregorian.arabic).toContain('١٨ ');
+    expect(g.day.gregorian.arabic).toContain('\u0661\u0668 ');
     const lev = await run(tool, { mode: 'to_hijri', date: '2026-02-18', gregorianArabicMonths: 'levant', arabicDigits: false });
-    expect(lev.day.gregorian.arabic).toContain('18 شباط 2026');
+    expect(lev.day.gregorian.arabic).toContain('18 \u0634\u0628\u0627\u0637 2026');
     const m = await run(tool, { mode: 'month', hijriYear: 1447, hijriMonth: 1 });
     expect(m.month).toMatchObject({ start: '2025-06-26', name: 'Muharram' });
     expect([29, 30]).toContain(m.month.days);

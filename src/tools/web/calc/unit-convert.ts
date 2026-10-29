@@ -40,7 +40,7 @@ export function find(word: string, c?: Cat): Unit[] {
 }
 /** "5 km to mi", "72 f in c", "3 cups = mL". */
 export function parseQuery(q: string) {
-  const m = /^\s*([-+−]?[\d.,٠-٩]+(?:e[-+]?\d+)?)\s*(.+?)\s+(?:to|in|into|as|=|->|→)\s+(.+?)\s*$/i.exec(q);
+  const m = /^\s*([-+−]?[\d.,\u0660-\u0669]+(?:e[-+]?\d+)?)\s*(.+?)\s+(?:to|in|into|as|=|->|→)\s+(.+?)\s*$/i.exec(q);
   if (!m || isNaN(num(m[1]))) return null;
   const froms = find(m[2]);
   for (const f of froms) {

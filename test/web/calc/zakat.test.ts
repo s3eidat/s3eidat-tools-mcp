@@ -15,7 +15,7 @@ describe('calc_zakat (zakat-calc self-test)', () => {
     expect(d.due && near(d.zakat, 127.5)).toBe(true);
     expect(e.net === 0 && !e.due).toBe(true);
     expect(Z({ cash: 9999 }).due).toBe(false);
-    expect(num('١٬٥٠٠')).toBe(1500);
+    expect(num('\u0661\u066c\u0665\u0660\u0660')).toBe(1500);
   });
   it('runs as a tool', async () => {
     const r = await run(zakatTool, { cash: 5000, bank: '10,000', goldGrams: 100, goldKarat: 21, goldPricePerGram: 60, debts: 2000, currency: 'JOD' });

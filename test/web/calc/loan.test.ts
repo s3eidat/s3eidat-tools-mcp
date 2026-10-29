@@ -22,7 +22,7 @@ describe('calc_loan (loan-calc self-test)', () => {
     expect(e.interest).toBeLessThan(a.interest);
     expect(b.payment).toBe(85607);
     expect(num('200,000')).toBe(200000);
-    expect(num('٦٫٥')).toBe(6.5);
+    expect(num('\u0666\u066b\u0665')).toBe(6.5);
     expect(addMonths({ y: 2026, m: 11 }, 1)).toEqual({ y: 2027, m: 0 });
   });
 
