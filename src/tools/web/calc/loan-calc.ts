@@ -86,7 +86,7 @@ export default defineTool({
     summary: z.string(),
   }),
   annotations: ANNOTATIONS,
-  examples: [{ input: { amount: 200000, annualRate: 6, term: 30, schedule: 'none' }, note: 'monthlyPayment 1199.10, totalInterest ≈ 231,676' }],
+  examples: [{ input: { amount: 200000, annualRate: 6, term: 30, schedule: 'none' }, note: 'monthlyPayment 1199.10, totalInterest 231,677.04, 360 months' }],
   run(input) {
     const P = need(input.amount, 'amount'), rate = need(input.annualRate, 'annualRate'), term = need(input.term, 'term');
     const extra = need(input.extraMonthly, 'extraMonthly', 0);
