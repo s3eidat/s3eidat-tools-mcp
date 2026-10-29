@@ -119,7 +119,7 @@ export async function readInput(value: string, ctx: ToolContext, label = 'input'
 /** Read a text input that may be given inline or as a file path. */
 export async function readTextInput(text: string | undefined, path: string | undefined, ctx: ToolContext): Promise<string> {
   if (text != null) return text;
-  if (path) return (await readInput(path, ctx, 'path')).bytes.toString('utf8');
+  if (path) return (await readInput(path, ctx, 'path')).bytes.toString('utf8').replace(/^\uFEFF/, '');
   throw new ToolError('Give either "text" or "path".');
 }
 
