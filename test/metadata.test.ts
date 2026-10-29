@@ -38,7 +38,8 @@ describe('skill', async () => {
     const names = new Set(tools.map((t) => t.name));
     const skill = read('skills/s3eidat-tools/SKILL.md');
     const mentioned = [...skill.matchAll(/`([a-z][a-z0-9]*(?:_[a-z0-9]+)+)`/g)].map((m) => m[1]);
-    expect([...new Set(mentioned)].filter((n) => !names.has(n))).toEqual([]);
+    const meta = new Set(['s3eidat_find_tools', 's3eidat_tool_info', 's3eidat_run_tool']);
+    expect([...new Set(mentioned)].filter((n) => !names.has(n) && !meta.has(n))).toEqual([]);
   });
   it('mentions every website port', () => {
     const skill = read('skills/s3eidat-tools/SKILL.md');

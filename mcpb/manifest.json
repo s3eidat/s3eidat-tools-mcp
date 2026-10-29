@@ -22,14 +22,37 @@
     "entry_point": "dist/index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/dist/index.js", "--root", "${user_config.root}", "--out-dir", "${user_config.out_dir}"]
+      "args": [
+        "${__dirname}/dist/index.js",
+        "--root",
+        "${user_config.root}",
+        "--out-dir",
+        "${user_config.out_dir}",
+        "--groups",
+        "${user_config.groups}",
+        "--compact=${user_config.compact}"
+      ]
     }
   },
   "tools_generated": true,
-  "keywords": ["pdf", "image", "text", "json", "calculator", "qr", "arabic", "privacy", "local"],
+  "keywords": [
+    "pdf",
+    "image",
+    "text",
+    "json",
+    "calculator",
+    "qr",
+    "arabic",
+    "privacy",
+    "local"
+  ],
   "license": "MIT",
   "compatibility": {
-    "platforms": ["darwin", "win32", "linux"],
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
     "runtimes": {
       "node": ">=20.19.0"
     }
@@ -46,6 +69,20 @@
       "title": "Output folder (optional)",
       "description": "Where results go when you don't say where to save them. Default: a temporary folder.",
       "required": false
+    },
+    "groups": {
+      "type": "string",
+      "title": "Tool groups (optional)",
+      "description": "Comma-separated groups to load, e.g. pdf,image,text. Empty = all: pdf, image, text, data, dev, calc, everyday, qr, docs, ai.",
+      "required": false,
+      "default": ""
+    },
+    "compact": {
+      "type": "boolean",
+      "title": "Compact mode",
+      "description": "Show Claude 3 small search/run tools instead of every tool (saves context; Claude finds tools as needed).",
+      "required": false,
+      "default": false
     }
   }
 }

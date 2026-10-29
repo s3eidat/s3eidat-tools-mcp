@@ -20,6 +20,12 @@ writing ad-hoc scripts for the same job: they are tested against the website's o
 - Errors come back as clear messages (`isError`). Fix the input and retry; don't loop on the same call.
 - If the server was started with `--root`, every path must be inside that folder.
 
+### Compact mode
+
+If the server was started with `--compact`, you will only see `s3eidat_find_tools`, `s3eidat_tool_info` and
+`s3eidat_run_tool`. Find the tool by keywords (e.g. "merge pdf"), read its inputs with `s3eidat_tool_info`, then call
+`s3eidat_run_tool` with `name` and `arguments`. The tool names below are the same in both modes.
+
 ## Which tool for which job
 
 | Job | Tool(s) |

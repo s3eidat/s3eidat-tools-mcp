@@ -129,11 +129,25 @@ expose your files, so use a desktop/CLI client instead.
 | `--root <dir>` | Only allow reading and writing files inside `<dir>` (recommended for shared machines). |
 | `--out-dir <dir>` | Where outputs go when a tool call gives no `output` path (default: a temp folder). |
 | `--max-mb <n>` | Largest input file in MB (default 200). |
-| `--only pdf_,image_` | Only expose tools with these name prefixes (keeps the tool list short for small models). |
+| `--groups pdf,image` | Only expose these groups: `pdf`, `image`, `text`, `data`, `dev`, `calc`, `everyday`, `qr`, `docs`, `ai`. |
+| `--compact` | Expose 3 small meta-tools (`s3eidat_find_tools`, `s3eidat_tool_info`, `s3eidat_run_tool`) instead of every tool. |
+| `--only pdf_,image_` | Only expose tools whose names start with these prefixes. |
+| `--output-schemas` | Also advertise each tool's output JSON Schema (results always include structured JSON either way). |
 | `--http`, `--port`, `--host` | Serve Streamable HTTP instead of stdio. |
 | `--list` | Print every tool and exit. |
 
 Example: `"args": ["-y", "s3eidat-tools-mcp", "--root", "/Users/me/Documents"]`.
+
+### Many tools, small context?
+
+The full list is about 140 tools, roughly 65k tokens of tool definitions. Clients with tool search (Claude Code) handle
+that well. If your client has a tool limit (Cursor, Windsurf) or you use a small model, either pick groups
+(`--groups pdf,image` is about 17k tokens) or use `--compact` (about 600 tokens): the model then searches for a tool,
+reads its inputs and runs it through three meta-tools.
+
+```json
+{ "mcpServers": { "s3eidat": { "command": "npx", "args": ["-y", "s3eidat-tools-mcp", "--compact"] } } }
+```
 
 ## How files work
 
