@@ -244,7 +244,7 @@ const asciiBanner = defineTool({
   }),
   outputSchema: z.object({ text: z.string(), lines: z.number(), path: z.string().optional() }),
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  examples: [{ input: { text: 'HI', style: 'char', fill: '#' }, output: { text: '##      ##  ######\n##      ##    ##\n…', lines: 7 } }],
+  examples: [{ input: { text: 'HI', style: 'char', fill: '#' }, output: { lines: 7 }, note: 'A 7-line banner: "##      ##  ######" …' }],
   async run(input, ctx) {
     const t = banner(input.text, input.style, input.fill || '#');
     if (!t) throw new ToolError('Type some text first.');
