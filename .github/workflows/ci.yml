@@ -15,28 +15,30 @@ jobs:
       matrix:
         node: [22, 24]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node }}
           cache: npm
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      - run: npm run smoke
 
-  # The published package supports Node 20; the dev toolchain (vitest) needs 22+, so on 20 we only smoke-test the build.
+  # The published package supports Node 20.19+; the dev toolchain (vitest) needs 22+, so on 20 we run the MCP smoke test.
   node20-smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
       - run: node dist/index.js --version
       - run: node dist/index.js --list
+      - run: node scripts/smoke.mjs
