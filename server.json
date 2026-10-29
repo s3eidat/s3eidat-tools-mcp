@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.s3eidat/s3eidat-tools-mcp",
+  "title": "S3eidat Tools",
+  "description": "Free, private PDF, image, text, developer, calculator and QR tools. Runs locally; no uploads.",
+  "repository": {
+    "url": "https://github.com/s3eidat/s3eidat-tools-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://s3eidat.github.io/s3eidat-tools-mcp/",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "s3eidat-tools-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

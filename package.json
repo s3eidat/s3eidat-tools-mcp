@@ -12,7 +12,8 @@
     "dist",
     "skills",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "engines": {
     "node": ">=20.19"
