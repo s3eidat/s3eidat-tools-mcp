@@ -207,7 +207,7 @@ Hints: readOnly, idempotent
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| `images` | string \| object[] | yes | Images in page order: path/base64 strings, or {file, rotate}. |
+| `images` | (string \| object)[] | yes | Images in page order: path/base64 strings, or {file, rotate}. |
 | `pageSize` | "a4" \| "letter" \| "fit" | no (default `"a4"`) | Page size. Default "a4". |
 | `orientation` | "auto" \| "portrait" \| "landscape" | no (default `"auto"`) | "auto" turns the page to match each image. Ignored for "fit". |
 | `margin` | number | no (default `10`) | Margin around each image in mm. Default 10. |
@@ -305,7 +305,7 @@ Hints: readOnly, idempotent
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| `files` | string \| object[] | yes | PDFs to merge, in order: a path/base64 string, or {file, pages}. |
+| `files` | (string \| object)[] | yes | PDFs to merge, in order: a path/base64 string, or {file, pages}. |
 | `output` | string | no | Where to write the result: a file path, or a folder ending in "/". Default: the server output folder (a temp folder unless --out-dir is set). |
 | `returnBase64` | boolean | no (default `false`) | Also return the output as base64 in the result (only for small files). Default false. |
 
@@ -455,7 +455,7 @@ Hints: readOnly, idempotent
 | `mimeType` | string |  |
 | `base64` | string |  |
 | `pages` | number | Pages in the result. |
-| `order` | number \| "blank"[] | Source page (1-based) of each output page, or "blank". |
+| `order` | (number \| "blank")[] | Source page (1-based) of each output page, or "blank". |
 
 **Example** — swap the first two pages, turn page 3
 
@@ -2909,7 +2909,7 @@ Hints: readOnly, idempotent
 |---|---|---|---|
 | `text` | string | no | The post text. |
 | `path` | string | no | Or: a path to a UTF-8 text file. |
-| `platforms` | "x" \| "threads" \| "bsky" \| "ig" \| "li" \| "fb" \| "tt" \| "yt" \| "ytd" \| "pin" \| "gt" \| "gd"[] | no | Only these meters: x, threads, bsky, ig, li, fb, tt, yt, ytd, pin, gt (Google title), gd (meta description). Default: all. |
+| `platforms` | ("x" \| "threads" \| "bsky" \| "ig" \| "li" \| "fb" \| "tt" \| "yt" \| "ytd" \| "pin" \| "gt" \| "gd")[] | no | Only these meters: x, threads, bsky, ig, li, fb, tt, yt, ytd, pin, gt (Google title), gd (meta description). Default: all. |
 | `gsmLookalikes` | boolean | no (default `false`) | Also return the text with curly quotes, dashes, ellipses, odd spaces etc. replaced by GSM-7 look-alikes (cheaper SMS). |
 
 **Output**
@@ -3576,10 +3576,10 @@ Hints: readOnly, idempotent
 |---|---|---|---|
 | `text` | string | no | The CSV / TSV / JSON / Markdown table as inline text. |
 | `path` | string | no | Or: a path to a CSV/TSV/JSON/Markdown file (UTF-8; use this for big inputs). |
-| `rows` | string \| number \| boolean \| null[][] | no | Or: the table as an array of rows (first row = header unless header is false). |
+| `rows` | ((string \| number \| boolean \| null)[])[] | no | Or: the table as an array of rows (first row = header unless header is false). |
 | `format` | "auto" \| "csv" \| "tsv" \| "json" \| "markdown" | no (default `"auto"`) | Input format; "auto" detects Markdown, then JSON, then CSV/TSV. |
 | `header` | boolean | no (default `true`) | First row is the header. When false, "Column 1", "Column 2"… headers are added. |
-| `align` | "none" \| "left" \| "center" \| "right" \| "none" \| "left" \| "center" \| "right"[] | no | Column alignment: one value for all columns or one per column. Default: keep a Markdown input's alignment, else none. |
+| `align` | "none" \| "left" \| "center" \| "right" \| ("none" \| "left" \| "center" \| "right")[] | no | Column alignment: one value for all columns or one per column. Default: keep a Markdown input's alignment, else none. |
 | `pretty` | boolean | no (default `true`) | Pad cells so the columns line up (default true). |
 | `output` | string | no | Optional: also write the result to this file path (or folder ending in "/"). The result text is then left out of the reply. Results over 1,000,000 characters are always written to a file. |
 
@@ -3636,7 +3636,7 @@ Hints: readOnly, idempotent
 | Field | Type | Description |
 |---|---|---|
 | `columns` | string[] |  |
-| `aligns` | "none" \| "left" \| "center" \| "right"[] |  |
+| `aligns` | ("none" \| "left" \| "center" \| "right")[] |  |
 | `rows` | number |  |
 | `data` | object[] | The rows (JSON formats, when not written to a file). |
 | `result` | string | The converted / formatted text (left out when written to a file). |
@@ -5381,7 +5381,7 @@ Hints: readOnly, idempotent
 |---|---|---|
 | `count` | number | Number of matches (capped at 5000; see "more"). |
 | `more` | boolean | True when there were more than 5000 matches. |
-| `groupNames` | string \| null[] | Name of each capture group in order (null = unnamed). |
+| `groupNames` | (string \| null)[] | Name of each capture group in order (null = unnamed). |
 | `matches` | object[] |  |
 | `replaced` | string |  |
 
@@ -6835,8 +6835,8 @@ Hints: readOnly, idempotent
 | Name | Type | Required | Description |
 |---|---|---|---|
 | `type` | "linear" \| "quadratic" \| "cubic" \| "system" | yes | Equation type. |
-| `coefficients` | number \| string[] | no | linear: [a, b, c] for a·x + b = c; quadratic: [a, b, c]; cubic: [a, b, c, d]. |
-| `system` | number \| string[][] | no | system: rows of the augmented matrix, 2 rows of [a, b, rhs] (x, y) or 3 rows of [a, b, c, rhs] (x, y, z). |
+| `coefficients` | (number \| string)[] | no | linear: [a, b, c] for a·x + b = c; quadratic: [a, b, c]; cubic: [a, b, c, d]. |
+| `system` | ((number \| string)[])[] | no | system: rows of the augmented matrix, 2 rows of [a, b, rhs] (x, y) or 3 rows of [a, b, c, rhs] (x, y, z). |
 
 **Output**
 
@@ -7820,7 +7820,7 @@ Hints: readOnly, idempotent
 |---|---|---|---|
 | `mode` | "check" \| "gcd_lcm" \| "range" | no (default `"check"`) | What to do. |
 | `number` | string \| number | no | check: the number or expression, e.g. "600851475143" or "2^89-1". |
-| `numbers` | string \| number[] | no | gcd_lcm: the whole numbers (2–50, expressions allowed). |
+| `numbers` | (string \| number)[] | no | gcd_lcm: the whole numbers (2–50, expressions allowed). |
 | `from` | integer | no | range: start (inclusive). |
 | `to` | integer | no | range: end (inclusive), below 10^15. |
 | `limit` | integer | no (default `10000`) | range: return at most this many primes in the list (the count is always exact). |
@@ -11953,7 +11953,7 @@ Hints: readOnly, idempotent
 |---|---|---|---|
 | `template` | "classic" \| "modern" \| "compact" | no (default `"classic"`) |  |
 | `accent` | string | no (default `"#0e7c86"`) | Accent colour (hex). |
-| `order` | "summary" \| "experience" \| "education" \| "skills" \| "projects" \| "languages"[] | no | Section order; missing sections are appended in the default order. |
+| `order` | ("summary" \| "experience" \| "education" \| "skills" \| "projects" \| "languages")[] | no | Section order; missing sections are appended in the default order. |
 | `contact` | object | no (default `{"name":"","title":"","email":"","phone":"","location":"","website":""}`) |  |
 | `summary` | string | no (default `""`) | Two or three lines about you. |
 | `experience` | object[] | no (default `[]`) |  |

@@ -50,7 +50,7 @@ function typeOf(p) {
   if (p.enum) return p.enum.map((v) => JSON.stringify(v)).join(' | ');
   if (p.const !== undefined) return JSON.stringify(p.const);
   if (p.anyOf || p.oneOf) return (p.anyOf || p.oneOf).map(typeOf).join(' | ');
-  if (p.type === 'array') return `${typeOf(p.items)}[]`;
+  if (p.type === 'array') { const t = typeOf(p.items); return t.includes(' | ') ? `(${t})[]` : `${t}[]`; }
   if (Array.isArray(p.type)) return p.type.join(' | ');
   return p.type ?? 'object';
 }
