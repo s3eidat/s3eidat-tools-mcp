@@ -70,7 +70,7 @@ export async function decodeImg(bytes: Buffer, name = 'image'): Promise<Img> {
   if (isSvgBytes(bytes) || /\.svgz?$/i.test(name)) {
     const text = bytes.toString('utf8');
     const size = svgSize(text);
-    const svg = setSvgAttrs(text, { width: String(size.w), height: String(size.h) });
+    const svg = sanitizeSvg(setSvgAttrs(text, { width: String(size.w), height: String(size.h) }));
     let meta;
     try {
       meta = await sharp(Buffer.from(svg)).metadata();
@@ -242,6 +242,18 @@ export function setSvgAttrs(text: string, set: Record<string, string | null>) {
   if (!attrs.has('xmlns') && !r.tag.includes(':')) attrs.set('xmlns', 'http://www.w3.org/2000/svg');
   const tag = '<' + r.tag + [...attrs].map(([k, v]) => ` ${k}="${escAttr(v)}"`).join('') + (r.selfClose ? '/>' : '>');
   return text.slice(0, r.start) + tag + text.slice(r.end);
+}
+
+/**
+ * Make an SVG inert before rasterising: drop <script> elements, on* handlers and references to anything but
+ * in-document fragments and data: URIs (librsvg never runs scripts, but this also blocks reading local files).
+ */
+export function sanitizeSvg(text: string) {
+  return text
+    .replace(/<script\b[\s\S]*?<\/script\s*>/gi, '')
+    .replace(/<script\b[^>]*\/>/gi, '')
+    .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*')/gi, '')
+    .replace(/\s((?:xlink:)?href|src)\s*=\s*("\s*(?!#|data:)[^"]*"|'\s*(?!#|data:)[^']*')/gi, '');
 }
 
 /** Size of an SVG from its width/height or viewBox (image-convert's rule; 1024×1024 when it has neither). */
