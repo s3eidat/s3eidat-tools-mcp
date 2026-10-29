@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { loadTools } from '../src/registry.js';
+import { loadErrors, loadTools } from '../src/registry.js';
 
 const read = (p: string) => readFileSync(new URL('../' + p, import.meta.url), 'utf8');
 const pkg = JSON.parse(read('package.json'));
@@ -18,6 +18,9 @@ describe('release metadata', () => {
 
 describe('every tool', async () => {
   const tools = await loadTools();
+  it('all modules load', () => {
+    expect(loadErrors).toEqual([]);
+  });
   it('has a sane contract', () => {
     expect(tools.length).toBeGreaterThan(0);
     for (const t of tools) {

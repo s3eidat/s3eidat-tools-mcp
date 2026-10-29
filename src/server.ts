@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { createMcpHandler, McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import { hostHeaderValidation, localhostHostValidation, localhostOriginValidation, toNodeHandler } from '@modelcontextprotocol/node';
-import { loadTools, toCallToolResult, type ToolModule } from './registry.js';
+import { loadErrors, loadTools, toCallToolResult, type ToolModule } from './registry.js';
 import { setContext, DEFAULT_MAX_BYTES, type ToolContext } from './util/context.js';
 
 export const SERVER_NAME = 's3eidat-tools';
@@ -137,6 +137,7 @@ export async function main(argv = process.argv.slice(2)) {
     version: VERSION,
   });
   let tools = await loadTools();
+  for (const e of loadErrors) console.error(`[s3eidat-tools] skipped ${e.file}: ${e.error}`);
   if (opts.only?.length) tools = tools.filter((t) => opts.only!.some((p) => t.name.startsWith(p)));
 
   if (opts.list) {

@@ -119,24 +119,36 @@ async function walk(dir: string): Promise<string[]> {
 
 let cache: Promise<ToolModule[]> | undefined;
 
+/** Modules that failed to load (bad export, import error, duplicate name). The server logs them; tests assert none. */
+export const loadErrors: { file: string; error: string }[] = [];
+
 /**
  * Discover and load every tool module under `tools/` (next to this file, so it works from `src/` in
  * tests and from `dist/` when installed). Files starting with `_` are treated as shared helpers.
+ * A module that fails to load is skipped and recorded in `loadErrors`, so one bad tool can't take the server down.
  */
 export function loadTools(toolsDir = join(here, 'tools')): Promise<ToolModule[]> {
-  if (toolsDir === join(here, 'tools') && cache) return cache;
+  const isDefault = toolsDir === join(here, 'tools');
+  if (isDefault && cache) return cache;
   const p = (async () => {
     const files = await walk(toolsDir);
     const tools: ToolModule[] = [];
     const seen = new Map<string, string>();
+    const fail = (file: string, error: string) => loadErrors.push({ file: relative(toolsDir, file), error });
     for (const file of files) {
-      const mod = await import(pathToFileURL(file).href);
+      let mod;
+      try {
+        mod = await import(pathToFileURL(file).href);
+      } catch (e) {
+        fail(file, e instanceof Error ? e.message : String(e));
+        continue;
+      }
       const exp = mod.default ?? mod.tools ?? mod.tool;
       const list = Array.isArray(exp) ? exp : exp ? [exp] : [];
       for (const t of list) {
-        if (!isToolModule(t)) throw new Error(`${file}: default export is not a tool (use defineTool)`);
-        if (!NAME_RE.test(t.name)) throw new Error(`${file}: tool name "${t.name}" must be snake_case with a group prefix`);
-        if (seen.has(t.name)) throw new Error(`Duplicate tool name "${t.name}" in ${file} and ${seen.get(t.name)}`);
+        if (!isToolModule(t)) { fail(file, 'default export is not a tool (use defineTool)'); continue; }
+        if (!NAME_RE.test(t.name)) { fail(file, `tool name "${t.name}" must be snake_case with a group prefix`); continue; }
+        if (seen.has(t.name)) { fail(file, `duplicate tool name "${t.name}" (also in ${relative(toolsDir, seen.get(t.name)!)})`); continue; }
         seen.set(t.name, file);
         if (!t.group) {
           const parts = relative(toolsDir, dirname(file)).split(sep);
@@ -147,7 +159,7 @@ export function loadTools(toolsDir = join(here, 'tools')): Promise<ToolModule[]>
     }
     return tools.sort((a, b) => a.name.localeCompare(b.name));
   })();
-  if (toolsDir === join(here, 'tools')) cache = p;
+  if (isDefault) cache = p;
   return p;
 }
 
