@@ -139,9 +139,10 @@ export class Draw {
       thickness: (o.width ?? 1) * this.k, color: color(o.color ?? '#000000'), dashArray: o.dash?.map((d) => d * this.k), opacity: o.opacity,
     });
   }
-  width(s: string, size: number, font: PDFFont = this.fonts.sans) { return font.widthOfTextAtSize(s, size * this.k) / this.k; }
+  width(s: string, size: number, font: PDFFont = this.fonts.sans) { return font.widthOfTextAtSize(pdfSafe(s), size * this.k) / this.k; }
   /** Fit text into maxW: shrink in 6% steps down to minScale, then trim with "…". */
   fit(s: string, o: TextOpts) {
+    s = pdfSafe(s);
     const font = o.font ?? this.fonts.sans;
     let size = o.size, w = this.width(s, size, font);
     if (!o.maxW || w <= o.maxW) return { text: s, size, width: w };
