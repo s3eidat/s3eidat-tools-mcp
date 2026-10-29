@@ -84,3 +84,47 @@ describe('MCP round trip over Streamable HTTP', () => {
     expect(status).toBe(403);
   });
 });
+
+describe('listing modes', () => {
+  async function connect(args: string[]) {
+    const client = new Client({ name: 'test', version: '1.0.0' });
+    await client.connect(new StdioClientTransport({ command: process.execPath, args: [bin, ...args], stderr: 'ignore' }));
+    return client;
+  }
+
+  it('omits output schemas by default and adds them with --output-schemas', async () => {
+    const a = await connect([]);
+    const b = await connect(['--output-schemas', '--groups', 'text']);
+    try {
+      const plain = (await a.listTools()).tools.find((t) => t.name === 'text_case')!;
+      expect(plain.outputSchema).toBeUndefined();
+      const res = (await a.callTool({ name: 'text_case', arguments: { text: 'a b', mode: 'snake' } })) as TextResult;
+      expect(res.structuredContent?.result).toBe('a_b');
+      const listed = (await b.listTools()).tools;
+      expect(listed.every((t) => t.name.startsWith('text_'))).toBe(true);
+      expect(listed.find((t) => t.name === 'text_case')!.outputSchema).toBeTruthy();
+    } finally {
+      await a.close();
+      await b.close();
+    }
+  });
+
+  it('--compact exposes find / info / run', async () => {
+    const c = await connect(['--compact']);
+    try {
+      const names = (await c.listTools()).tools.map((t) => t.name).sort();
+      expect(names).toEqual(['s3eidat_find_tools', 's3eidat_run_tool', 's3eidat_tool_info']);
+      const found = (await c.callTool({ name: 's3eidat_find_tools', arguments: { query: 'merge pdf' } })) as TextResult;
+      expect((found.structuredContent?.tools as { name: string }[])[0].name).toBe('pdf_merge');
+      const info = (await c.callTool({ name: 's3eidat_tool_info', arguments: { name: 'text_case' } })) as TextResult;
+      expect(JSON.stringify(info.structuredContent?.inputSchema)).toContain('kebab');
+      const run = (await c.callTool({ name: 's3eidat_run_tool', arguments: { name: 'text_case', arguments: { text: 'Hello World', mode: 'kebab' } } })) as TextResult;
+      expect(run.structuredContent?.result).toBe('hello-world');
+      const bad = (await c.callTool({ name: 's3eidat_run_tool', arguments: { name: 'text_case', arguments: { text: 1 } } })) as TextResult;
+      expect(bad.isError).toBe(true);
+      expect(bad.content[0].text).toMatch(/Invalid arguments for text_case/);
+    } finally {
+      await c.close();
+    }
+  });
+});

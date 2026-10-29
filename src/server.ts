@@ -9,6 +9,7 @@ import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import { hostHeaderValidation, localhostHostValidation, localhostOriginValidation, toNodeHandler } from '@modelcontextprotocol/node';
 import { loadErrors, loadTools, toCallToolResult, type ToolModule } from './registry.js';
 import { setContext, DEFAULT_MAX_BYTES, type ToolContext } from './util/context.js';
+import { metaTools } from './compact.js';
 
 export const SERVER_NAME = 's3eidat-tools';
 
@@ -31,9 +32,27 @@ function errorResult(e: unknown) {
   return { content: [{ type: 'text' as const, text: `Error: ${msg}` }], isError: true };
 }
 
-/** Build one McpServer instance with every tool registered. */
-export function buildServer(tools: ToolModule[], ctx: ToolContext): McpServer {
+export interface BuildOptions {
+  /** Advertise each tool's outputSchema in tools/list (adds ~30% to the listing). structuredContent is always returned. */
+  outputSchemas?: boolean;
+  /** Expose three meta-tools (find / info / run) instead of every tool. */
+  compact?: boolean;
+}
+
+/** Build one McpServer instance with the tools registered. */
+export function buildServer(tools: ToolModule[], ctx: ToolContext, opts: BuildOptions = {}): McpServer {
   const server = new McpServer({ name: SERVER_NAME, version: VERSION, title: 'S3eidat Tools' }, { instructions: INSTRUCTIONS });
+  if (opts.compact) {
+    for (const m of metaTools(tools, ctx)) {
+      server.registerTool(
+        m.name,
+        { title: m.title, description: m.description, inputSchema: m.inputSchema, annotations: { title: m.title, readOnlyHint: m.name !== 's3eidat_run_tool', openWorldHint: false } },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (async (args: any) => m.run(args)) as any,
+      );
+    }
+    return server;
+  }
   for (const tool of tools) {
     server.registerTool(
       tool.name,
@@ -41,7 +60,7 @@ export function buildServer(tools: ToolModule[], ctx: ToolContext): McpServer {
         title: tool.title,
         description: tool.description,
         inputSchema: tool.inputSchema,
-        ...(tool.outputSchema ? { outputSchema: tool.outputSchema } : {}),
+        ...(tool.outputSchema && opts.outputSchemas ? { outputSchema: tool.outputSchema } : {}),
         annotations: { title: tool.title, ...tool.annotations },
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -66,6 +85,9 @@ export interface CliOptions {
   outDir?: string;
   maxMb?: number;
   only?: string[];
+  groups?: string[];
+  compact: boolean;
+  outputSchemas: boolean;
   list: boolean;
   help: boolean;
   version: boolean;
@@ -74,8 +96,11 @@ export interface CliOptions {
 /** Empty values and unfilled template placeholders (e.g. an optional Claude Desktop setting) mean "not set". */
 const optional = (v: string) => (v.trim() === '' || /^\$\{[^}]*\}$/.test(v.trim()) ? undefined : v);
 
+/** Boolean flag, optionally with an inline value: --compact, --compact=true, --compact=false. */
+const asFlag = (inline: string | undefined) => inline == null || /^(1|true|yes|on)$/i.test(inline.trim());
+
 export function parseArgs(argv: string[]): CliOptions {
-  const o: CliOptions = { http: false, port: 8787, host: '127.0.0.1', list: false, help: false, version: false };
+  const o: CliOptions = { http: false, port: 8787, host: '127.0.0.1', list: false, help: false, version: false, compact: false, outputSchemas: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const [flag, inline] = a.includes('=') ? [a.slice(0, a.indexOf('=')), a.slice(a.indexOf('=') + 1)] : [a, undefined];
@@ -91,7 +116,10 @@ export function parseArgs(argv: string[]): CliOptions {
       case '--root': o.root = optional(val()); break;
       case '--out-dir': o.outDir = optional(val()); break;
       case '--max-mb': o.maxMb = Number(val()); break;
-      case '--only': o.only = val().split(',').map((s) => s.trim()).filter(Boolean); break;
+      case '--only': o.only = optional(val())?.split(',').map((x) => x.trim()).filter(Boolean); break;
+      case '--groups': o.groups = optional(val())?.split(',').map((x) => x.trim()).filter(Boolean); break;
+      case '--compact': o.compact = asFlag(inline); break;
+      case '--output-schemas': o.outputSchemas = asFlag(inline); break;
       case '--list': o.list = true; break;
       case '-h': case '--help': o.help = true; break;
       case '-v': case '--version': o.version = true; break;
@@ -113,7 +141,11 @@ Usage: npx -y s3eidat-tools-mcp [options]
   --root <dir>      only allow reading/writing files inside <dir>
   --out-dir <dir>   default folder for outputs (default: <root>/s3eidat-out, or a temp folder)
   --max-mb <n>      largest input file in MB (default ${DEFAULT_MAX_BYTES / 1048576})
-  --only <prefixes> only expose tools whose names start with these comma-separated prefixes (e.g. pdf_,image_)
+  --groups <list>   only expose these groups: pdf,image,text,data,dev,calc,everyday,qr,docs,ai
+  --only <prefixes> only expose tools whose names start with these prefixes (e.g. pdf_,image_)
+  --compact         expose 3 small meta-tools (find / info / run) instead of every tool; for clients with tool
+                    limits or small context windows
+  --output-schemas  also advertise each tool's output JSON Schema (bigger tool list)
   --list            print the tool list and exit
   -v, --version     print the version
   -h, --help        this help
@@ -142,6 +174,11 @@ export async function main(argv = process.argv.slice(2)) {
   let tools = await loadTools();
   for (const e of loadErrors) console.error(`[s3eidat-tools] skipped ${e.file}: ${e.error}`);
   if (opts.only?.length) tools = tools.filter((t) => opts.only!.some((p) => t.name.startsWith(p)));
+  if (opts.groups?.length) {
+    const unknown = opts.groups.filter((g) => !tools.some((t) => t.group === g));
+    if (unknown.length) console.error(`[s3eidat-tools] unknown group(s): ${unknown.join(', ')}`);
+    tools = tools.filter((t) => opts.groups!.includes(t.group ?? ''));
+  }
 
   if (opts.list) {
     for (const t of tools) console.log(`${t.name.padEnd(28)} ${t.title}`);
@@ -149,11 +186,11 @@ export async function main(argv = process.argv.slice(2)) {
     return;
   }
 
-  const factory = () => buildServer(tools, ctx);
+  const factory = () => buildServer(tools, ctx, { compact: opts.compact, outputSchemas: opts.outputSchemas });
 
   if (!opts.http) {
     const handle = serveStdio(factory, { onerror: (e) => console.error('[s3eidat-tools]', e.message) });
-    console.error(`s3eidat-tools-mcp ${VERSION}: ${tools.length} tools on stdio. Files stay on this machine.`);
+    console.error(`s3eidat-tools-mcp ${VERSION}: ${tools.length} tools${opts.compact ? ' (compact mode)' : ''} on stdio. Files stay on this machine.`);
     const stop = () => void handle.close().finally(() => process.exit(0));
     process.on('SIGINT', stop);
     process.on('SIGTERM', stop);
