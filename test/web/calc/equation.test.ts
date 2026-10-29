@@ -1,0 +1,72 @@
+import { describe, expect, it } from 'vitest';
+import tool, { parseCoef as P, rootText, rootVal, solveCubic, solveLinear, solveQuadratic, solveSystem, squareFree, str } from '../../../src/tools/web/calc/equation-solver.js';
+import { fails, run } from './_run.js';
+
+const M = '−'; // the minus sign the website prints
+
+describe('calc_equation (equation-solver self-test)', () => {
+  const near = (a: number, b: number) => Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(b));
+  it('matches the website known answers', () => {
+    const l = solveLinear(P('2'), P('3'), P('7'));
+    expect([l.kind, str(l.roots![0].re!)]).toEqual(['one', '2']);
+    expect(solveLinear(P('0'), P('1'), P('2')).kind).toBe('none');
+    expect(solveLinear(P('0'), P('1'), P('1')).kind).toBe('all');
+    expect(str(solveLinear(P('3/4'), P('1/2'), P('2')).roots![0].re!)).toBe('2');
+    const q = solveQuadratic(P('1'), P('-3'), P('2'));
+    expect([q.kind, str(q.roots![0].re!), str(q.roots![1].re!)]).toEqual(['two', '1', '2']);
+    const cx = solveQuadratic(P('1'), P('2'), P('5'));
+    expect([cx.kind, str(cx.roots![0].re!), str(cx.roots![0].s!), cx.roots![0].m, str(cx.D!)]).toEqual(['complex', M + '1', '2', 1n, M + '16']);
+    expect(rootText(cx.roots![0]).indexOf(M + '1 + 2i')).toBe(0);
+    expect(rootText(cx.roots![1]).indexOf(M + '1 ' + M + ' 2i')).toBe(0);
+    const s2 = solveQuadratic(P('1'), P('0'), P('-2'));
+    expect(s2.roots![1].m).toBe(2n);
+    expect(str(s2.roots![1].s!)).toBe('1');
+    expect(near(rootVal(s2.roots![1])[0], Math.SQRT2)).toBe(true);
+    const gold = solveQuadratic(P('1'), P('-1'), P('-1'));
+    expect(rootText(gold.roots![1]).indexOf('1/2 + √5/2')).toBe(0);
+    expect(near(rootVal(gold.roots![1])[0], (1 + Math.sqrt(5)) / 2)).toBe(true);
+    const dbl = solveQuadratic(P('2'), P('4'), P('2'));
+    expect([dbl.kind, str(dbl.roots![0].re!)]).toEqual(['double', M + '1']);
+    expect(squareFree(72n)).toEqual({ k: 6n, m: 2n });
+    const c1 = solveCubic(P('1'), P('-6'), P('11'), P('-6')), c1r = c1.roots!.map((x) => rootVal(x)[0]).sort();
+    expect(c1r.length === 3 && near(c1r[0], 1) && near(c1r[1], 2) && near(c1r[2], 3) && c1.roots!.every((x) => x.f === undefined)).toBe(true);
+    const c2 = solveCubic(P('1'), P('0'), P('1'), P('1'));
+    expect(c2.numeric && near(c2.roots![0].f!, -0.6823278038280193) && near(c2.roots![1].fi!, 1.161541399997252)).toBe(true);
+    expect(solveCubic(P('1'), P('0'), P('-3'), P('2')).roots!.map((x) => str(x.re!)).sort().join()).toBe('1,1,' + M + '2');
+    expect(solveCubic(P('1'), P('0'), P('-7'), P('6')).roots!.map((x) => str(x.re!)).sort().join()).toBe('1,2,' + M + '3');
+    const c5 = solveCubic(P('1'), P('0'), P('0'), P('-2'));
+    expect(c5.numeric && near(c5.roots![0].f!, Math.cbrt(2))).toBe(true);
+    const c6 = solveCubic(P('1'), P('-3'), P('-1'), P('3'));
+    expect(c6.roots!.map((x) => rootVal(x)[0]).sort((a, b) => a - b).every((v, k) => near(v, [-1, 1, 3][k]))).toBe(true);
+    const c7 = solveCubic(P('1'), P('0'), P('-3'), P('1')), w = [8, 4, 2].map((k) => 2 * Math.cos((k * Math.PI) / 9)).sort((a, b) => a - b);
+    expect(c7.numeric && c7.roots!.length === 3 && c7.roots!.every((x, k) => !x.fi && near(x.f!, w[k]))).toBe(true);
+    const sys = solveSystem([[P('1'), P('1'), P('1'), P('6')], [P('0'), P('2'), P('5'), P('-4')], [P('2'), P('5'), P('-1'), P('27')]], ['x', 'y', 'z']);
+    expect([sys.kind, sys.vals!.map(str).join()]).toEqual(['one', '5,3,' + M + '2']);
+    const sysf = solveSystem([[P('2'), P('1'), P('-1'), P('8')], [P('-3'), P('-1'), P('2'), P('-11')], [P('-2'), P('1'), P('2'), P('-3')]], ['x', 'y', 'z']);
+    expect(sysf.vals!.map(str).join()).toBe('2,3,' + M + '1');
+    expect(solveSystem([[P('3'), P('2'), P('1')], [P('1'), P('4'), P('2')]], ['x', 'y']).vals!.map(str).join()).toBe('0,1/2');
+    expect(solveSystem([[P('1'), P('1'), P('1')], [P('2'), P('2'), P('3')]], ['x', 'y']).kind).toBe('none');
+    const many = solveSystem([[P('1'), P('1'), P('1')], [P('2'), P('2'), P('2')]], ['x', 'y']);
+    expect([many.kind, many.param!.join(';')]).toEqual(['many', 'x = 1 ' + M + ' t;y = t']);
+    expect([str(P('-1 1/2')), str(P('0.125')), str(P('2.5e-1')), str(P('')), str(P('\u0663'))]).toEqual([M + '3/2', '1/8', '1/4', '0', '3']);
+    expect(() => P('abc')).toThrow(/not a number/);
+  });
+  it('runs as a tool', async () => {
+    const q = await run(tool, { type: 'quadratic', coefficients: [1, -1, -1] });
+    expect(q.equation).toBe('x² ' + M + ' x ' + M + ' 1 = 0');
+    expect(q.result[1]).toMatch(/^x₂ = 1\/2 \+ √5\/2 ≈ 1.618033989/);
+    expect(q.roots[1].re).toBeCloseTo(1.6180339887, 9);
+    expect(q.discriminant).toBe('5');
+    const c = await run(tool, { type: 'cubic', coefficients: ['1', '0', '1', '1'] });
+    expect(c.roots[1].im).toBeCloseTo(1.161541399997252, 12);
+    expect(c.roots[1].exact).toBe(false);
+    const s = await run(tool, { type: 'system', system: [[1, 1, 1, 6], [0, 2, 5, -4], [2, 5, -1, 27]] });
+    expect(s.solution).toEqual({ x: { exact: '5', value: 5 }, y: { exact: '3', value: 3 }, z: { exact: M + '2', value: -2 } });
+    expect(s.steps[0].matrix[0]).toEqual(['1', '1', '1', '6']);
+    const m = await run(tool, { type: 'system', system: [[1, 1, 1], [2, 2, 2]] });
+    expect(m.parametric).toEqual(['x = 1 ' + M + ' t', 'y = t']);
+    const l = await run(tool, { type: 'linear', coefficients: ['3/4', '1/2', 2] });
+    expect(l.result).toEqual(['x = 2']);
+    await fails(tool, { type: 'system', system: [[1, 2], [3, 4]] }, /3 numbers/);
+  });
+});
