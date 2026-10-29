@@ -4,6 +4,8 @@ name: Claude Desktop extension
 # and attaches the files to the GitHub release. Run it by hand from the Actions tab, or publish a release.
 on:
   workflow_dispatch:
+  push:
+    paths: ['mcpb/**', 'scripts/build-mcpb.mjs', 'scripts/smoke.mjs', '.github/workflows/mcpb.yml']
   release:
     types: [published]
 
