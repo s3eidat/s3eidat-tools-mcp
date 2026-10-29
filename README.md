@@ -34,7 +34,12 @@ claude mcp add s3eidat -s user -- npx -y s3eidat-tools-mcp
 
 ### Claude Desktop
 
-Settings → Developer → Edit Config, then add to `claude_desktop_config.json` and restart Claude:
+**One click:** download the `.mcpb` file for your computer from the
+[latest release](https://github.com/s3eidat/s3eidat-tools-mcp/releases/latest) and double-click it (or drag it into
+Settings → Extensions). It includes everything, so you don't even need Node.js. You can pick an allowed folder and an
+output folder in the extension's settings.
+
+**Or by hand:** Settings → Developer → Edit Config, then add to `claude_desktop_config.json` and restart Claude:
 
 ```json
 {
@@ -179,6 +184,8 @@ reads your PDFs, writes and translates? Try [s3eidatGPT](https://ai.s3eidat.com/
 npm ci
 npm test          # builds, runs known-answer tests for every tool and an MCP round trip
 npm run docs      # regenerates docs/tools.md, docs/*.html, docs/llms.txt
+npm run smoke     # drives the built server over MCP stdio
+npm run mcpb      # builds a Claude Desktop extension for this platform into mcpb/out/
 node dist/index.js --list
 npx @modelcontextprotocol/inspector node dist/index.js
 ```

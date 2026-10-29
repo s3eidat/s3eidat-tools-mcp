@@ -65,7 +65,16 @@ Then check: `curl "https://registry.modelcontextprotocol.io/v0/servers?search=io
 Other directories pick it up from npm/GitHub or have a submit form: Smithery (https://smithery.ai), Glama
 (https://glama.ai/mcp/servers), mcp.so, PulseMCP, and the awesome-mcp-servers list (pull request).
 
-## 3. Skill
+## 3. Claude Desktop extension (.mcpb)
+
+Publishing the GitHub release (step 1's tag → "Draft a new release" → Publish) starts the **Claude Desktop extension**
+workflow. It builds one `.mcpb` per platform (macOS arm64, Windows x64, Linux x64/arm64), smoke-tests each, and
+attaches them to the release. You can also run it by hand from the Actions tab and download the files from the run.
+To build one locally for your own machine: `npm run mcpb` → `mcpb/out/`.
+
+Optional: submit the extension to Anthropic's extension directory (see https://github.com/anthropics/mcpb).
+
+## 4. Skill
 
 Attach a zip of the skill to the GitHub release so people can upload it to Claude.ai:
 
