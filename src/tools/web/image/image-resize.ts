@@ -148,7 +148,7 @@ const resize = defineTool({
       .describe('Exact output size preset: ' + Object.entries(PRESETS).map(([k, v]) => `${k} ${v[0]}×${v[1]}`).join(', ') + '.'),
     fit: z.enum(['cover', 'contain', 'fill']).optional().default('cover').describe('When both width and height are set: cover (crop to fill, default), contain (fit inside), fill (stretch).'),
     ratio: ratioSchema,
-    crop: cropSchema().optional(),
+    crop: cropSchema().optional().describe('Crop box (x, y, width, height in pixels) applied before resizing; overrides ratio.'),
     format: formatSchema,
     quality: qualitySchema(90),
     output: outputPath(),
