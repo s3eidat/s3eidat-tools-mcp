@@ -1,0 +1,43 @@
+name: Claude Desktop extension
+
+# Builds one .mcpb per platform (sharp and @napi-rs/canvas ship native binaries), smoke-tests the unpacked bundle,
+# and attaches the files to the GitHub release. Run it by hand from the Actions tab, or publish a release.
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run mcpb
+      - name: Smoke-test the unpacked bundle
+        shell: bash
+        run: |
+          f=$(ls mcpb/out/*.mcpb)
+          python3 -m zipfile -e "$f" mcpb/unpacked
+          node scripts/smoke.mjs mcpb/unpacked/dist/index.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcpb-${{ matrix.os }}
+          path: mcpb/out/*.mcpb
+      - name: Attach to the release
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" mcpb/out/*.mcpb --clobber

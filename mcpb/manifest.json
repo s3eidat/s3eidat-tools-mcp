@@ -1,0 +1,51 @@
+{
+  "manifest_version": "0.3",
+  "name": "s3eidat-tools",
+  "display_name": "S3eidat Tools",
+  "version": "0.0.0",
+  "description": "Free, private PDF, image, text, developer, calculator and QR tools. Runs on your computer; files are never uploaded.",
+  "long_description": "The tools from [s3eidat.github.io](https://s3eidat.github.io/) for Claude: merge, split, compress, watermark, number, sign and fill PDFs; PDF to text or images; convert, resize, compress and clean images (EXIF/GPS); word counts, case, Arabic text tools, numbers to words; JSON/CSV/YAML/XML/SQL formatting; hashes, Base64, JWT, regex, cron; loan, zakat, GPA, date and unit calculators; prayer times; passwords and website-compatible encryption; QR codes and barcodes; invoices, receipts, labels, calendars and CVs as PDF.\n\nEverything runs locally: no account, no API key, no telemetry.",
+  "author": {
+    "name": "Omar (s3eidat)",
+    "url": "https://s3eidat.github.io/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s3eidat/s3eidat-tools-mcp.git"
+  },
+  "homepage": "https://s3eidat.github.io/s3eidat-tools-mcp/",
+  "documentation": "https://s3eidat.github.io/s3eidat-tools-mcp/tools.html",
+  "support": "https://github.com/s3eidat/s3eidat-tools-mcp/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js", "--root", "${user_config.root}", "--out-dir", "${user_config.out_dir}"]
+    }
+  },
+  "tools_generated": true,
+  "keywords": ["pdf", "image", "text", "json", "calculator", "qr", "arabic", "privacy", "local"],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20.19.0"
+    }
+  },
+  "user_config": {
+    "root": {
+      "type": "directory",
+      "title": "Allowed folder (optional)",
+      "description": "If set, the tools can only read and write files inside this folder.",
+      "required": false
+    },
+    "out_dir": {
+      "type": "directory",
+      "title": "Output folder (optional)",
+      "description": "Where results go when you don't say where to save them. Default: a temporary folder.",
+      "required": false
+    }
+  }
+}

@@ -9,7 +9,8 @@ import { Client } from '@modelcontextprotocol/client';
 import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
 import { PDFDocument, StandardFonts } from 'pdf-lib';
 
-const bin = fileURLToPath(new URL('../dist/index.js', import.meta.url));
+// Optional argument: path to another build of the server (e.g. an unpacked .mcpb bundle).
+const bin = process.argv[2] ?? fileURLToPath(new URL('../dist/index.js', import.meta.url));
 const dir = mkdtempSync(join(tmpdir(), 's3eidat-smoke-'));
 const client = new Client({ name: 'smoke', version: '1.0.0' });
 await client.connect(new StdioClientTransport({ command: process.execPath, args: [bin, '--root', dir], stderr: 'inherit' }));
