@@ -62,7 +62,7 @@ export default defineTool({
     name: z.string().max(30).optional().describe('Name of the car (default "Car A").'),
     compare: z.object({
       consumption: numIn('Second car consumption.'),
-      consumptionUnit: consUnit.optional().default('l100'),
+      consumptionUnit: consUnit.optional().default('l100').describe('Its consumption unit (l100, kml, mpgus, mpguk).'),
       price: z.union([z.number(), z.string()]).optional().describe('Its fuel price if different (same priceUnit).'),
       name: z.string().max(30).optional().describe('Name (default "Car B").'),
     }).optional().describe('Optional second car to compare.'),
