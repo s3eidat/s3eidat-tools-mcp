@@ -31,3 +31,18 @@ describe('every tool', async () => {
     }
   });
 });
+
+describe('skill', async () => {
+  const tools = await loadTools();
+  it('mentions only tools that exist', () => {
+    const names = new Set(tools.map((t) => t.name));
+    const skill = read('skills/s3eidat-tools/SKILL.md');
+    const mentioned = [...skill.matchAll(/`([a-z][a-z0-9]*(?:_[a-z0-9]+)+)`/g)].map((m) => m[1]);
+    expect([...new Set(mentioned)].filter((n) => !names.has(n))).toEqual([]);
+  });
+  it('mentions every website port', () => {
+    const skill = read('skills/s3eidat-tools/SKILL.md');
+    const missing = tools.filter((t) => t.group !== 'ai' && !skill.includes('`' + t.name + '`')).map((t) => t.name);
+    expect(missing).toEqual([]);
+  });
+});
