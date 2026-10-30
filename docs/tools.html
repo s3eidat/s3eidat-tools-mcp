@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All tools · S3eidat Tools MCP</title>
-<meta name="description" content="Reference for all 136 S3eidat Tools MCP tools: inputs, outputs and examples.">
+<meta name="description" content="Reference for all 162 S3eidat Tools MCP tools: inputs, outputs and examples.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 </head>
@@ -21,9 +21,9 @@
   </nav>
 </div></header>
 <main><div class="wrap">
-<h1>All tools</h1><p class="lead">136 tools in 9 groups. Every one runs on your machine. Click a tool for its inputs and an example.</p>
+<h1>All tools</h1><p class="lead">162 tools in 10 groups. Every one runs on your machine. Click a tool for its inputs and an example.</p>
 <input id="q" class="search" type="search" placeholder="Filter tools: pdf, resize, arabic, qr…" aria-label="Filter tools" autocomplete="off">
-<nav class="chips"><a href="#pdf">PDF <span>17</span></a><a href="#image">Images <span>16</span></a><a href="#text">Text <span>15</span></a><a href="#data">Developer: data formats <span>15</span></a><a href="#dev">Developer: utilities <span>23</span></a><a href="#calc">Calculators <span>24</span></a><a href="#everyday">Everyday &amp; security <span>15</span></a><a href="#qr">QR &amp; barcodes <span>4</span></a><a href="#docs">Document makers <span>7</span></a></nav><section class="group" id="pdf"><h2>PDF</h2><p class="muted">Merge, split, organise, compress, watermark, number, sign and fill PDFs; text and images out.</p><details class="tool" id="pdf_compress" data-q="pdf_compress compress pdf shrink a pdf by re-rendering every page as a jpeg image (best for scans and photo-heavy files). presets like the website: email (96 dpi, quality 55), balanced (144 dpi, 72), high (220 dpi, 85); or set dpi/quality yourself; optional grayscale. the result loses selectable text, links and form fields. reports before/after size and a verdict (&quot;bigger&quot; means keep the original: the pdf was already efficient). web version: https://s3eidat.github.io/pdf-compress/"><summary><code>pdf_compress</code><span>Compress PDF</span></summary><div class="tool-body"><p>Shrink a PDF by re-rendering every page as a JPEG image (best for scans and photo-heavy files). Presets like the website: email (96 DPI, quality 55), balanced (144 DPI, 72), high (220 DPI, 85); or set dpi/quality yourself; optional grayscale. The result loses selectable text, links and form fields. Reports before/after size and a verdict (&quot;bigger&quot; means keep the original: the PDF was already efficient). Web version: <a href="https://s3eidat.github.io/pdf-compress/">https://s3eidat.github.io/pdf-compress/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The PDF: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>preset</code></td><td>&quot;email&quot; | &quot;balanced&quot; | &quot;high&quot;<br><small>default &quot;balanced&quot;</small></td><td>Quality preset. Default &quot;balanced&quot;.</td></tr><tr><td><code>dpi</code></td><td>integer</td><td>Override the preset resolution (36-300 DPI).</td></tr><tr><td><code>quality</code></td><td>integer</td><td>Override the preset JPEG quality (30-95).</td></tr><tr><td><code>grayscale</code></td><td>boolean<br><small>default false</small></td><td>Convert pages to grayscale.</td></tr><tr><td><code>password</code></td><td>string</td><td>Password, if the PDF is protected.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example: small enough to attach to an email</p><pre>{
+<nav class="chips"><a href="#pdf">PDF <span>17</span></a><a href="#image">Images <span>16</span></a><a href="#text">Text <span>15</span></a><a href="#data">Developer: data formats <span>15</span></a><a href="#dev">Developer: utilities <span>23</span></a><a href="#calc">Calculators <span>24</span></a><a href="#everyday">Everyday &amp; security <span>15</span></a><a href="#qr">QR &amp; barcodes <span>4</span></a><a href="#docs">Document makers <span>7</span></a><a href="#ai">For AI agents <span>26</span></a></nav><section class="group" id="pdf"><h2>PDF</h2><p class="muted">Merge, split, organise, compress, watermark, number, sign and fill PDFs; text and images out.</p><details class="tool" id="pdf_compress" data-q="pdf_compress compress pdf shrink a pdf by re-rendering every page as a jpeg image (best for scans and photo-heavy files). presets like the website: email (96 dpi, quality 55), balanced (144 dpi, 72), high (220 dpi, 85); or set dpi/quality yourself; optional grayscale. the result loses selectable text, links and form fields. reports before/after size and a verdict (&quot;bigger&quot; means keep the original: the pdf was already efficient). web version: https://s3eidat.github.io/pdf-compress/"><summary><code>pdf_compress</code><span>Compress PDF</span></summary><div class="tool-body"><p>Shrink a PDF by re-rendering every page as a JPEG image (best for scans and photo-heavy files). Presets like the website: email (96 DPI, quality 55), balanced (144 DPI, 72), high (220 DPI, 85); or set dpi/quality yourself; optional grayscale. The result loses selectable text, links and form fields. Reports before/after size and a verdict (&quot;bigger&quot; means keep the original: the PDF was already efficient). Web version: <a href="https://s3eidat.github.io/pdf-compress/">https://s3eidat.github.io/pdf-compress/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The PDF: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>preset</code></td><td>&quot;email&quot; | &quot;balanced&quot; | &quot;high&quot;<br><small>default &quot;balanced&quot;</small></td><td>Quality preset. Default &quot;balanced&quot;.</td></tr><tr><td><code>dpi</code></td><td>integer</td><td>Override the preset resolution (36-300 DPI).</td></tr><tr><td><code>quality</code></td><td>integer</td><td>Override the preset JPEG quality (30-95).</td></tr><tr><td><code>grayscale</code></td><td>boolean<br><small>default false</small></td><td>Convert pages to grayscale.</td></tr><tr><td><code>password</code></td><td>string</td><td>Password, if the PDF is protected.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example: small enough to attach to an email</p><pre>{
   &quot;file&quot;: &quot;scan.pdf&quot;,
   &quot;preset&quot;: &quot;email&quot;
 }</pre></div></details><details class="tool" id="pdf_extract_pages" data-q="pdf_extract_pages extract pdf pages make one new pdf from selected pages of a pdf, e.g. &quot;1-3, 7, 10-&quot; (order as written, each page once). the rest of the file is left out. to reorder, duplicate or delete pages use pdf_organize. web version: https://s3eidat.github.io/pdf-split/"><summary><code>pdf_extract_pages</code><span>Extract PDF pages</span></summary><div class="tool-body"><p>Make one new PDF from selected pages of a PDF, e.g. &quot;1-3, 7, 10-&quot; (order as written, each page once). The rest of the file is left out. To reorder, duplicate or delete pages use pdf_organize. Web version: <a href="https://s3eidat.github.io/pdf-split/">https://s3eidat.github.io/pdf-split/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The PDF: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>pages</code> <b class="req">required</b></td><td>string</td><td>Pages to keep: &quot;1-3, 7, 10-&quot; (&quot;5-&quot; = to the end; also &quot;odd&quot;, &quot;even&quot;, &quot;last&quot;).</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example: writes report-pages-1-3_7.pdf</p><pre>{
@@ -213,46 +213,46 @@
   &quot;name&quot;: &quot;S3eidat Tools&quot;,
   &quot;shortName&quot;: &quot;S3eidat&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;folder&quot;: &quot;/tmp/s3eidat-tools/favicons/&quot;,
+  &quot;folder&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\&quot;,
   &quot;files&quot;: [
     {
       &quot;name&quot;: &quot;favicon.ico&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/favicon.ico&quot;,
-      &quot;bytes&quot;: 4300
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\favicon.ico&quot;,
+      &quot;bytes&quot;: 4462
     },
     {
       &quot;name&quot;: &quot;favicon-16x16.png&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/favicon-16x16.png&quot;,
-      &quot;bytes&quot;: 635
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\favicon-16x16.png&quot;,
+      &quot;bytes&quot;: 688
     },
     {
       &quot;name&quot;: &quot;favicon-32x32.png&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/favicon-32x32.png&quot;,
-      &quot;bytes&quot;: 1366
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\favicon-32x32.png&quot;,
+      &quot;bytes&quot;: 1394
     },
     {
       &quot;name&quot;: &quot;apple-touch-icon.png&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/apple-touch-icon.png&quot;,
-      &quot;bytes&quot;: 6328
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\apple-touch-icon.png&quot;,
+      &quot;bytes&quot;: 6647
     },
     {
       &quot;name&quot;: &quot;android-chrome-192x192.png&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/android-chrome-192x192.png&quot;,
-      &quot;bytes&quot;: 9404
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\android-chrome-192x192.png&quot;,
+      &quot;bytes&quot;: 9738
     },
     {
       &quot;name&quot;: &quot;android-chrome-512x512.png&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/android-chrome-512x512.png&quot;,
-      &quot;bytes&quot;: 19291
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\android-chrome-512x512.png&quot;,
+      &quot;bytes&quot;: 20070
     },
     {
       &quot;name&quot;: &quot;site.webmanifest&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/site.webmanifest&quot;,
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\site.webmanifest&quot;,
       &quot;bytes&quot;: 380
     },
     {
       &quot;name&quot;: &quot;head-snippet.html&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/favicons/head-snippet.html&quot;,
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-HmqiFx\\favicons\\head-snippet.html&quot;,
       &quot;bytes&quot;: 368
     }
   ],
@@ -265,7 +265,7 @@
 }</pre></div></details><details class="tool" id="image_from_base64" data-q="image_from_base64 base64 / data uri to image file decode base64 back into a file: accepts a data uri, a css url(&quot;data:…&quot;) rule, an &lt;img src=&quot;data:…&quot;&gt; tag, url-encoded svg data uris, or raw base64 (standard or url-safe, line breaks allowed). detects the real type from the bytes, warns when it differs from the declared one, and writes decoded.&lt;ext&gt;. give the text inline or as a path to a text file. web version: https://s3eidat.github.io/image-to-base64/"><summary><code>image_from_base64</code><span>Base64 / data URI to image file</span></summary><div class="tool-body"><p>Decode Base64 back into a file: accepts a data URI, a CSS url(&quot;data:…&quot;) rule, an &lt;img src=&quot;data:…&quot;&gt; tag, URL-encoded SVG data URIs, or raw Base64 (standard or URL-safe, line breaks allowed). Detects the real type from the bytes, warns when it differs from the declared one, and writes decoded.&lt;ext&gt;. Give the text inline or as a path to a text file. Web version: <a href="https://s3eidat.github.io/image-to-base64/">https://s3eidat.github.io/image-to-base64/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The data URI / CSS / &lt;img&gt; tag / raw Base64.</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a text file containing it.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr></tbody></table><p class="muted">Example: Writes decoded.png (1×1).</p><pre>{
   &quot;text&quot;: &quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/decoded.png&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-BKoKKG\\decoded.png&quot;,
   &quot;bytes&quot;: 70,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;declaredMimeType&quot;: &quot;image/png&quot;,
@@ -281,15 +281,15 @@
   &quot;width&quot;: 1200,
   &quot;height&quot;: 630
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/placeholder-1200x630.png&quot;,
-  &quot;bytes&quot;: 28304,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-yPrhd0\\placeholder-1200x630.png&quot;,
+  &quot;bytes&quot;: 29305,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;width&quot;: 1200,
   &quot;height&quot;: 630,
   &quot;format&quot;: &quot;png&quot;,
   &quot;aspectRatio&quot;: &quot;40:21&quot;,
   &quot;megapixels&quot;: &quot;0.76&quot;,
-  &quot;fontSize&quot;: 135
+  &quot;fontSize&quot;: 133
 }</pre><p class="muted">Example</p><pre>{
   &quot;preset&quot;: &quot;leaderboard&quot;,
   &quot;background&quot;: &quot;#0e9f9a&quot;,
@@ -297,7 +297,7 @@
   &quot;text&quot;: &quot;Ad space&quot;,
   &quot;format&quot;: &quot;svg&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/placeholder-728x90.svg&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-FqID82\\placeholder-728x90.svg&quot;,
   &quot;bytes&quot;: 421,
   &quot;mimeType&quot;: &quot;image/svg+xml&quot;,
   &quot;width&quot;: 728,
@@ -334,7 +334,7 @@
   &quot;mode&quot;: &quot;width&quot;,
   &quot;width&quot;: 200
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/image.png&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-sMIPxv\\image.png&quot;,
   &quot;bytes&quot;: 179,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;width&quot;: 200,
@@ -905,7 +905,7 @@
   &quot;mode&quot;: &quot;validate&quot;
 }</pre><p class="muted">Result</p><pre>{
   &quot;valid&quot;: false,
-  &quot;error&quot;: &quot;Expected double-quoted property name in JSON at position 8 (line 2 column 1)&quot;,
+  &quot;error&quot;: &quot;Expected double-quoted property name in JSON at position 8&quot;,
   &quot;line&quot;: 2,
   &quot;column&quot;: 1
 }</pre></div></details><details class="tool" id="json_query" data-q="json_query json query (jsonpath) pick values out of json with a jsonpath expression. supported: $ (root, optional), .key, ['key'], [0], [-1], [*], .*, ..key (recursive), [start:end:step] slices, unions [0,2] / ['a','b'], and filters like [?(@.price &lt; 10 &amp;&amp; @.tags)] (==, !=, &lt;, &lt;=, &gt;, &gt;=, =~ /regex/i, &amp;&amp;, ||, !, .length). returns each match with its path (the same path style the website's tree view copies, e.g. $.store.book[0].title). give &quot;text&quot; or a file &quot;path&quot;. web version: https://s3eidat.github.io/json-studio/"><summary><code>json_query</code><span>JSON query (JSONPath)</span></summary><div class="tool-body"><p>Pick values out of JSON with a JSONPath expression. Supported: $ (root, optional), .key, ['key'], [0], [-1], [*], .*, ..key (recursive), [start:end:step] slices, unions [0,2] / ['a','b'], and filters like [?(@.price &lt; 10 &amp;&amp; @.tags)] (==, !=, &lt;, &lt;=, &gt;, &gt;=, =~ /regex/i, &amp;&amp;, ||, !, .length). Returns each match with its path (the same path style the website's tree view copies, e.g. $.store.book[0].title). Give &quot;text&quot; or a file &quot;path&quot;. Web version: <a href="https://s3eidat.github.io/json-studio/">https://s3eidat.github.io/json-studio/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The JSON as inline text.</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a path to a JSON file (UTF-8; use this for big inputs).</td></tr><tr><td><code>query</code> <b class="req">required</b></td><td>string</td><td>JSONPath expression, e.g. &quot;$.store.book[*].author&quot; or &quot;$..book[?(@.price &lt; 10)].title&quot;.</td></tr><tr><td><code>limit</code></td><td>integer<br><small>default 1000</small></td><td>Return at most this many matches (default 1000).</td></tr><tr><td><code>output</code></td><td>string</td><td>Optional: write the matched values as a JSON array to this file.</td></tr></tbody></table><p class="muted">Example</p><pre>{
@@ -1111,7 +1111,7 @@
   &quot;detectedType&quot;: &quot;PNG image&quot;,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;dataUriMime&quot;: &quot;image/png&quot;,
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/decoded.png&quot;
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-2G2NgY\\decoded.png&quot;
 }</pre></div></details><details class="tool" id="base64_encode" data-q="base64_encode base64 encode encode text (as utf-8) or a file (path or base64) to base64. options: url-safe alphabet (- and _, no padding), wrap at 76 columns (mime), or a data: uri for files (mime type detected from magic bytes). results over 1 mb, or when &quot;output&quot; is given, are written to a text file instead of returned inline. web version: https://s3eidat.github.io/base64-kit/"><summary><code>base64_encode</code><span>Base64 encode</span></summary><div class="tool-body"><p>Encode text (as UTF-8) or a file (path or base64) to Base64. Options: URL-safe alphabet (- and _, no padding), wrap at 76 columns (MIME), or a data: URI for files (MIME type detected from magic bytes). Results over 1 MB, or when &quot;output&quot; is given, are written to a text file instead of returned inline. Web version: <a href="https://s3eidat.github.io/base64-kit/">https://s3eidat.github.io/base64-kit/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>Text to encode (UTF-8).</td></tr><tr><td><code>file</code></td><td>string</td><td>Or: a file to encode: local path or base64 data.</td></tr><tr><td><code>urlSafe</code></td><td>boolean<br><small>default false</small></td><td>Use the URL-safe alphabet (- and _) and drop &quot;=&quot; padding.</td></tr><tr><td><code>wrap</code></td><td>boolean<br><small>default false</small></td><td>Insert a line break every 76 characters (MIME style).</td></tr><tr><td><code>dataUri</code></td><td>boolean<br><small>default false</small></td><td>Return a data: URI (data:&lt;mime&gt;;base64,…) instead of bare Base64.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr></tbody></table><p class="muted">Example</p><pre>{
   &quot;text&quot;: &quot;foobar&quot;
 }</pre><p class="muted">Result</p><pre>{
@@ -1190,7 +1190,7 @@
     &quot;octal&quot;: &quot;chmod 750 /srv/app&quot;,
     &quot;symbolic&quot;: &quot;chmod u=rwx,g=rx,o= /srv/app&quot;
   }
-}</pre></div></details><details class="tool" id="cron_explain" data-q="cron_explain cron explain explain a standard 5-field cron expression (minute hour day-of-month month day-of-week; names like mon/jan, ranges, lists, steps, ? and the @hourly/@daily/@weekly/@monthly/@yearly/@reboot macros) in plain english and list the next run times in an iana timezone. follows vixie cron: when both day fields are restricted a day matches either one. quartz 6/7-field and l/w/# syntax are rejected with a clear message; per-field errors are reported. web version: https://s3eidat.github.io/cron-explain/"><summary><code>cron_explain</code><span>Cron explain</span></summary><div class="tool-body"><p>Explain a standard 5-field cron expression (minute hour day-of-month month day-of-week; names like MON/JAN, ranges, lists, steps, ? and the @hourly/@daily/@weekly/@monthly/@yearly/@reboot macros) in plain English and list the next run times in an IANA timezone. Follows Vixie cron: when both day fields are restricted a day matches either one. Quartz 6/7-field and L/W/# syntax are rejected with a clear message; per-field errors are reported. Web version: <a href="https://s3eidat.github.io/cron-explain/">https://s3eidat.github.io/cron-explain/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expression</code> <b class="req">required</b></td><td>string</td><td>The cron expression, e.g. &quot;*/30 9-17 * * 1-5&quot; or &quot;@daily&quot;.</td></tr><tr><td><code>count</code></td><td>integer<br><small>default 10</small></td><td>How many upcoming run times to list (0–100). Default 10.</td></tr><tr><td><code>timezone</code></td><td>string</td><td>IANA timezone the cron daemon runs in. Default: the server's (UTC).</td></tr><tr><td><code>from</code></td><td>string</td><td>Start searching after this instant (ISO 8601). Default: now.</td></tr><tr><td><code>hour12</code></td><td>boolean<br><small>default false</small></td><td>Describe times on a 12-hour clock (9:00 AM) instead of 24-hour (09:00).</td></tr></tbody></table><p class="muted">Example: description: &quot;At 09:00, on Monday through Friday&quot;</p><pre>{
+}</pre></div></details><details class="tool" id="cron_explain" data-q="cron_explain cron explain explain a standard 5-field cron expression (minute hour day-of-month month day-of-week; names like mon/jan, ranges, lists, steps, ? and the @hourly/@daily/@weekly/@monthly/@yearly/@reboot macros) in plain english and list the next run times in an iana timezone. follows vixie cron: when both day fields are restricted a day matches either one. quartz 6/7-field and l/w/# syntax are rejected with a clear message; per-field errors are reported. web version: https://s3eidat.github.io/cron-explain/"><summary><code>cron_explain</code><span>Cron explain</span></summary><div class="tool-body"><p>Explain a standard 5-field cron expression (minute hour day-of-month month day-of-week; names like MON/JAN, ranges, lists, steps, ? and the @hourly/@daily/@weekly/@monthly/@yearly/@reboot macros) in plain English and list the next run times in an IANA timezone. Follows Vixie cron: when both day fields are restricted a day matches either one. Quartz 6/7-field and L/W/# syntax are rejected with a clear message; per-field errors are reported. Web version: <a href="https://s3eidat.github.io/cron-explain/">https://s3eidat.github.io/cron-explain/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expression</code> <b class="req">required</b></td><td>string</td><td>The cron expression, e.g. &quot;*/30 9-17 * * 1-5&quot; or &quot;@daily&quot;.</td></tr><tr><td><code>count</code></td><td>integer<br><small>default 10</small></td><td>How many upcoming run times to list (0–100). Default 10.</td></tr><tr><td><code>timezone</code></td><td>string</td><td>IANA timezone the cron daemon runs in. Default: the server's (Asia/Amman).</td></tr><tr><td><code>from</code></td><td>string</td><td>Start searching after this instant (ISO 8601). Default: now.</td></tr><tr><td><code>hour12</code></td><td>boolean<br><small>default false</small></td><td>Describe times on a 12-hour clock (9:00 AM) instead of 24-hour (09:00).</td></tr></tbody></table><p class="muted">Example: description: &quot;At 09:00, on Monday through Friday&quot;</p><pre>{
   &quot;expression&quot;: &quot;0 9 * * 1-5&quot;,
   &quot;count&quot;: 3,
   &quot;timezone&quot;: &quot;Europe/London&quot;
@@ -1224,68 +1224,68 @@
 }</pre><p class="muted">Result</p><pre>{
   &quot;valid&quot;: true,
   &quot;description&quot;: &quot;At 00:00, on day 13 of the month or on Friday.&quot;,
-  &quot;timezone&quot;: &quot;UTC&quot;,
+  &quot;timezone&quot;: &quot;Asia/Amman&quot;,
   &quot;expanded&quot;: &quot;0 0 13 * 5&quot;,
   &quot;nextRuns&quot;: [
     {
-      &quot;iso&quot;: &quot;2026-01-16T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-01-16T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Jan 16, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 15 hours&quot;
+      &quot;iso&quot;: &quot;2026-01-16T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-01-15T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Jan 16, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 12 hours&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-01-23T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-01-23T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Jan 23, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 8 days&quot;
+      &quot;iso&quot;: &quot;2026-01-23T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-01-22T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Jan 23, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 7 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-01-30T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-01-30T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Jan 30, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 15 days&quot;
+      &quot;iso&quot;: &quot;2026-01-30T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-01-29T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Jan 30, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 14 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-02-06T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-02-06T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Feb 6, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 22 days&quot;
+      &quot;iso&quot;: &quot;2026-02-06T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-02-05T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Feb 6, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 21 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-02-13T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-02-13T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Feb 13, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 29 days&quot;
+      &quot;iso&quot;: &quot;2026-02-13T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-02-12T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Feb 13, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 28 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-02-20T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-02-20T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Feb 20, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 36 days&quot;
+      &quot;iso&quot;: &quot;2026-02-20T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-02-19T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Feb 20, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 35 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-02-27T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-02-27T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Feb 27, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 43 days&quot;
+      &quot;iso&quot;: &quot;2026-02-27T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-02-26T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Feb 27, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 42 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-03-06T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-03-06T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Mar 6, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 50 days&quot;
+      &quot;iso&quot;: &quot;2026-03-06T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-03-05T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Mar 6, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 49 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-03-13T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-03-13T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Mar 13, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 57 days&quot;
+      &quot;iso&quot;: &quot;2026-03-13T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-03-12T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Mar 13, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 56 days&quot;
     },
     {
-      &quot;iso&quot;: &quot;2026-03-20T00:00:00Z&quot;,
-      &quot;utc&quot;: &quot;2026-03-20T00:00:00.000Z&quot;,
-      &quot;local&quot;: &quot;Fri, Mar 20, 2026, 00:00&quot;,
-      &quot;relative&quot;: &quot;in 64 days&quot;
+      &quot;iso&quot;: &quot;2026-03-20T00:00:00+03:00&quot;,
+      &quot;utc&quot;: &quot;2026-03-19T21:00:00.000Z&quot;,
+      &quot;local&quot;: &quot;Fri, Mar 20, 2026, 24:00&quot;,
+      &quot;relative&quot;: &quot;in 63 days&quot;
     }
   ]
 }</pre></div></details><details class="tool" id="css_clamp" data-q="css_clamp fluid css clamp() build a fluid typography/spacing value: css clamp() that grows linearly from a size at a small viewport to a size at a large viewport (sizes and viewports in px), expressed in rem or px. also returns the computed size at sample viewport widths. web version: https://s3eidat.github.io/css-units/"><summary><code>css_clamp</code><span>Fluid CSS clamp()</span></summary><div class="tool-body"><p>Build a fluid typography/spacing value: CSS clamp() that grows linearly from a size at a small viewport to a size at a large viewport (sizes and viewports in px), expressed in rem or px. Also returns the computed size at sample viewport widths. Web version: <a href="https://s3eidat.github.io/css-units/">https://s3eidat.github.io/css-units/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>minSize</code></td><td>number<br><small>default 16</small></td><td>Size in px at the small viewport. Default 16.</td></tr><tr><td><code>maxSize</code></td><td>number<br><small>default 32</small></td><td>Size in px at the large viewport. Default 32.</td></tr><tr><td><code>minViewport</code></td><td>number<br><small>default 320</small></td><td>Small viewport width in px. Default 320.</td></tr><tr><td><code>maxViewport</code></td><td>number<br><small>default 1280</small></td><td>Large viewport width in px. Default 1280.</td></tr><tr><td><code>unit</code></td><td>&quot;rem&quot; | &quot;px&quot;<br><small>default &quot;rem&quot;</small></td><td>Output unit. Default rem.</td></tr><tr><td><code>rootFontSize</code></td><td>number<br><small>default 16</small></td><td>Root (html) font size in px, for rem. Default 16.</td></tr><tr><td><code>sampleViewports</code></td><td>number[]<br><small>default [320,768,1280,1920]</small></td><td>Viewport widths (px) to compute the resulting size at.</td></tr></tbody></table><p class="muted">Example</p><pre>{
@@ -1734,7 +1734,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All tools · S3eidat Tools MCP</title>
-<meta name="description" content="Reference for all 136 S3eidat Tools MCP tools: inputs, outputs and examples.">
+<meta name="description" content="Reference for all 162 S3eidat Tools MCP tools: inputs, outputs and examples.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 </head>
@@ -1766,7 +1766,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All tools · S3eidat Tools MCP</title>
-<meta name="description" content="Reference for all 136 S3eidat Tools MCP tools: inputs, outputs and examples.">
+<meta name="description" content="Reference for all 162 S3eidat Tools MCP tools: inputs, outputs and examples.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 </head>
@@ -1944,7 +1944,7 @@
   &quot;addresses&quot;: &quot;1,208,925,819,614,629,174,706,176 (2^80)&quot;,
   &quot;subnets64&quot;: &quot;65,536 (2^16)&quot;,
   &quot;reverseDns&quot;: &quot;1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.d.c.b.a.8.b.d.0.1.0.0.2.ip6.arpa&quot;
-}</pre></div></details><details class="tool" id="time_convert" data-q="time_convert timestamp convert convert a unix timestamp (seconds, ms, µs or ns — auto-detected from the number of digits, or set &quot;unit&quot;) or a date string to iso 8601 (utc and in a timezone), rfc 7231 / utc string, local time in any iana timezone with its offset, relative time (&quot;3 hours ago&quot;), day of year, iso week, and unix seconds/ms. a wall-clock time without an offset (e.g. &quot;2026-10-26t14:30&quot;) is read in &quot;timezone&quot;. also shows the same instant in extra &quot;zones&quot; (world clock). no value = now. date arithmetic is not done here. web version: https://s3eidat.github.io/timestamp-convert/"><summary><code>time_convert</code><span>Timestamp convert</span></summary><div class="tool-body"><p>Convert a Unix timestamp (seconds, ms, µs or ns — auto-detected from the number of digits, or set &quot;unit&quot;) or a date string to ISO 8601 (UTC and in a timezone), RFC 7231 / UTC string, local time in any IANA timezone with its offset, relative time (&quot;3 hours ago&quot;), day of year, ISO week, and Unix seconds/ms. A wall-clock time without an offset (e.g. &quot;2026-10-26T14:30&quot;) is read in &quot;timezone&quot;. Also shows the same instant in extra &quot;zones&quot; (world clock). No value = now. Date arithmetic is not done here. Web version: <a href="https://s3eidat.github.io/timestamp-convert/">https://s3eidat.github.io/timestamp-convert/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>value</code></td><td>string | number</td><td>A Unix timestamp (e.g. 1700000000 or &quot;1700000000123&quot;), an ISO/RFC date string, or a wall-clock &quot;YYYY-MM-DDTHH:MM[:SS]&quot;. Default: now.</td></tr><tr><td><code>unit</code></td><td>&quot;auto&quot; | &quot;s&quot; | &quot;ms&quot; | &quot;us&quot; | &quot;ns&quot;<br><small>default &quot;auto&quot;</small></td><td>Unit of a numeric timestamp. Default: auto-detect.</td></tr><tr><td><code>timezone</code></td><td>string</td><td>IANA timezone for the local view and for wall-clock input. Default: the server's (UTC).</td></tr><tr><td><code>zones</code></td><td>string[]</td><td>Extra IANA timezones to show the same instant in, e.g. [&quot;UTC&quot;,&quot;Asia/Tokyo&quot;].</td></tr><tr><td><code>now</code></td><td>number</td><td>Reference &quot;now&quot; in Unix ms for the relative time. Default: the current time.</td></tr></tbody></table><p class="muted">Example: iso 2023-11-14T22:13:20.000Z, localIso 2023-11-15T01:13:20+03:00, detectedUnit seconds</p><pre>{
+}</pre></div></details><details class="tool" id="time_convert" data-q="time_convert timestamp convert convert a unix timestamp (seconds, ms, µs or ns — auto-detected from the number of digits, or set &quot;unit&quot;) or a date string to iso 8601 (utc and in a timezone), rfc 7231 / utc string, local time in any iana timezone with its offset, relative time (&quot;3 hours ago&quot;), day of year, iso week, and unix seconds/ms. a wall-clock time without an offset (e.g. &quot;2026-10-26t14:30&quot;) is read in &quot;timezone&quot;. also shows the same instant in extra &quot;zones&quot; (world clock). no value = now. date arithmetic is not done here. web version: https://s3eidat.github.io/timestamp-convert/"><summary><code>time_convert</code><span>Timestamp convert</span></summary><div class="tool-body"><p>Convert a Unix timestamp (seconds, ms, µs or ns — auto-detected from the number of digits, or set &quot;unit&quot;) or a date string to ISO 8601 (UTC and in a timezone), RFC 7231 / UTC string, local time in any IANA timezone with its offset, relative time (&quot;3 hours ago&quot;), day of year, ISO week, and Unix seconds/ms. A wall-clock time without an offset (e.g. &quot;2026-10-26T14:30&quot;) is read in &quot;timezone&quot;. Also shows the same instant in extra &quot;zones&quot; (world clock). No value = now. Date arithmetic is not done here. Web version: <a href="https://s3eidat.github.io/timestamp-convert/">https://s3eidat.github.io/timestamp-convert/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>value</code></td><td>string | number</td><td>A Unix timestamp (e.g. 1700000000 or &quot;1700000000123&quot;), an ISO/RFC date string, or a wall-clock &quot;YYYY-MM-DDTHH:MM[:SS]&quot;. Default: now.</td></tr><tr><td><code>unit</code></td><td>&quot;auto&quot; | &quot;s&quot; | &quot;ms&quot; | &quot;us&quot; | &quot;ns&quot;<br><small>default &quot;auto&quot;</small></td><td>Unit of a numeric timestamp. Default: auto-detect.</td></tr><tr><td><code>timezone</code></td><td>string</td><td>IANA timezone for the local view and for wall-clock input. Default: the server's (Asia/Amman).</td></tr><tr><td><code>zones</code></td><td>string[]</td><td>Extra IANA timezones to show the same instant in, e.g. [&quot;UTC&quot;,&quot;Asia/Tokyo&quot;].</td></tr><tr><td><code>now</code></td><td>number</td><td>Reference &quot;now&quot; in Unix ms for the relative time. Default: the current time.</td></tr></tbody></table><p class="muted">Example: iso 2023-11-14T22:13:20.000Z, localIso 2023-11-15T01:13:20+03:00, detectedUnit seconds</p><pre>{
   &quot;value&quot;: 1700000000,
   &quot;timezone&quot;: &quot;Asia/Amman&quot;
 }</pre><p class="muted">Result</p><pre>{
@@ -5102,7 +5102,7 @@
 }</pre><p class="muted">Example: Code 128 SVG</p><pre>{
   &quot;value&quot;: &quot;S3EIDAT-2026&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/S3EIDAT-2026.svg&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-npITvj\\S3EIDAT-2026.svg&quot;,
   &quot;bytes&quot;: 2214,
   &quot;mimeType&quot;: &quot;image/svg+xml&quot;,
   &quot;text&quot;: &quot;S3EIDAT-2026&quot;,
@@ -5118,16 +5118,16 @@
   &quot;symbology&quot;: &quot;ean13&quot;,
   &quot;format&quot;: &quot;png&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;folder&quot;: &quot;/tmp/s3eidat-tools/barcodes-ean13/&quot;,
+  &quot;folder&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-dH0Pbu\\barcodes-ean13\\&quot;,
   &quot;files&quot;: [
     {
       &quot;value&quot;: &quot;590123412345&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/barcodes-ean13/5901234123457.png&quot;,
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-dH0Pbu\\barcodes-ean13\\5901234123457.png&quot;,
       &quot;text&quot;: &quot;5901234123457&quot;
     },
     {
       &quot;value&quot;: &quot;400638133393&quot;,
-      &quot;path&quot;: &quot;/tmp/s3eidat-tools/barcodes-ean13/4006381333931.png&quot;,
+      &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-dH0Pbu\\barcodes-ean13\\4006381333931.png&quot;,
       &quot;text&quot;: &quot;4006381333931&quot;
     }
   ],
@@ -5141,7 +5141,7 @@
 }</pre></div></details><details class="tool" id="qr_generate" data-q="qr_generate qr code generator make a qr code as svg or png for a link, plain text, wi-fi login, contact card (vcard 3.0), email, sms, phone call or map location. same encoder as the website (qrcode.js: versions 1-40, error correction l/m/q/h, smallest version that fits, best mask), utf-8 so arabic/emoji work. options: size in px, quiet-zone margin, colours, square/rounded/dots modules, and an optional centre logo (forces level h). returns the file path, the exact encoded text, version, module count and contrast warnings. max about 2.9 kb of data at level l. web version: https://s3eidat.github.io/qr-studio/"><summary><code>qr_generate</code><span>QR code generator</span></summary><div class="tool-body"><p>Make a QR code as SVG or PNG for a link, plain text, Wi-Fi login, contact card (vCard 3.0), email, SMS, phone call or map location. Same encoder as the website (qrcode.js: versions 1-40, error correction L/M/Q/H, smallest version that fits, best mask), UTF-8 so Arabic/emoji work. Options: size in px, quiet-zone margin, colours, square/rounded/dots modules, and an optional centre logo (forces level H). Returns the file path, the exact encoded text, version, module count and contrast warnings. Max about 2.9 KB of data at level L. Web version: <a href="https://s3eidat.github.io/qr-studio/">https://s3eidat.github.io/qr-studio/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>type</code></td><td>&quot;url&quot; | &quot;text&quot; | &quot;wifi&quot; | &quot;vcard&quot; | &quot;email&quot; | &quot;sms&quot; | &quot;tel&quot; | &quot;geo&quot;</td><td>What the code holds. Default: &quot;url&quot; if url is given, else &quot;text&quot;.</td></tr><tr><td><code>text</code></td><td>string</td><td>text: any text (encoded exactly as given).</td></tr><tr><td><code>url</code></td><td>string</td><td>url: web address; &quot;https://&quot; is added when no scheme is given.</td></tr><tr><td><code>ssid</code></td><td>string</td><td>wifi: network name.</td></tr><tr><td><code>password</code></td><td>string</td><td>wifi: password (ignored for open networks).</td></tr><tr><td><code>security</code></td><td>&quot;WPA&quot; | &quot;WEP&quot; | &quot;nopass&quot;</td><td>wifi: WPA (WPA/WPA2/WPA3, default), WEP, or nopass (open).</td></tr><tr><td><code>hidden</code></td><td>boolean</td><td>wifi: the network is hidden.</td></tr><tr><td><code>firstName</code></td><td>string</td><td>vcard: first name.</td></tr><tr><td><code>lastName</code></td><td>string</td><td>vcard: last name.</td></tr><tr><td><code>phone</code></td><td>string</td><td>vcard/sms/tel: phone number.</td></tr><tr><td><code>email</code></td><td>string</td><td>vcard: email address.</td></tr><tr><td><code>company</code></td><td>string</td><td>vcard: company.</td></tr><tr><td><code>jobTitle</code></td><td>string</td><td>vcard: job title.</td></tr><tr><td><code>website</code></td><td>string</td><td>vcard: website.</td></tr><tr><td><code>address</code></td><td>string</td><td>vcard: address.</td></tr><tr><td><code>to</code></td><td>string</td><td>email: recipient address.</td></tr><tr><td><code>subject</code></td><td>string</td><td>email: subject.</td></tr><tr><td><code>body</code></td><td>string</td><td>email: message body.</td></tr><tr><td><code>message</code></td><td>string</td><td>sms: message text.</td></tr><tr><td><code>latitude</code></td><td>number | string</td><td>geo: latitude, -90..90.</td></tr><tr><td><code>longitude</code></td><td>number | string</td><td>geo: longitude, -180..180.</td></tr><tr><td><code>label</code></td><td>string</td><td>geo: optional place label (?q=).</td></tr><tr><td><code>ecc</code></td><td>&quot;L&quot; | &quot;M&quot; | &quot;Q&quot; | &quot;H&quot;<br><small>default &quot;M&quot;</small></td><td>Error correction: L 7%, M 15% (default), Q 25%, H 30%. A logo forces H.</td></tr><tr><td><code>mode</code></td><td>&quot;byte&quot; | &quot;auto&quot; | &quot;numeric&quot; | &quot;alphanumeric&quot;<br><small>default &quot;byte&quot;</small></td><td>Encoding mode. &quot;byte&quot; (UTF-8, what the website uses), &quot;auto&quot; (numeric/alphanumeric when the text allows, smaller codes), or force one.</td></tr><tr><td><code>version</code></td><td>integer<br><small>default 0</small></td><td>QR version 1-40 (size), or 0 = smallest that fits (default).</td></tr><tr><td><code>format</code></td><td>&quot;svg&quot; | &quot;png&quot;<br><small>default &quot;png&quot;</small></td><td>Output format.</td></tr><tr><td><code>size</code></td><td>integer<br><small>default 1024</small></td><td>Image width/height in px (default 1024).</td></tr><tr><td><code>margin</code></td><td>integer<br><small>default 4</small></td><td>Quiet zone in modules (default 4; under 2 may not scan).</td></tr><tr><td><code>foreground</code></td><td>string<br><small>default &quot;#0d0f12&quot;</small></td><td>Module colour, hex (default #0d0f12).</td></tr><tr><td><code>background</code></td><td>string<br><small>default &quot;#ffffff&quot;</small></td><td>Background colour, hex (default #ffffff).</td></tr><tr><td><code>shape</code></td><td>&quot;square&quot; | &quot;rounded&quot; | &quot;dots&quot;<br><small>default &quot;square&quot;</small></td><td>Module shape. Rounded/dots also round the three finder squares.</td></tr><tr><td><code>logo</code></td><td>string</td><td>Optional centre logo image (path or base64, max 5 MB). Covers ~22% of the code; error correction becomes H.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example: Encodes &quot;https://example.com&quot; as a 1024 px PNG.</p><pre>{
   &quot;url&quot;: &quot;example.com&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/qr-url.png&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-Y92THC\\qr-url.png&quot;,
   &quot;bytes&quot;: 17533,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;payload&quot;: &quot;https://example.com&quot;,
@@ -5159,7 +5159,7 @@
   &quot;password&quot;: &quot;12345678&quot;,
   &quot;format&quot;: &quot;svg&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/qr-wifi.svg&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-SUmYUZ\\qr-wifi.svg&quot;,
   &quot;bytes&quot;: 5788,
   &quot;mimeType&quot;: &quot;image/svg+xml&quot;,
   &quot;payload&quot;: &quot;WIFI:T:WPA;S:Home;P:12345678;;&quot;,
@@ -5178,7 +5178,7 @@
   &quot;phone&quot;: &quot;+962 7 9000 0000&quot;,
   &quot;shape&quot;: &quot;rounded&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/qr-vcard.png&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-nWOSYW\\qr-vcard.png&quot;,
   &quot;bytes&quot;: 138314,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;payload&quot;: &quot;BEGIN:VCARD\r\nVERSION:3.0\r\nN:Haddad;Sara;;;\r\nFN:Sara Haddad\r\nTEL;TYPE=CELL:+962 7 9000 0000\r\nEND:VCARD&quot;,
@@ -5196,7 +5196,7 @@
   &quot;ssid&quot;: &quot;S3eidat Café&quot;,
   &quot;password&quot;: &quot;coffee-is-free&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/wifi-card.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-jx8uxA\\wifi-card.pdf&quot;,
   &quot;bytes&quot;: 6360,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5209,7 +5209,7 @@
   &quot;security&quot;: &quot;nopass&quot;,
   &quot;format&quot;: &quot;png&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/wifi-qr.png&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-REoI5U\\wifi-qr.png&quot;,
   &quot;bytes&quot;: 17598,
   &quot;mimeType&quot;: &quot;image/png&quot;,
   &quot;payload&quot;: &quot;WIFI:T:nopass;S:Guest;;&quot;,
@@ -5226,7 +5226,7 @@
     6
   ]
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/attendance.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-lzAwwv\\attendance.pdf&quot;,
   &quot;bytes&quot;: 11902,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5269,7 +5269,7 @@
   &quot;address&quot;: &quot;Amman, Jordan&quot;,
   &quot;back&quot;: &quot;qr&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/lina-haddad-cards.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-eTOUAz\\lina-haddad-cards.pdf&quot;,
   &quot;bytes&quot;: 18458,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 2,
@@ -5292,7 +5292,7 @@
     }
   ]
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/calendar-2026-12.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-MDrckN\\calendar-2026-12.pdf&quot;,
   &quot;bytes&quot;: 4028,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5304,7 +5304,7 @@
   &quot;weekStart&quot;: 1,
   &quot;orientation&quot;: &quot;portrait&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/calendar-2027.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-i8ED9t\\calendar-2027.pdf&quot;,
   &quot;bytes&quot;: 11458,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5337,7 +5337,7 @@
   ],
   &quot;terms&quot;: &quot;Bank transfer within 14 days.&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/invoice-INV-0042.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-62gT1b\\invoice-INV-0042.pdf&quot;,
   &quot;bytes&quot;: 3109,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5359,7 +5359,7 @@
   &quot;text&quot;: &quot;Lina Haddad\n12 Rainbow Street\nAmman 11181\n\nOmar Saleh\n4 Garden Lane\nIrbid 21110&quot;,
   &quot;border&quot;: true
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/labels.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-ngqEIy\\labels.pdf&quot;,
   &quot;bytes&quot;: 1545,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5373,7 +5373,7 @@
   &quot;template&quot;: &quot;{Name}\n{City}&quot;,
   &quot;preset&quot;: &quot;lt-30&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/labels.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-VE8GV4\\labels.pdf&quot;,
   &quot;bytes&quot;: 1091,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5387,7 +5387,7 @@
   &quot;count&quot;: 24,
   &quot;preset&quot;: &quot;a4-24&quot;
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/labels.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-cNF3mK\\labels.pdf&quot;,
   &quot;bytes&quot;: 2089,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
@@ -5425,8 +5425,8 @@
     }
   ]
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/receipt-R-1043.pdf&quot;,
-  &quot;bytes&quot;: 2400,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-y912kN\\receipt-R-1043.pdf&quot;,
+  &quot;bytes&quot;: 2399,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1,
   &quot;subtotal&quot;: 8,
@@ -5435,7 +5435,7 @@
   &quot;total&quot;: 8.352,
   &quot;paid&quot;: 10,
   &quot;change&quot;: 1.648,
-  &quot;text&quot;: &quot;      Zaytoun Corner Café\n     Rainbow St. 12, Amman\n--------------------------------\n            Receipt\nNo.                       R-1043\nDate           15/01/2026  09:30\nCustomer                 Table 4\n--------------------------------\nCappuccino\n  2 × 2.250 JD          4.500 JD\nZa'atar manakeesh\n  1 × 1.500 JD          1.500 JD\nFresh orange juice\n  1 × 2.000 JD          2.000 JD\n--------------------------------\nSubtotal                8.000 JD\nDiscount 10%           −0.800 JD\nTax 16%                 1.152 JD\nTOTAL                   8.352 JD\nPayment                     Cash\nPaid             …&quot;
+  &quot;text&quot;: &quot;      Zaytoun Corner Café\n     Rainbow St. 12, Amman\n--------------------------------\n            Receipt\nNo.                       R-1043\nDate           15/01/2026  12:30\nCustomer                 Table 4\n--------------------------------\nCappuccino\n  2 × 2.250 JD          4.500 JD\nZa'atar manakeesh\n  1 × 1.500 JD          1.500 JD\nFresh orange juice\n  1 × 2.000 JD          2.000 JD\n--------------------------------\nSubtotal                8.000 JD\nDiscount 10%           −0.800 JD\nTax 16%                 1.152 JD\nTOTAL                   8.352 JD\nPayment                     Cash\nPaid             …&quot;
 }</pre></div></details><details class="tool" id="doc_resume" data-q="doc_resume resume / cv pdf turn structured cv fields into a clean a4 resume pdf: contact header, summary, experience, education, skills, projects and languages, in any section order, with three templates like the website: &quot;classic&quot; (centred header and accent rule), &quot;modern&quot; (coloured sidebar with contact, skills and languages) and &quot;compact&quot; (denser, headings in a left column). description lines starting with &quot;-&quot;, &quot;•&quot;, &quot;*&quot; or &quot;–&quot; become bullet points; skills are comma-separated. aims for one page; longer cvs continue on a second page. english headings, latin text only for now. web version: https://s3eidat.github.io/resume-builder/"><summary><code>doc_resume</code><span>Resume / CV PDF</span></summary><div class="tool-body"><p>Turn structured CV fields into a clean A4 resume PDF: contact header, summary, experience, education, skills, projects and languages, in any section order, with three templates like the website: &quot;classic&quot; (centred header and accent rule), &quot;modern&quot; (coloured sidebar with contact, skills and languages) and &quot;compact&quot; (denser, headings in a left column). Description lines starting with &quot;-&quot;, &quot;•&quot;, &quot;*&quot; or &quot;–&quot; become bullet points; skills are comma-separated. Aims for one page; longer CVs continue on a second page. English headings, Latin text only for now. Web version: <a href="https://s3eidat.github.io/resume-builder/">https://s3eidat.github.io/resume-builder/</a></p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>template</code></td><td>&quot;classic&quot; | &quot;modern&quot; | &quot;compact&quot;<br><small>default &quot;classic&quot;</small></td><td></td></tr><tr><td><code>accent</code></td><td>string<br><small>default &quot;#0e7c86&quot;</small></td><td>Accent colour (hex).</td></tr><tr><td><code>order</code></td><td>(&quot;summary&quot; | &quot;experience&quot; | &quot;education&quot; | &quot;skills&quot; | &quot;projects&quot; | &quot;languages&quot;)[]</td><td>Section order; missing sections are appended in the default order.</td></tr><tr><td><code>contact</code></td><td>object<br><small>default {&quot;name&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;email&quot;:&quot;&quot;,&quot;phone&quot;:&quot;&quot;,&quot;location&quot;:&quot;&quot;,&quot;website&quot;:&quot;&quot;}</small></td><td></td></tr><tr><td><code>summary</code></td><td>string<br><small>default &quot;&quot;</small></td><td>Two or three lines about you.</td></tr><tr><td><code>experience</code></td><td>object[]<br><small>default []</small></td><td></td></tr><tr><td><code>education</code></td><td>object[]<br><small>default []</small></td><td></td></tr><tr><td><code>skills</code></td><td>string | string[]<br><small>default &quot;&quot;</small></td><td>Skills: comma-separated text or a list.</td></tr><tr><td><code>projects</code></td><td>object[]<br><small>default []</small></td><td></td></tr><tr><td><code>languages</code></td><td>object[]<br><small>default []</small></td><td></td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
   &quot;template&quot;: &quot;modern&quot;,
   &quot;contact&quot;: {
@@ -5466,10 +5466,581 @@
     }
   ]
 }</pre><p class="muted">Result</p><pre>{
-  &quot;path&quot;: &quot;/tmp/s3eidat-tools/Layla-Haddad.pdf&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-6FSQmm\\Layla-Haddad.pdf&quot;,
   &quot;bytes&quot;: 2360,
   &quot;mimeType&quot;: &quot;application/pdf&quot;,
   &quot;pages&quot;: 1
+}</pre></div></details></section><section class="group" id="ai"><h2>For AI agents</h2><p class="muted">Extra tools made for agents: documents to Markdown, OCR, chunking, SQL over CSV, charts and more.</p><details class="tool" id="ai_chart" data-q="ai_chart chart to svg/png render a chart to an svg or png file, offline. either give a simple description ({ type: bar|line|area|pie|scatter, data: rows, x, y, color?, title? }; y may be a list of fields for multi-series line/bar charts), or a full vega-lite (or vega) spec in &quot;spec&quot; with the rows inline in data.values. field types are inferred (numbers = quantitative, iso dates = temporal, other = categories). loading data or images from urls or files is refused. up to 50,000 rows. png is rasterised from the svg at &quot;scale&quot; (default 2×)."><summary><code>ai_chart</code><span>Chart to SVG/PNG</span></summary><div class="tool-body"><p>Render a chart to an SVG or PNG file, offline. Either give a simple description ({ type: bar|line|area|pie|scatter, data: rows, x, y, color?, title? }; y may be a list of fields for multi-series line/bar charts), or a full Vega-Lite (or Vega) spec in &quot;spec&quot; with the rows inline in data.values. Field types are inferred (numbers = quantitative, ISO dates = temporal, other = categories). Loading data or images from URLs or files is refused. Up to 50,000 rows. PNG is rasterised from the SVG at &quot;scale&quot; (default 2×).</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>spec</code></td><td>object</td><td>A full Vega-Lite spec (or Vega, if its $schema says so). Data must be inline (data.values). Use this or &quot;type&quot;.</td></tr><tr><td><code>type</code></td><td>&quot;bar&quot; | &quot;line&quot; | &quot;area&quot; | &quot;pie&quot; | &quot;scatter&quot;</td><td>Simple chart type. Use with data, x and y.</td></tr><tr><td><code>data</code></td><td>object[]</td><td>Rows for the simple chart, e.g. [{&quot;month&quot;:&quot;Jan&quot;,&quot;sales&quot;:12}].</td></tr><tr><td><code>x</code></td><td>string</td><td>Field for the x axis (the category / slice label for pie).</td></tr><tr><td><code>y</code></td><td>string | string[]</td><td>Numeric field for the y axis (slice size for pie). A list of fields draws one series per field.</td></tr><tr><td><code>color</code></td><td>string</td><td>Optional field that splits the data into coloured series.</td></tr><tr><td><code>title</code></td><td>string</td><td></td></tr><tr><td><code>width</code></td><td>integer</td><td>Plot width in px (default 600; pie 360).</td></tr><tr><td><code>height</code></td><td>integer</td><td>Plot height in px (default 360).</td></tr><tr><td><code>format</code></td><td>&quot;svg&quot; | &quot;png&quot;<br><small>default &quot;svg&quot;</small></td><td>Output format: svg (default) or png.</td></tr><tr><td><code>scale</code></td><td>number<br><small>default 2</small></td><td>PNG only: pixel density multiplier (2 = twice the SVG size, sharp on high-DPI screens). Default 2.</td></tr><tr><td><code>background</code></td><td>string<br><small>default &quot;#ffffff&quot;</small></td><td>Background colour. Default white; &quot;transparent&quot; for none.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;type&quot;: &quot;bar&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;month&quot;: &quot;Jan&quot;,
+      &quot;sales&quot;: 12
+    },
+    {
+      &quot;month&quot;: &quot;Feb&quot;,
+      &quot;sales&quot;: 19
+    },
+    {
+      &quot;month&quot;: &quot;Mar&quot;,
+      &quot;sales&quot;: 7
+    }
+  ],
+  &quot;x&quot;: &quot;month&quot;,
+  &quot;y&quot;: &quot;sales&quot;,
+  &quot;title&quot;: &quot;Sales&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;format&quot;: &quot;svg&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;type&quot;: &quot;pie&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;k&quot;: &quot;A&quot;,
+      &quot;v&quot;: 3
+    },
+    {
+      &quot;k&quot;: &quot;B&quot;,
+      &quot;v&quot;: 1
+    }
+  ],
+  &quot;x&quot;: &quot;k&quot;,
+  &quot;y&quot;: &quot;v&quot;,
+  &quot;format&quot;: &quot;png&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;format&quot;: &quot;png&quot;,
+  &quot;mimeType&quot;: &quot;image/png&quot;
+}</pre></div></details><details class="tool" id="ai_chunk_text" data-q="ai_chunk_text chunk text for rag split text, markdown or a text file into token-sized chunks for retrieval (rag) and embeddings. splits at markdown headings (atx &quot;#&quot; headings, never inside code fences) and paragraphs first, then sentences (lines inside code blocks), and only cuts mid-sentence when a single sentence is longer than maxtokens. consecutive chunks of the same section share about overlaptokens of text. each chunk returns index, text, tokens, startchar/endchar (javascript string offsets, end exclusive, so text === source.slice(startchar, endchar) once crlf line endings are normalised to \n) and the heading path it sits under. tokens are counted with tiktoken (o200k_base by default; for claude treat counts as estimates). give &quot;text&quot; or &quot;path&quot; (file path or base64); give &quot;output&quot; to also write the chunks as jsonl (one json object per line)."><summary><code>ai_chunk_text</code><span>Chunk text for RAG</span></summary><div class="tool-body"><p>Split text, markdown or a text file into token-sized chunks for retrieval (RAG) and embeddings. Splits at markdown headings (ATX &quot;#&quot; headings, never inside code fences) and paragraphs first, then sentences (lines inside code blocks), and only cuts mid-sentence when a single sentence is longer than maxTokens. Consecutive chunks of the same section share about overlapTokens of text. Each chunk returns index, text, tokens, startChar/endChar (JavaScript string offsets, end exclusive, so text === source.slice(startChar, endChar) once CRLF line endings are normalised to \n) and the heading path it sits under. Tokens are counted with tiktoken (o200k_base by default; for Claude treat counts as estimates). Give &quot;text&quot; or &quot;path&quot; (file path or base64); give &quot;output&quot; to also write the chunks as JSONL (one JSON object per line).</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The text (inline).</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a UTF-8 text/markdown file, as a local path or base64 (raw or a data: URI).</td></tr><tr><td><code>maxTokens</code></td><td>integer<br><small>default 500</small></td><td>Largest chunk, in tokens. Default 500.</td></tr><tr><td><code>overlapTokens</code></td><td>integer<br><small>default 50</small></td><td>Tokens repeated from the end of the previous chunk (same section only). Default 50. Must be below maxTokens.</td></tr><tr><td><code>markdown</code></td><td>boolean<br><small>default true</small></td><td>Treat &quot;#&quot; lines as section headings (default true). Set false for plain text.</td></tr><tr><td><code>encoding</code></td><td>&quot;o200k_base&quot; | &quot;cl100k_base&quot;<br><small>default &quot;o200k_base&quot;</small></td><td>Tokenizer: &quot;o200k_base&quot; (GPT-4o / o-series, default) or &quot;cl100k_base&quot; (GPT-4 / GPT-3.5 / text-embedding-3).</td></tr><tr><td><code>output</code></td><td>string</td><td>Also write the chunks as JSONL to this file (or folder ending in &quot;/&quot;).</td></tr><tr><td><code>includeText</code></td><td>boolean</td><td>Return each chunk's text inline. Default: true, or false when &quot;output&quot; is given.</td></tr><tr><td><code>maxChunks</code></td><td>integer<br><small>default 2000</small></td><td>Most chunks to return inline (the JSONL file always has all). Default 2000.</td></tr></tbody></table><p class="muted">Example: Two chunks, headings [&quot;Guide&quot;,&quot;Install&quot;] and [&quot;Guide&quot;,&quot;Use&quot;].</p><pre>{
+  &quot;text&quot;: &quot;# Guide\n\n## Install\n\nRun npm install.\n\n## Use\n\nCall the tool.&quot;,
+  &quot;maxTokens&quot;: 100,
+  &quot;overlapTokens&quot;: 0
+}</pre><p class="muted">Result</p><pre>{
+  &quot;chunkCount&quot;: 2,
+  &quot;totalTokens&quot;: 17,
+  &quot;encoding&quot;: &quot;o200k_base&quot;,
+  &quot;maxTokens&quot;: 100,
+  &quot;overlapTokens&quot;: 0,
+  &quot;chunks&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;tokens&quot;: 10,
+      &quot;startChar&quot;: 0,
+      &quot;endChar&quot;: 37,
+      &quot;headings&quot;: [
+        &quot;Guide&quot;,
+        &quot;Install&quot;
+      ],
+      &quot;text&quot;: &quot;# Guide\n\n## Install\n\nRun npm install.&quot;
+    },
+    {
+      &quot;index&quot;: 1,
+      &quot;tokens&quot;: 7,
+      &quot;startChar&quot;: 39,
+      &quot;endChar&quot;: 61,
+      &quot;headings&quot;: [
+        &quot;Guide&quot;,
+        &quot;Use&quot;
+      ],
+      &quot;text&quot;: &quot;## Use\n\nCall the tool.&quot;
+    }
+  ]
+}</pre><p class="muted">Example</p><pre>{
+  &quot;path&quot;: &quot;handbook.md&quot;,
+  &quot;maxTokens&quot;: 400,
+  &quot;overlapTokens&quot;: 40,
+  &quot;output&quot;: &quot;chunks.jsonl&quot;
+}</pre></div></details><details class="tool" id="ai_create_pptx" data-q="ai_create_pptx create a powerpoint deck build a 16:9 powerpoint (.pptx) deck from a simple outline: an optional title slide, then slides with a title plus any of bullets (nested), a paragraph, an image (file path or base64), a table (first row = header; long tables continue on extra slides), a native editable chart (bar, line, pie) and speaker notes. light or dark theme with clean, readable defaults; text plus a visual are laid out side by side. arabic/hebrew text is set right-to-left. up to 300 slides. opens in powerpoint, keynote, google slides and libreoffice."><summary><code>ai_create_pptx</code><span>Create a PowerPoint deck</span></summary><div class="tool-body"><p>Build a 16:9 PowerPoint (.pptx) deck from a simple outline: an optional title slide, then slides with a title plus any of bullets (nested), a paragraph, an image (file path or base64), a table (first row = header; long tables continue on extra slides), a native editable chart (bar, line, pie) and speaker notes. Light or dark theme with clean, readable defaults; text plus a visual are laid out side by side. Arabic/Hebrew text is set right-to-left. Up to 300 slides. Opens in PowerPoint, Keynote, Google Slides and LibreOffice.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>title</code></td><td>string</td><td>Deck title: adds a title slide and sets the file title.</td></tr><tr><td><code>subtitle</code></td><td>string</td><td>Subtitle on the title slide.</td></tr><tr><td><code>author</code></td><td>string</td><td></td></tr><tr><td><code>theme</code></td><td>&quot;light&quot; | &quot;dark&quot;<br><small>default &quot;light&quot;</small></td><td></td></tr><tr><td><code>slides</code> <b class="req">required</b></td><td>object[]</td><td></td></tr><tr><td><code>slideNumbers</code></td><td>boolean<br><small>default true</small></td><td>Show slide numbers on content slides. Default true.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;title&quot;: &quot;Q3 Review&quot;,
+  &quot;subtitle&quot;: &quot;Sales team&quot;,
+  &quot;theme&quot;: &quot;light&quot;,
+  &quot;slides&quot;: [
+    {
+      &quot;title&quot;: &quot;Highlights&quot;,
+      &quot;bullets&quot;: [
+        &quot;Revenue up 12%&quot;,
+        [
+          &quot;EMEA +20%&quot;,
+          &quot;APAC +8%&quot;
+        ],
+        &quot;Two new clients&quot;
+      ],
+      &quot;notes&quot;: &quot;Start with the good news.&quot;
+    },
+    {
+      &quot;title&quot;: &quot;Revenue by month&quot;,
+      &quot;chart&quot;: {
+        &quot;type&quot;: &quot;bar&quot;,
+        &quot;labels&quot;: [
+          &quot;Jul&quot;,
+          &quot;Aug&quot;,
+          &quot;Sep&quot;
+        ],
+        &quot;series&quot;: [
+          {
+            &quot;name&quot;: &quot;Revenue&quot;,
+            &quot;values&quot;: [
+              120,
+              135,
+              150
+            ]
+          }
+        ]
+      }
+    },
+    {
+      &quot;title&quot;: &quot;Team&quot;,
+      &quot;table&quot;: [
+        [
+          &quot;Name&quot;,
+          &quot;Deals&quot;
+        ],
+        [
+          &quot;Sara&quot;,
+          12
+        ],
+        [
+          &quot;Omar&quot;,
+          9
+        ]
+      ]
+    }
+  ]
+}</pre><p class="muted">Result</p><pre>{
+  &quot;slides&quot;: 4
+}</pre></div></details><details class="tool" id="ai_create_xlsx" data-q="ai_create_xlsx create an excel workbook (.xlsx) build a real excel .xlsx file from data: one or more sheets, each with optional column definitions (header, key, width, numfmt) and rows given as objects or arrays. bold shaded header, frozen header row and filter buttons (both on by default), column widths fitted to the content, excel number formats (raw codes like &quot;#,##0.00&quot; or aliases: integer, number, percent, currency, usd, eur, gbp, date, datetime, time, text), strings starting with &quot;=&quot; written as live formulas (=sum(b2:b9), =b2*c2, cross-sheet refs), iso date strings written as real dates, and an optional totals row (sum/average/count/min/max formulas). up to 50 sheets and 1,000,000 rows per sheet. formulas are calculated by excel when the file is opened. writes to &quot;output&quot; (default &quot;workbook.xlsx&quot; in the output folder) and returns the path and a summary of each sheet."><summary><code>ai_create_xlsx</code><span>Create an Excel workbook (.xlsx)</span></summary><div class="tool-body"><p>Build a real Excel .xlsx file from data: one or more sheets, each with optional column definitions (header, key, width, numFmt) and rows given as objects or arrays. Bold shaded header, frozen header row and filter buttons (both on by default), column widths fitted to the content, Excel number formats (raw codes like &quot;#,##0.00&quot; or aliases: integer, number, percent, currency, usd, eur, gbp, date, datetime, time, text), strings starting with &quot;=&quot; written as live formulas (=SUM(B2:B9), =B2*C2, cross-sheet refs), ISO date strings written as real dates, and an optional totals row (SUM/AVERAGE/COUNT/MIN/MAX formulas). Up to 50 sheets and 1,000,000 rows per sheet. Formulas are calculated by Excel when the file is opened. Writes to &quot;output&quot; (default &quot;workbook.xlsx&quot; in the output folder) and returns the path and a summary of each sheet.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>sheets</code> <b class="req">required</b></td><td>object[]</td><td></td></tr><tr><td><code>parseDates</code></td><td>boolean<br><small>default true</small></td><td>Write ISO date strings as Excel dates (default true).</td></tr><tr><td><code>title</code></td><td>string</td><td>Workbook title (file properties, and the default file name).</td></tr><tr><td><code>author</code></td><td>string</td><td>Author in the file properties.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;sheets&quot;: [
+    {
+      &quot;name&quot;: &quot;Orders&quot;,
+      &quot;columns&quot;: [
+        {
+          &quot;header&quot;: &quot;Item&quot;
+        },
+        {
+          &quot;header&quot;: &quot;Qty&quot;,
+          &quot;numFmt&quot;: &quot;integer&quot;
+        },
+        {
+          &quot;header&quot;: &quot;Price&quot;,
+          &quot;numFmt&quot;: &quot;usd&quot;
+        },
+        {
+          &quot;header&quot;: &quot;Total&quot;,
+          &quot;numFmt&quot;: &quot;usd&quot;
+        }
+      ],
+      &quot;rows&quot;: [
+        [
+          &quot;Pen&quot;,
+          3,
+          1.5,
+          &quot;=B2*C2&quot;
+        ],
+        [
+          &quot;Book&quot;,
+          1,
+          12,
+          &quot;=B3*C3&quot;
+        ]
+      ],
+      &quot;totalsRow&quot;: {
+        &quot;Qty&quot;: &quot;sum&quot;,
+        &quot;Total&quot;: &quot;sum&quot;
+      }
+    }
+  ]
+}</pre><p class="muted">Result</p><pre>{
+  &quot;sheets&quot;: [
+    {
+      &quot;name&quot;: &quot;Orders&quot;,
+      &quot;rows&quot;: 2,
+      &quot;columns&quot;: [
+        &quot;Item&quot;,
+        &quot;Qty&quot;,
+        &quot;Price&quot;,
+        &quot;Total&quot;
+      ],
+      &quot;range&quot;: &quot;A1:D4&quot;,
+      &quot;formulas&quot;: 4
+    }
+  ]
+}</pre></div></details><details class="tool" id="ai_csv_profile" data-q="ai_csv_profile profile a table (csv, json, xlsx) profile a table to understand and clean it before analysis: row and column counts, and per column the inferred type (integer, number, boolean, date, datetime, string), non-null and null counts, unique count, top 5 values, sample values, min/max/mean/median/stddev for numbers, min/max for iso dates, min/max length for text, plus data-quality warnings (mixed types, leading/trailing spaces, mostly missing, constant columns, duplicate rows, ragged headers). input: &quot;file&quot; (local path or base64 of csv, tsv, json array, jsonl or .xlsx, first sheet or &quot;sheet&quot;) or inline &quot;csv&quot; / &quot;json&quot;. empty cells, &quot;null&quot; and &quot;null&quot; count as missing. runs locally; nothing is uploaded."><summary><code>ai_csv_profile</code><span>Profile a table (CSV, JSON, XLSX)</span></summary><div class="tool-body"><p>Profile a table to understand and clean it before analysis: row and column counts, and per column the inferred type (integer, number, boolean, date, datetime, string), non-null and null counts, unique count, top 5 values, sample values, min/max/mean/median/stddev for numbers, min/max for ISO dates, min/max length for text, plus data-quality warnings (mixed types, leading/trailing spaces, mostly missing, constant columns, duplicate rows, ragged headers). Input: &quot;file&quot; (local path or base64 of CSV, TSV, JSON array, JSONL or .xlsx, first sheet or &quot;sheet&quot;) or inline &quot;csv&quot; / &quot;json&quot;. Empty cells, &quot;null&quot; and &quot;NULL&quot; count as missing. Runs locally; nothing is uploaded.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code></td><td>string</td><td>A table file: local path (absolute, or relative to --root) or base64. CSV, TSV, JSON array, JSONL or .xlsx.</td></tr><tr><td><code>csv</code></td><td>string</td><td>Or: CSV/TSV text inline (delimiter detected; first row is the header).</td></tr><tr><td><code>json</code></td><td>string | object[]</td><td>Or: JSON inline: an array of objects (or of arrays, first one the header), as a value or as JSON/JSONL text.</td></tr><tr><td><code>sheet</code></td><td>string</td><td>For .xlsx: the sheet name to read (default: the first sheet).</td></tr><tr><td><code>format</code></td><td>&quot;auto&quot; | &quot;csv&quot; | &quot;tsv&quot; | &quot;json&quot; | &quot;jsonl&quot; | &quot;xlsx&quot;<br><small>default &quot;auto&quot;</small></td><td>Force the file format (default &quot;auto&quot;: by extension, then by content).</td></tr><tr><td><code>columns</code></td><td>string[]</td><td>Only profile these columns (default: all).</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;csv&quot;: &quot;name,age\nAda,36\nBob ,41\nAda,36\n,&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;rows&quot;: 4,
+  &quot;columns&quot;: 2,
+  &quot;duplicateRows&quot;: 1
+}</pre></div></details><details class="tool" id="ai_detect_language" data-q="ai_detect_language detect language detect the language of a text with franc-min (82 languages with 8m+ speakers, iso 639-3 codes) and the writing systems it uses (latin, arabic, cyrillic, han/cjk, hangul, devanagari, greek, hebrew, thai…). returns the top 3 candidates with scores (1 = best match, relative to the others), english names and iso 639-1 codes where they exist, plus a share per script. texts under 20 characters are &quot;too short&quot;: only the script is reported. works best on a sentence or more of one language; for mixed text the dominant script wins; long texts are judged on their first 100,000 characters. hebrew is not among the languages (script only). give &quot;text&quot; or &quot;path&quot; (file path or base64)."><summary><code>ai_detect_language</code><span>Detect language</span></summary><div class="tool-body"><p>Detect the language of a text with franc-min (82 languages with 8M+ speakers, ISO 639-3 codes) and the writing systems it uses (Latin, Arabic, Cyrillic, Han/CJK, Hangul, Devanagari, Greek, Hebrew, Thai…). Returns the top 3 candidates with scores (1 = best match, relative to the others), English names and ISO 639-1 codes where they exist, plus a share per script. Texts under 20 characters are &quot;too short&quot;: only the script is reported. Works best on a sentence or more of one language; for mixed text the dominant script wins; long texts are judged on their first 100,000 characters. Hebrew is not among the languages (script only). Give &quot;text&quot; or &quot;path&quot; (file path or base64).</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The text (inline).</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a UTF-8 text/markdown file, as a local path or base64 (raw or a data: URI).</td></tr><tr><td><code>only</code></td><td>string[]</td><td>Restrict to these ISO 639-3 codes (e.g. [&quot;arb&quot;,&quot;eng&quot;,&quot;fra&quot;]).</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;The quick brown fox jumps over the lazy dog near the river bank.&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;language&quot;: &quot;eng&quot;,
+  &quot;iso6391&quot;: &quot;en&quot;,
+  &quot;script&quot;: &quot;Latin&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;مرحبا بكم في موقعنا، نتمنى لكم يوما سعيدا&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;language&quot;: &quot;arb&quot;,
+  &quot;iso6391&quot;: &quot;ar&quot;,
+  &quot;script&quot;: &quot;Arabic&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;Hi there&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;tooShort&quot;: true,
+  &quot;script&quot;: &quot;Latin&quot;
+}</pre></div></details><details class="tool" id="ai_diagram" data-q="ai_diagram diagram to svg/png draw a flowchart / graph diagram from a tiny text language and save it as svg or png, laid out automatically (dagre). one statement per line: `direction: lr` (tb, lr, bt, rl), `title: my flow`, `a [shape=diamond, label=&quot;ready?&quot;, color=#fde68a]` (shapes: box, round, diamond, circle, ellipse), edges `a -&gt; b: label`, chains `a -&gt; b -&gt; c`, `--&gt;` dashed, `==&gt;` thick, `&lt;-&gt;` both ends, `--` no arrow; quote names with spaces (&quot;start here&quot; -&gt; a); `\n` in labels breaks lines; # starts a comment. or pass json { nodes: [{id, label, shape, color}], edges: [{from, to, label, style, arrow}] } as &quot;graph&quot;. up to 500 nodes and 2000 edges. labels use helvetica/arial metrics (latin text is measured best)."><summary><code>ai_diagram</code><span>Diagram to SVG/PNG</span></summary><div class="tool-body"><p>Draw a flowchart / graph diagram from a tiny text language and save it as SVG or PNG, laid out automatically (dagre). One statement per line: `direction: LR` (TB, LR, BT, RL), `title: My flow`, `A [shape=diamond, label=&quot;Ready?&quot;, color=#fde68a]` (shapes: box, round, diamond, circle, ellipse), edges `A -&gt; B: label`, chains `A -&gt; B -&gt; C`, `--&gt;` dashed, `==&gt;` thick, `&lt;-&gt;` both ends, `--` no arrow; quote names with spaces (&quot;Start here&quot; -&gt; A); `\n` in labels breaks lines; # starts a comment. Or pass JSON { nodes: [{id, label, shape, color}], edges: [{from, to, label, style, arrow}] } as &quot;graph&quot;. Up to 500 nodes and 2000 edges. Labels use Helvetica/Arial metrics (Latin text is measured best).</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>source</code></td><td>string</td><td>Diagram text in the DSL (or a JSON graph as text).</td></tr><tr><td><code>graph</code></td><td>object</td><td>The diagram as JSON instead of &quot;source&quot;.</td></tr><tr><td><code>direction</code></td><td>&quot;TB&quot; | &quot;LR&quot; | &quot;BT&quot; | &quot;RL&quot;</td><td>Override the layout direction: TB (top-bottom, default), LR, BT, RL.</td></tr><tr><td><code>theme</code></td><td>&quot;light&quot; | &quot;dark&quot;<br><small>default &quot;light&quot;</small></td><td></td></tr><tr><td><code>format</code></td><td>&quot;svg&quot; | &quot;png&quot;<br><small>default &quot;svg&quot;</small></td><td>Output format: svg (default) or png.</td></tr><tr><td><code>scale</code></td><td>number<br><small>default 2</small></td><td>PNG only: pixel density multiplier (2 = twice the SVG size, sharp on high-DPI screens). Default 2.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;source&quot;: &quot;direction: LR\nStart [shape=circle]\nCheck [shape=diamond, label=\&quot;Valid?\&quot;]\nStart -&gt; Check\nCheck -&gt; Done: yes\nCheck -&gt; Fix: no\nFix --&gt; Check&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;format&quot;: &quot;svg&quot;,
+  &quot;nodes&quot;: 4,
+  &quot;edges&quot;: 4
+}</pre><p class="muted">Example</p><pre>{
+  &quot;graph&quot;: {
+    &quot;nodes&quot;: [
+      {
+        &quot;id&quot;: &quot;a&quot;,
+        &quot;label&quot;: &quot;Client&quot;
+      },
+      {
+        &quot;id&quot;: &quot;b&quot;,
+        &quot;label&quot;: &quot;Server&quot;,
+        &quot;shape&quot;: &quot;box&quot;
+      }
+    ],
+    &quot;edges&quot;: [
+      {
+        &quot;from&quot;: &quot;a&quot;,
+        &quot;to&quot;: &quot;b&quot;,
+        &quot;label&quot;: &quot;HTTPS&quot;,
+        &quot;arrow&quot;: &quot;both&quot;
+      }
+    ]
+  },
+  &quot;format&quot;: &quot;png&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;format&quot;: &quot;png&quot;,
+  &quot;nodes&quot;: 2,
+  &quot;edges&quot;: 1
+}</pre></div></details><details class="tool" id="ai_docx_to_markdown" data-q="ai_docx_to_markdown word (.docx) to markdown convert a word .docx document to markdown: headings (from heading styles), bold/italic, lists, links, tables, footnotes. images become placeholders like ![](image-1.png) unless embedimages is true (then data: uris, which can be very large). returns the number of conversion warnings (unrecognised styles and the like) and the first few messages. old binary .doc files are not supported. accepts a local path or base64. inline markdown is cut at maxchars (default 200k); &quot;output&quot; saves it to a file. runs locally; nothing is uploaded."><summary><code>ai_docx_to_markdown</code><span>Word (.docx) to Markdown</span></summary><div class="tool-body"><p>Convert a Word .docx document to Markdown: headings (from Heading styles), bold/italic, lists, links, tables, footnotes. Images become placeholders like ![](image-1.png) unless embedImages is true (then data: URIs, which can be very large). Returns the number of conversion warnings (unrecognised styles and the like) and the first few messages. Old binary .doc files are not supported. Accepts a local path or base64. Inline Markdown is cut at maxChars (default 200k); &quot;output&quot; saves it to a file. Runs locally; nothing is uploaded.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The .docx document: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>embedImages</code></td><td>boolean<br><small>default false</small></td><td>Embed images as base64 data: URIs instead of placeholders. Default false.</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline Markdown after this many characters, with a note (a file written with &quot;output&quot; is never cut). Default 200000.</td></tr><tr><td><code>output</code></td><td>string</td><td>Write the Markdown to this file (or folder ending in &quot;/&quot;) and return its path instead of the inline text.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;report.docx&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;thesis.docx&quot;,
+  &quot;output&quot;: &quot;thesis.md&quot;
+}</pre></div></details><details class="tool" id="ai_extract_entities" data-q="ai_extract_entities extract entities pull structured items out of text or a text file, deduplicated with counts: emails, urls, phone numbers (libphonenumber, validated, e.164 plus type/country; local numbers read with defaultregion, default jo), dates (iso, d/m/y or m/d/y, y/m/d, english month names; normalised to yyyy-mm-dd; a date like 03/04/2024 is flagged ambiguous with the other reading), money ($, €, £, jod/jd/د.أ, sar/ر.س, aed/د.إ, kwd, egp… and arabic currency words, with amount and iso currency), percentages, #hashtags, @mentions, ipv4/ipv6, ibans (country length and mod-97 checked) and card-like numbers (only luhn-valid ones with a known brand prefix, always masked: only the last 4 digits are shown, the full number is never returned). arabic-indic digits are understood. regex-based, not nlp: no names, places or organisations. give &quot;text&quot; or &quot;path&quot; (file path or base64)."><summary><code>ai_extract_entities</code><span>Extract entities</span></summary><div class="tool-body"><p>Pull structured items out of text or a text file, deduplicated with counts: emails, URLs, phone numbers (libphonenumber, validated, E.164 plus type/country; local numbers read with defaultRegion, default JO), dates (ISO, D/M/Y or M/D/Y, Y/M/D, English month names; normalised to YYYY-MM-DD; a date like 03/04/2024 is flagged ambiguous with the other reading), money ($, €, £, JOD/JD/د.أ, SAR/ر.س, AED/د.إ, KWD, EGP… and Arabic currency words, with amount and ISO currency), percentages, #hashtags, @mentions, IPv4/IPv6, IBANs (country length and mod-97 checked) and card-like numbers (only Luhn-valid ones with a known brand prefix, always masked: only the last 4 digits are shown, the full number is never returned). Arabic-Indic digits are understood. Regex-based, not NLP: no names, places or organisations. Give &quot;text&quot; or &quot;path&quot; (file path or base64).</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The text (inline).</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a UTF-8 text/markdown file, as a local path or base64 (raw or a data: URI).</td></tr><tr><td><code>types</code></td><td>(&quot;emails&quot; | &quot;urls&quot; | &quot;phones&quot; | &quot;dates&quot; | &quot;money&quot; | &quot;percentages&quot; | &quot;hashtags&quot; | &quot;mentions&quot; | &quot;ipv4&quot; | &quot;ipv6&quot; | &quot;ibans&quot; | &quot;cards&quot;)[]</td><td>Only these types (default all): emails, urls, phones, dates, money, percentages, hashtags, mentions, ipv4, ipv6, ibans, cards.</td></tr><tr><td><code>defaultRegion</code></td><td>string<br><small>default &quot;JO&quot;</small></td><td>Two-letter country for local phone numbers, regional currencies (dinar, riyal…) and D/M/Y vs M/D/Y. Default JO.</td></tr><tr><td><code>maxPerType</code></td><td>integer<br><small>default 500</small></td><td>Most unique items to return per type. Default 500.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;Mail omar@example.com or call 079 123 4567 before 15/03/2025. Fee: 25 JOD (10% off). #sale @s3eidat&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;counts&quot;: {
+    &quot;emails&quot;: 1,
+    &quot;phones&quot;: 1,
+    &quot;dates&quot;: 1,
+    &quot;money&quot;: 1,
+    &quot;percentages&quot;: 1,
+    &quot;hashtags&quot;: 1,
+    &quot;mentions&quot;: 1
+  }
+}</pre></div></details><details class="tool" id="ai_file_identify" data-q="ai_file_identify identify a file type find out what a file really is from its content (magic bytes, via file-type: images, video, audio, archives, office, pdf, fonts, executables… ~150 formats), not its name. reports the detected type and mime, whether the extension disagrees with the content, size, sha-256, and for text files an encoding guess (utf-8, utf-8/16/32 with bom, utf-16 without bom, ascii, 8-bit legacy) plus a text kind (json, xml, svg, html…). accepts a file path or base64. nothing is executed."><summary><code>ai_file_identify</code><span>Identify a file type</span></summary><div class="tool-body"><p>Find out what a file really is from its content (magic bytes, via file-type: images, video, audio, archives, Office, PDF, fonts, executables… ~150 formats), not its name. Reports the detected type and MIME, whether the extension disagrees with the content, size, SHA-256, and for text files an encoding guess (UTF-8, UTF-8/16/32 with BOM, UTF-16 without BOM, ASCII, 8-bit legacy) plus a text kind (JSON, XML, SVG, HTML…). Accepts a file path or base64. Nothing is executed.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The file to identify: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>name</code></td><td>string</td><td>File name to compare the extension against (handy for base64 input). Default: the path's own name.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;base64:iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==&quot;,
+  &quot;name&quot;: &quot;photo.jpg&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;detected&quot;: {
+    &quot;ext&quot;: &quot;png&quot;,
+    &quot;mime&quot;: &quot;image/png&quot;
+  },
+  &quot;mismatch&quot;: true
+}</pre></div></details><details class="tool" id="ai_html_to_markdown" data-q="ai_html_to_markdown html to markdown convert html to clean markdown for reading or feeding to a model: headings, lists, links, images, code blocks, github-style tables and strikethrough. give the html inline (&quot;html&quot;) or as a file (&quot;path&quot;: local path or base64). optional &quot;readable&quot; keeps only the main article (mozilla readability, falls back to the whole body), &quot;selector&quot; converts only matching elements, &quot;baseurl&quot; makes relative links absolute, &quot;includelinks&quot;: false drops link urls and images. scripts, styles and forms are removed. inline markdown is cut at maxchars (default 200k) with a note; give &quot;output&quot; to save the whole thing to a .md file. runs locally; nothing is uploaded."><summary><code>ai_html_to_markdown</code><span>HTML to Markdown</span></summary><div class="tool-body"><p>Convert HTML to clean Markdown for reading or feeding to a model: headings, lists, links, images, code blocks, GitHub-style tables and strikethrough. Give the HTML inline (&quot;html&quot;) or as a file (&quot;path&quot;: local path or base64). Optional &quot;readable&quot; keeps only the main article (Mozilla Readability, falls back to the whole body), &quot;selector&quot; converts only matching elements, &quot;baseUrl&quot; makes relative links absolute, &quot;includeLinks&quot;: false drops link URLs and images. Scripts, styles and forms are removed. Inline Markdown is cut at maxChars (default 200k) with a note; give &quot;output&quot; to save the whole thing to a .md file. Runs locally; nothing is uploaded.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>html</code></td><td>string</td><td>The HTML text. Give this or &quot;path&quot;.</td></tr><tr><td><code>path</code></td><td>string</td><td>An .html file instead of &quot;html&quot;: local path or base64.</td></tr><tr><td><code>readable</code></td><td>boolean<br><small>default false</small></td><td>Keep only the main content (article text), dropping navigation, ads and footers.</td></tr><tr><td><code>selector</code></td><td>string</td><td>CSS selector: convert only the matching elements (e.g. &quot;main&quot;, &quot;article .post&quot;).</td></tr><tr><td><code>baseUrl</code></td><td>string</td><td>URL the HTML came from, to make relative links and images absolute.</td></tr><tr><td><code>includeLinks</code></td><td>boolean<br><small>default true</small></td><td>Keep links and images. False turns links into plain text and drops images.</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline Markdown after this many characters, with a note (a file written with &quot;output&quot; is never cut). Default 200000.</td></tr><tr><td><code>output</code></td><td>string</td><td>Write the Markdown to this file (or folder ending in &quot;/&quot;) and return its path instead of the inline text.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;html&quot;: &quot;&lt;h1&gt;Notes&lt;/h1&gt;&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;, see &lt;a href=\&quot;/docs\&quot;&gt;docs&lt;/a&gt;.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;one&lt;/li&gt;&lt;li&gt;two&lt;/li&gt;&lt;/ul&gt;&quot;,
+  &quot;baseUrl&quot;: &quot;https://example.com/&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;markdown&quot;: &quot;# Notes\n\nHello **world**, see [docs](https://example.com/docs).\n\n- one\n- two\n&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;path&quot;: &quot;page.html&quot;,
+  &quot;readable&quot;: true,
+  &quot;output&quot;: &quot;page.md&quot;
+}</pre></div></details><details class="tool" id="ai_image_diff" data-q="ai_image_diff compare two images compare two images pixel by pixel (pixelmatch, anti-aliasing aware) and write a diff png with changed pixels in red over a faded copy of the first image. returns the number and percentage of different pixels. images must be the same size unless resize is true (the second is stretched to the first's size). reads png, jpeg, webp, avif, gif (first frame), tiff and svg; file path or base64; up to 50 mp. good for visual regression checks."><summary><code>ai_image_diff</code><span>Compare two images</span></summary><div class="tool-body"><p>Compare two images pixel by pixel (pixelmatch, anti-aliasing aware) and write a diff PNG with changed pixels in red over a faded copy of the first image. Returns the number and percentage of different pixels. Images must be the same size unless resize is true (the second is stretched to the first's size). Reads PNG, JPEG, WebP, AVIF, GIF (first frame), TIFF and SVG; file path or base64; up to 50 MP. Good for visual regression checks.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>a</code> <b class="req">required</b></td><td>string</td><td>The first (reference) image: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>b</code> <b class="req">required</b></td><td>string</td><td>The second image: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>threshold</code></td><td>number<br><small>default 0.1</small></td><td>Colour difference tolerance 0..1; smaller is stricter. Default 0.1.</td></tr><tr><td><code>includeAA</code></td><td>boolean<br><small>default false</small></td><td>Count anti-aliased edge pixels as differences too. Default false.</td></tr><tr><td><code>resize</code></td><td>boolean<br><small>default false</small></td><td>Resize the second image to the first one's size when they differ (otherwise that is an error).</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example: Writes before-diff.png and returns the changed pixel count.</p><pre>{
+  &quot;a&quot;: &quot;before.png&quot;,
+  &quot;b&quot;: &quot;after.png&quot;,
+  &quot;threshold&quot;: 0.1
+}</pre></div></details><details class="tool" id="ai_json_schema_infer" data-q="ai_json_schema_infer infer a json schema from samples generate a json schema (draft 2020-12) from one or more sample json values: types (integer vs number, mixed types as a type list), &quot;null&quot; added where a value can be null, required = keys present in every sample object, array items merged across all elements, string formats guessed when every sample matches (date-time, date, email, uri, uuid), and optional enums for small repeated string sets. give &quot;samples&quot; (an array of sample values), or &quot;text&quot; (json, or jsonl = one sample per line), or &quot;file&quot; (path or base64 of a .json/.jsonl file). an array sample describes an array; to treat its elements as separate samples set eachitem. pure local code; optionally writes the schema to &quot;output&quot;."><summary><code>ai_json_schema_infer</code><span>Infer a JSON Schema from samples</span></summary><div class="tool-body"><p>Generate a JSON Schema (draft 2020-12) from one or more sample JSON values: types (integer vs number, mixed types as a type list), &quot;null&quot; added where a value can be null, required = keys present in every sample object, array items merged across all elements, string formats guessed when every sample matches (date-time, date, email, uri, uuid), and optional enums for small repeated string sets. Give &quot;samples&quot; (an array of sample values), or &quot;text&quot; (JSON, or JSONL = one sample per line), or &quot;file&quot; (path or base64 of a .json/.jsonl file). An array sample describes an array; to treat its elements as separate samples set eachItem. Pure local code; optionally writes the schema to &quot;output&quot;.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>samples</code></td><td>object[]</td><td>Sample values; each element is one sample.</td></tr><tr><td><code>text</code></td><td>string</td><td>Or: JSON text (one sample) or JSONL (one sample per line).</td></tr><tr><td><code>file</code></td><td>string</td><td>Or: a .json/.jsonl file (local path or base64).</td></tr><tr><td><code>eachItem</code></td><td>boolean<br><small>default false</small></td><td>If the only sample is an array, use its elements as the samples (schema of one record). Default false.</td></tr><tr><td><code>title</code></td><td>string</td><td>Optional &quot;title&quot; for the schema.</td></tr><tr><td><code>enums</code></td><td>boolean<br><small>default false</small></td><td>Emit &quot;enum&quot; for string fields with few distinct values that repeat. Default false.</td></tr><tr><td><code>maxEnumValues</code></td><td>integer<br><small>default 8</small></td><td>Largest string set turned into an enum (default 8).</td></tr><tr><td><code>formats</code></td><td>boolean<br><small>default true</small></td><td>Guess string formats (default true).</td></tr><tr><td><code>required</code></td><td>boolean<br><small>default true</small></td><td>List keys present in every sample as &quot;required&quot; (default true).</td></tr><tr><td><code>additionalProperties</code></td><td>boolean<br><small>default true</small></td><td>false adds additionalProperties: false to every object (strict). Default true (left open).</td></tr><tr><td><code>output</code></td><td>string</td><td>Optional: also write the schema as a .json file here.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;samples&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;email&quot;: &quot;a@b.co&quot;,
+      &quot;tags&quot;: [
+        &quot;x&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: 2,
+      &quot;email&quot;: &quot;c@d.org&quot;,
+      &quot;tags&quot;: [],
+      &quot;note&quot;: null
+    }
+  ]
+}</pre><p class="muted">Result</p><pre>{
+  &quot;samples&quot;: 2,
+  &quot;schema&quot;: {
+    &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+      &quot;id&quot;: {
+        &quot;type&quot;: &quot;integer&quot;
+      },
+      &quot;email&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;format&quot;: &quot;email&quot;
+      },
+      &quot;tags&quot;: {
+        &quot;type&quot;: &quot;array&quot;,
+        &quot;items&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        }
+      },
+      &quot;note&quot;: {
+        &quot;type&quot;: &quot;null&quot;
+      }
+    },
+    &quot;required&quot;: [
+      &quot;id&quot;,
+      &quot;email&quot;,
+      &quot;tags&quot;
+    ]
+  }
+}</pre></div></details><details class="tool" id="ai_json_schema_validate" data-q="ai_json_schema_validate validate json against a json schema validate json data against a json schema with ajv, reporting every error (allerrors) with its instancepath (json pointer), schemapath, keyword, message and params. draft 2020-12 is used when the schema's $schema says 2020-12 (2019-09 likewise), otherwise draft-07 (draft-04/06 schemas are checked as draft-07). formats checked: date, time, date-time, email, hostname, ipv4, ipv6, uri, uri-reference, uuid, regex, json-pointer (other formats are ignored and listed). data: inline &quot;data&quot; (any json value), &quot;datatext&quot; (json text) or &quot;datafile&quot; (path or base64). schema: inline &quot;schema&quot; (object or json text) or &quot;schemafile&quot;. remote $ref urls are never fetched. runs locally."><summary><code>ai_json_schema_validate</code><span>Validate JSON against a JSON Schema</span></summary><div class="tool-body"><p>Validate JSON data against a JSON Schema with Ajv, reporting every error (allErrors) with its instancePath (JSON Pointer), schemaPath, keyword, message and params. Draft 2020-12 is used when the schema's $schema says 2020-12 (2019-09 likewise), otherwise draft-07 (draft-04/06 schemas are checked as draft-07). Formats checked: date, time, date-time, email, hostname, ipv4, ipv6, uri, uri-reference, uuid, regex, json-pointer (other formats are ignored and listed). Data: inline &quot;data&quot; (any JSON value), &quot;dataText&quot; (JSON text) or &quot;dataFile&quot; (path or base64). Schema: inline &quot;schema&quot; (object or JSON text) or &quot;schemaFile&quot;. Remote $ref URLs are never fetched. Runs locally.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code></td><td>object</td><td>The JSON value to validate, inline (a string here is validated as a string; use dataText for JSON text).</td></tr><tr><td><code>dataText</code></td><td>string</td><td>Or: the data as JSON text.</td></tr><tr><td><code>dataFile</code></td><td>string</td><td>Or: a JSON file (local path or base64).</td></tr><tr><td><code>schema</code></td><td>object | boolean | string</td><td>The JSON Schema inline: an object (or JSON text).</td></tr><tr><td><code>schemaFile</code></td><td>string</td><td>Or: a JSON Schema file (local path or base64).</td></tr><tr><td><code>maxErrors</code></td><td>integer<br><small>default 100</small></td><td>Most errors to return (default 100).</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;data&quot;: {
+    &quot;name&quot;: &quot;Omar&quot;,
+    &quot;age&quot;: -1
+  },
+  &quot;schema&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;required&quot;: [
+      &quot;name&quot;,
+      &quot;email&quot;
+    ],
+    &quot;properties&quot;: {
+      &quot;age&quot;: {
+        &quot;type&quot;: &quot;integer&quot;,
+        &quot;minimum&quot;: 0
+      }
+    }
+  }
+}</pre><p class="muted">Result</p><pre>{
+  &quot;valid&quot;: false,
+  &quot;errorCount&quot;: 2,
+  &quot;draft&quot;: &quot;draft-07&quot;
+}</pre></div></details><details class="tool" id="ai_markdown_to_docx" data-q="ai_markdown_to_docx markdown to word (.docx) convert markdown (github flavoured) to a real word .docx: headings h1-h6 (word heading styles, so the navigation pane and table of contents work), paragraphs with bold, italic, strikethrough, inline code and clickable links, bullet and numbered lists (nested, numbering restarts per list, task-list checkboxes), tables (header row shaded, column alignment kept), blockquotes, fenced code blocks in a monospace font, horizontal rules, and a page break wherever a line says \newpage. arabic/hebrew paragraphs are laid out right-to-left automatically (rtl: &quot;auto&quot;). images are not embedded (their alt text is shown); raw html tags are dropped. options: title and author (document properties), font (default calibri), fontsize. give &quot;markdown&quot; inline or &quot;path&quot; to a .md file. writes the .docx to &quot;output&quot; (default name from the title or first heading)."><summary><code>ai_markdown_to_docx</code><span>Markdown to Word (.docx)</span></summary><div class="tool-body"><p>Convert Markdown (GitHub flavoured) to a real Word .docx: headings H1-H6 (Word heading styles, so the navigation pane and table of contents work), paragraphs with bold, italic, strikethrough, inline code and clickable links, bullet and numbered lists (nested, numbering restarts per list, task-list checkboxes), tables (header row shaded, column alignment kept), blockquotes, fenced code blocks in a monospace font, horizontal rules, and a page break wherever a line says \newpage. Arabic/Hebrew paragraphs are laid out right-to-left automatically (rtl: &quot;auto&quot;). Images are not embedded (their alt text is shown); raw HTML tags are dropped. Options: title and author (document properties), font (default Calibri), fontSize. Give &quot;markdown&quot; inline or &quot;path&quot; to a .md file. Writes the .docx to &quot;output&quot; (default name from the title or first heading).</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>markdown</code></td><td>string</td><td>The Markdown text inline.</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a Markdown file (local path or base64).</td></tr><tr><td><code>title</code></td><td>string</td><td>Document title (file properties, and the default file name).</td></tr><tr><td><code>author</code></td><td>string</td><td>Author shown in the file properties.</td></tr><tr><td><code>font</code></td><td>string<br><small>default &quot;Calibri&quot;</small></td><td>Body font (default Calibri).</td></tr><tr><td><code>fontSize</code></td><td>number<br><small>default 11</small></td><td>Body font size in points (default 11).</td></tr><tr><td><code>rtl</code></td><td>&quot;auto&quot; | &quot;on&quot; | &quot;off&quot;<br><small>default &quot;auto&quot;</small></td><td>Right-to-left paragraphs: &quot;auto&quot; (detect Arabic/Hebrew per paragraph), &quot;on&quot; or &quot;off&quot;.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;markdown&quot;: &quot;# Report\n\nHello **world**.\n\n- one\n- two&quot;,
+  &quot;title&quot;: &quot;Report&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;path&quot;: &quot;C:\\Users\\User\\AppData\\Local\\Temp\\s3eidat-docs-7XnoQD\\Report.docx&quot;,
+  &quot;bytes&quot;: 9792,
+  &quot;mimeType&quot;: &quot;application/vnd.openxmlformats-officedocument.wordprocessingml.document&quot;,
+  &quot;paragraphs&quot;: 4
+}</pre></div></details><details class="tool" id="ai_markdown_to_pdf" data-q="ai_markdown_to_pdf markdown to pdf turn markdown (github-flavoured) into a clean, paginated a4/letter/a5 pdf: headings, paragraphs with word wrap, bold/italic/strikethrough, inline code, links (clickable), bullet / numbered / task lists (nested), tables (wrapped cells, header repeated on new pages), blockquotes, code blocks, horizontal rules, local images (relative to the markdown file; remote images are never fetched and show as alt text), page breaks (\pagebreak, \newpage or &lt;!-- pagebreak --&gt;), page numbers, margins and title metadata. text uses the built-in pdf fonts: latin text only (english and western european). arabic, cjk and other scripts are not supported yet: such characters are replaced with &quot;?&quot; (or rejected with onunsupportedchar: &quot;error&quot;); emoji are dropped; arrows and common symbols are transliterated. give &quot;markdown&quot; inline or &quot;path&quot; to a .md file."><summary><code>ai_markdown_to_pdf</code><span>Markdown to PDF</span></summary><div class="tool-body"><p>Turn Markdown (GitHub-flavoured) into a clean, paginated A4/Letter/A5 PDF: headings, paragraphs with word wrap, bold/italic/strikethrough, inline code, links (clickable), bullet / numbered / task lists (nested), tables (wrapped cells, header repeated on new pages), blockquotes, code blocks, horizontal rules, local images (relative to the Markdown file; remote images are never fetched and show as alt text), page breaks (\pagebreak, \newpage or &lt;!-- pagebreak --&gt;), page numbers, margins and title metadata. Text uses the built-in PDF fonts: Latin text only (English and Western European). Arabic, CJK and other scripts are not supported yet: such characters are replaced with &quot;?&quot; (or rejected with onUnsupportedChar: &quot;error&quot;); emoji are dropped; arrows and common symbols are transliterated. Give &quot;markdown&quot; inline or &quot;path&quot; to a .md file.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>markdown</code></td><td>string</td><td>Markdown text. Use this or &quot;path&quot;.</td></tr><tr><td><code>path</code></td><td>string</td><td>A .md file: local path or base64. Relative image links resolve against its folder.</td></tr><tr><td><code>title</code></td><td>string</td><td>PDF title metadata. Default: the first # / ## heading.</td></tr><tr><td><code>author</code></td><td>string</td><td></td></tr><tr><td><code>paper</code></td><td>&quot;A4&quot; | &quot;Letter&quot; | &quot;A5&quot;<br><small>default &quot;A4&quot;</small></td><td></td></tr><tr><td><code>landscape</code></td><td>boolean<br><small>default false</small></td><td></td></tr><tr><td><code>margin</code></td><td>number<br><small>default 20</small></td><td>Page margin in mm. Default 20.</td></tr><tr><td><code>fontSize</code></td><td>number<br><small>default 10.5</small></td><td>Body font size in pt. Default 10.5.</td></tr><tr><td><code>font</code></td><td>&quot;sans&quot; | &quot;serif&quot;<br><small>default &quot;sans&quot;</small></td><td>Body font: sans (Helvetica) or serif (Times). Code is always Courier.</td></tr><tr><td><code>pageNumbers</code></td><td>boolean<br><small>default true</small></td><td>Print &quot;n / total&quot; at the bottom of each page. Default true.</td></tr><tr><td><code>onUnsupportedChar</code></td><td>&quot;replace&quot; | &quot;error&quot;<br><small>default &quot;replace&quot;</small></td><td>What to do with characters the PDF fonts can't show: replace with &quot;?&quot; (default) or fail.</td></tr><tr><td><code>output</code></td><td>string</td><td>Where to write the result: a file path, or a folder ending in &quot;/&quot;. Default: the server output folder (a temp folder unless --out-dir is set).</td></tr><tr><td><code>returnBase64</code></td><td>boolean<br><small>default false</small></td><td>Also return the output as base64 in the result (only for small files). Default false.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;markdown&quot;: &quot;# Report\n\nHello **world**.\n\n- one\n- two\n\n| a | b |\n|---|---|\n| 1 | 2 |&quot;,
+  &quot;paper&quot;: &quot;A4&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;pages&quot;: 1,
+  &quot;title&quot;: &quot;Report&quot;
+}</pre><p class="muted">Example: Converts a Markdown file; images next to it are embedded.</p><pre>{
+  &quot;path&quot;: &quot;notes.md&quot;,
+  &quot;paper&quot;: &quot;Letter&quot;,
+  &quot;margin&quot;: 15
+}</pre></div></details><details class="tool" id="ai_media_info" data-q="ai_media_info audio/video metadata read audio and video file metadata offline (music-metadata): container, codec, duration, bitrate, sample rate, bit depth, channels, lossless or not, tags (title, artist, album, year, genre, track…), embedded cover art, and per-track info (including video width/height for mp4/mkv/webm). formats: mp3, aac/m4a/mp4/mov, flac, wav, aiff, ogg/opus/vorbis, webm/matroska, wma/asf, ape, wavpack, dsd and more. file path (streamed, any size) or base64. duration of vbr mp3s without a header is computed by scanning the file."><summary><code>ai_media_info</code><span>Audio/video metadata</span></summary><div class="tool-body"><p>Read audio and video file metadata offline (music-metadata): container, codec, duration, bitrate, sample rate, bit depth, channels, lossless or not, tags (title, artist, album, year, genre, track…), embedded cover art, and per-track info (including video width/height for MP4/MKV/WebM). Formats: MP3, AAC/M4A/MP4/MOV, FLAC, WAV, AIFF, OGG/Opus/Vorbis, WebM/Matroska, WMA/ASF, APE, WavPack, DSD and more. File path (streamed, any size) or base64. Duration of VBR MP3s without a header is computed by scanning the file.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The audio or video file: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr></tbody></table><p class="muted">Example: Duration, bitrate, codec, ID3 tags and cover art presence.</p><pre>{
+  &quot;file&quot;: &quot;song.mp3&quot;
+}</pre></div></details><details class="tool" id="ai_ocr" data-q="ai_ocr ocr (image or scanned pdf to text) read the text in an image (png, jpeg, webp, tiff incl. multi-page, gif, avif) or a scanned pdf with tesseract (tesseract.js), fully offline: the english and arabic models ship with the server and nothing is downloaded or uploaded. languages: &quot;eng&quot;, &quot;ara&quot; or &quot;eng+ara&quot; (default). pdf pages are rendered at 200 dpi by default. returns the text per page and the mean word confidence (0-100); give &quot;output&quot; to also write a .txt file. limits: up to 200 pages per call, roughly 1-5 s per page; printed text works well, handwriting and very small or skewed text poorly. for pdfs that already have a text layer, pdf_to_text is faster and exact. give &quot;file&quot; as a local path or base64."><summary><code>ai_ocr</code><span>OCR (image or scanned PDF to text)</span></summary><div class="tool-body"><p>Read the text in an image (PNG, JPEG, WebP, TIFF incl. multi-page, GIF, AVIF) or a scanned PDF with Tesseract (tesseract.js), fully offline: the English and Arabic models ship with the server and nothing is downloaded or uploaded. Languages: &quot;eng&quot;, &quot;ara&quot; or &quot;eng+ara&quot; (default). PDF pages are rendered at 200 dpi by default. Returns the text per page and the mean word confidence (0-100); give &quot;output&quot; to also write a .txt file. Limits: up to 200 pages per call, roughly 1-5 s per page; printed text works well, handwriting and very small or skewed text poorly. For PDFs that already have a text layer, pdf_to_text is faster and exact. Give &quot;file&quot; as a local path or base64.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The image or PDF: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>languages</code></td><td>&quot;eng&quot; | &quot;ara&quot; | &quot;eng+ara&quot;<br><small>default &quot;eng+ara&quot;</small></td><td>Languages to read. Default &quot;eng+ara&quot;.</td></tr><tr><td><code>pages</code></td><td>string</td><td>PDF pages / TIFF frames, e.g. &quot;1-3, 5&quot; (default all).</td></tr><tr><td><code>dpi</code></td><td>integer<br><small>default 200</small></td><td>Render resolution for PDF pages. Default 200.</td></tr><tr><td><code>psm</code></td><td>&quot;auto&quot; | &quot;block&quot; | &quot;line&quot; | &quot;word&quot; | &quot;sparse&quot;<br><small>default &quot;auto&quot;</small></td><td>Page layout: &quot;auto&quot; (default), &quot;block&quot; (one uniform block), &quot;line&quot;, &quot;word&quot;, or &quot;sparse&quot; (scattered text).</td></tr><tr><td><code>perPage</code></td><td>boolean<br><small>default false</small></td><td>Also return the text of each page separately in &quot;pages&quot;. Default false (the joined &quot;text&quot; has page separators).</td></tr><tr><td><code>output</code></td><td>string</td><td>Also write the text to this .txt file (or folder ending in &quot;/&quot;).</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline text after this many characters (the file is never cut).</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;scan.png&quot;,
+  &quot;languages&quot;: &quot;eng&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;scanned-contract.pdf&quot;,
+  &quot;pages&quot;: &quot;1-3&quot;,
+  &quot;output&quot;: &quot;contract.txt&quot;
+}</pre></div></details><details class="tool" id="ai_pdf_to_markdown" data-q="ai_pdf_to_markdown pdf to markdown convert a text pdf to structured markdown: headings guessed from font size (text clearly larger than the body becomes #, ##, ###), paragraphs rebuilt from line spacing with hyphenated words mended, bullet and numbered lists kept, right-to-left lines in reading order. optional page range (&quot;1-5, 8&quot;) and page markers. scanned pdfs without a text layer give empty pages (listed in pageswithouttext; run ocr first). tables and columns are read line by line. accepts a local path or base64. inline markdown is cut at maxchars (default 200k); &quot;output&quot; saves it to a file."><summary><code>ai_pdf_to_markdown</code><span>PDF to Markdown</span></summary><div class="tool-body"><p>Convert a text PDF to structured Markdown: headings guessed from font size (text clearly larger than the body becomes #, ##, ###), paragraphs rebuilt from line spacing with hyphenated words mended, bullet and numbered lists kept, right-to-left lines in reading order. Optional page range (&quot;1-5, 8&quot;) and page markers. Scanned PDFs without a text layer give empty pages (listed in pagesWithoutText; run OCR first). Tables and columns are read line by line. Accepts a local path or base64. Inline Markdown is cut at maxChars (default 200k); &quot;output&quot; saves it to a file.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The PDF: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>pages</code></td><td>string</td><td>Pages to convert, e.g. &quot;1-3, 7&quot; or &quot;5-&quot; (1-based). Default: all.</td></tr><tr><td><code>password</code></td><td>string</td><td>Password, if the PDF is protected.</td></tr><tr><td><code>pageMarkers</code></td><td>boolean<br><small>default false</small></td><td>Put &quot;&lt;!-- Page N --&gt;&quot; before each page and &quot;---&quot; between pages. Default false.</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline Markdown after this many characters, with a note (a file written with &quot;output&quot; is never cut). Default 200000.</td></tr><tr><td><code>output</code></td><td>string</td><td>Write the Markdown to this file (or folder ending in &quot;/&quot;) and return its path instead of the inline text.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;paper.pdf&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;book.pdf&quot;,
+  &quot;pages&quot;: &quot;1-20&quot;,
+  &quot;pageMarkers&quot;: true,
+  &quot;output&quot;: &quot;book.md&quot;
+}</pre></div></details><details class="tool" id="ai_pptx_to_markdown" data-q="ai_pptx_to_markdown powerpoint (.pptx) to markdown extract the text of a powerpoint .pptx deck as markdown: one &quot;## slide n: title&quot; section per slide in presentation order, text boxes as paragraphs and bullet lists (with indent levels), tables as markdown tables, and speaker notes as a quote under each slide. images, charts and smartart text are not extracted. old binary .ppt is not supported. optional &quot;slides&quot; range (e.g. &quot;1-5, 8&quot;). accepts a local path or base64. inline markdown is cut at maxchars (default 200k); &quot;output&quot; saves it to a file. runs locally; nothing is uploaded."><summary><code>ai_pptx_to_markdown</code><span>PowerPoint (.pptx) to Markdown</span></summary><div class="tool-body"><p>Extract the text of a PowerPoint .pptx deck as Markdown: one &quot;## Slide N: title&quot; section per slide in presentation order, text boxes as paragraphs and bullet lists (with indent levels), tables as Markdown tables, and speaker notes as a quote under each slide. Images, charts and SmartArt text are not extracted. Old binary .ppt is not supported. Optional &quot;slides&quot; range (e.g. &quot;1-5, 8&quot;). Accepts a local path or base64. Inline Markdown is cut at maxChars (default 200k); &quot;output&quot; saves it to a file. Runs locally; nothing is uploaded.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The .pptx presentation: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>slides</code></td><td>string</td><td>Slides to include, e.g. &quot;1-3, 7&quot; or &quot;5-&quot; (1-based). Default: all.</td></tr><tr><td><code>notes</code></td><td>boolean<br><small>default true</small></td><td>Include speaker notes. Default true.</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline Markdown after this many characters, with a note (a file written with &quot;output&quot; is never cut). Default 200000.</td></tr><tr><td><code>output</code></td><td>string</td><td>Write the Markdown to this file (or folder ending in &quot;/&quot;) and return its path instead of the inline text.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;pitch.pptx&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;lecture.pptx&quot;,
+  &quot;slides&quot;: &quot;1-10&quot;,
+  &quot;notes&quot;: false
+}</pre></div></details><details class="tool" id="ai_sql_query" data-q="ai_sql_query sql query over tables run one read-only sql select (alasql dialect: join, group by, having, order by, limit, union, with, subqueries, case, sum/count/avg/min/max/median/stdev, string and date functions) over one or more tables. each table is { name, file | csv | json }: a local path or base64 of a csv, tsv, json array, jsonl or .xlsx (first sheet, or &quot;sheet&quot;), or inline csv text / json rows. csv cells are typed (numbers, true/false, empty → null; iso dates stay iso text, so they sort and compare correctly; year()/month() work on them). only select is allowed: insert/update/delete/drop/create/alter/attach, select into, file readers like from csv(...), inline javascript and the -&gt; operator are refused. table names are case-sensitive; quote odd column names and reserved words (total, value, count, date…) as [my column]. returns columns and up to maxrows rows (default 500) with the total count; set &quot;output&quot; (.csv, .tsv, .json, .jsonl or .xlsx) to save every row to a file. runs locally; nothing is uploaded."><summary><code>ai_sql_query</code><span>SQL query over tables</span></summary><div class="tool-body"><p>Run one read-only SQL SELECT (alasql dialect: JOIN, GROUP BY, HAVING, ORDER BY, LIMIT, UNION, WITH, subqueries, CASE, SUM/COUNT/AVG/MIN/MAX/MEDIAN/STDEV, string and date functions) over one or more tables. Each table is { name, file | csv | json }: a local path or base64 of a CSV, TSV, JSON array, JSONL or .xlsx (first sheet, or &quot;sheet&quot;), or inline CSV text / JSON rows. CSV cells are typed (numbers, true/false, empty → null; ISO dates stay ISO text, so they sort and compare correctly; YEAR()/MONTH() work on them). Only SELECT is allowed: INSERT/UPDATE/DELETE/DROP/CREATE/ALTER/ATTACH, SELECT INTO, file readers like FROM CSV(...), inline JavaScript and the -&gt; operator are refused. Table names are case-sensitive; quote odd column names and reserved words (total, value, count, date…) as [My Column]. Returns columns and up to maxRows rows (default 500) with the total count; set &quot;output&quot; (.csv, .tsv, .json, .jsonl or .xlsx) to save every row to a file. Runs locally; nothing is uploaded.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>query</code> <b class="req">required</b></td><td>string</td><td>One SELECT statement, e.g. SELECT region, SUM(amount) AS revenue FROM sales GROUP BY region ORDER BY revenue DESC</td></tr><tr><td><code>tables</code> <b class="req">required</b></td><td>object[]</td><td>The tables the query can read (1-20).</td></tr><tr><td><code>types</code></td><td>boolean<br><small>default true</small></td><td>Type CSV cells (numbers, booleans, null). Default true; false keeps every CSV cell as text.</td></tr><tr><td><code>maxRows</code></td><td>integer<br><small>default 500</small></td><td>Rows to return inline (default 500). &quot;total&quot; always counts all rows.</td></tr><tr><td><code>output</code></td><td>string</td><td>Optional: save ALL result rows to this file; the type comes from the extension (.csv, .tsv, .json, .jsonl, .xlsx; default .csv).</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;query&quot;: &quot;SELECT region, SUM(amount) AS revenue FROM sales GROUP BY region ORDER BY revenue DESC&quot;,
+  &quot;tables&quot;: [
+    {
+      &quot;name&quot;: &quot;sales&quot;,
+      &quot;csv&quot;: &quot;region,amount\nNorth,10\nSouth,5\nNorth,7.5&quot;
+    }
+  ]
+}</pre><p class="muted">Result</p><pre>{
+  &quot;columns&quot;: [
+    &quot;region&quot;,
+    &quot;revenue&quot;
+  ],
+  &quot;rows&quot;: [
+    {
+      &quot;region&quot;: &quot;North&quot;,
+      &quot;revenue&quot;: 17.5
+    },
+    {
+      &quot;region&quot;: &quot;South&quot;,
+      &quot;revenue&quot;: 5
+    }
+  ],
+  &quot;total&quot;: 2,
+  &quot;truncated&quot;: false
+}</pre></div></details><details class="tool" id="ai_text_similarity" data-q="ai_text_similarity text similarity and near-duplicates compare two or more texts (or text files) for overlap. for every pair returns: jaccard similarity of word shingles (k=3 words by default), a minhash estimate of that jaccard (128 hashes), and cosine similarity of word frequencies. words are lower-cased, punctuation and arabic diacritics ignored. measures wording overlap, not meaning (no embeddings): paraphrases score low. mode &quot;pairs&quot; (default) lists pairs sorted by the chosen metric; mode &quot;dedupe&quot; groups near-duplicates whose metric is at least &quot;threshold&quot; (default 0.8; groups are connected, so a~b and b~c put a, b, c together). give &quot;texts&quot; (inline strings) and/or &quot;paths&quot; (file paths or base64). up to 1000 texts."><summary><code>ai_text_similarity</code><span>Text similarity and near-duplicates</span></summary><div class="tool-body"><p>Compare two or more texts (or text files) for overlap. For every pair returns: Jaccard similarity of word shingles (k=3 words by default), a MinHash estimate of that Jaccard (128 hashes), and cosine similarity of word frequencies. Words are lower-cased, punctuation and Arabic diacritics ignored. Measures wording overlap, not meaning (no embeddings): paraphrases score low. Mode &quot;pairs&quot; (default) lists pairs sorted by the chosen metric; mode &quot;dedupe&quot; groups near-duplicates whose metric is at least &quot;threshold&quot; (default 0.8; groups are connected, so A~B and B~C put A, B, C together). Give &quot;texts&quot; (inline strings) and/or &quot;paths&quot; (file paths or base64). Up to 1000 texts.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>texts</code></td><td>string[]</td><td>Texts to compare (inline).</td></tr><tr><td><code>paths</code></td><td>string[]</td><td>Or/also: UTF-8 text files (local paths or base64).</td></tr><tr><td><code>labels</code></td><td>string[]</td><td>Optional names for the texts, in order (texts first, then paths). Default: &quot;#1&quot;, &quot;#2&quot;… or the file name.</td></tr><tr><td><code>mode</code></td><td>&quot;pairs&quot; | &quot;dedupe&quot;<br><small>default &quot;pairs&quot;</small></td><td>&quot;pairs&quot; (similarity of each pair) or &quot;dedupe&quot; (groups of near-duplicates).</td></tr><tr><td><code>metric</code></td><td>&quot;jaccard&quot; | &quot;minhash&quot; | &quot;cosine&quot;<br><small>default &quot;jaccard&quot;</small></td><td>Metric used to sort pairs and to group duplicates. Default jaccard.</td></tr><tr><td><code>threshold</code></td><td>number<br><small>default 0.8</small></td><td>Dedupe: pairs at or above this are duplicates. Default 0.8.</td></tr><tr><td><code>shingleSize</code></td><td>integer<br><small>default 3</small></td><td>Words per shingle (k). Default 3.</td></tr><tr><td><code>numHashes</code></td><td>integer<br><small>default 128</small></td><td>MinHash signature length. Default 128 (error about ±0.09).</td></tr><tr><td><code>maxPairs</code></td><td>integer<br><small>default 200</small></td><td>Most pairs to return (highest first). Default 200.</td></tr></tbody></table><p class="muted">Example: Pair #1/#2 scores 1 on every metric.</p><pre>{
+  &quot;texts&quot;: [
+    &quot;the cat sat on the mat&quot;,
+    &quot;the cat sat on the mat&quot;,
+    &quot;a completely different sentence here&quot;
+  ]
+}</pre><p class="muted">Result</p><pre>{
+  &quot;count&quot;: 3,
+  &quot;texts&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;label&quot;: &quot;#1&quot;,
+      &quot;words&quot;: 6,
+      &quot;shingles&quot;: 4
+    },
+    {
+      &quot;index&quot;: 1,
+      &quot;label&quot;: &quot;#2&quot;,
+      &quot;words&quot;: 6,
+      &quot;shingles&quot;: 4
+    },
+    {
+      &quot;index&quot;: 2,
+      &quot;label&quot;: &quot;#3&quot;,
+      &quot;words&quot;: 5,
+      &quot;shingles&quot;: 3
+    }
+  ],
+  &quot;pairCount&quot;: 3,
+  &quot;pairs&quot;: [
+    {
+      &quot;a&quot;: 0,
+      &quot;b&quot;: 1,
+      &quot;jaccard&quot;: 1,
+      &quot;minhash&quot;: 1,
+      &quot;cosine&quot;: 1,
+      &quot;labelA&quot;: &quot;#1&quot;,
+      &quot;labelB&quot;: &quot;#2&quot;
+    },
+    {
+      &quot;a&quot;: 0,
+      &quot;b&quot;: 2,
+      &quot;jaccard&quot;: 0,
+      &quot;minhash&quot;: 0,
+      &quot;cosine&quot;: 0,
+      &quot;labelA&quot;: &quot;#1&quot;,
+      &quot;labelB&quot;: &quot;#3&quot;
+    },
+    {
+      &quot;a&quot;: 1,
+      &quot;b&quot;: 2,
+      &quot;jaccard&quot;: 0,
+      &quot;minhash&quot;: 0,
+      &quot;cosine&quot;: 0,
+      &quot;labelA&quot;: &quot;#2&quot;,
+      &quot;labelB&quot;: &quot;#3&quot;
+    }
+  ]
+}</pre><p class="muted">Example: One group: #1 and #2.</p><pre>{
+  &quot;texts&quot;: [
+    &quot;Hello world, this is a test.&quot;,
+    &quot;hello world this is a test&quot;,
+    &quot;Something else entirely.&quot;
+  ],
+  &quot;mode&quot;: &quot;dedupe&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;count&quot;: 3,
+  &quot;texts&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;label&quot;: &quot;#1&quot;,
+      &quot;words&quot;: 6,
+      &quot;shingles&quot;: 4
+    },
+    {
+      &quot;index&quot;: 1,
+      &quot;label&quot;: &quot;#2&quot;,
+      &quot;words&quot;: 6,
+      &quot;shingles&quot;: 4
+    },
+    {
+      &quot;index&quot;: 2,
+      &quot;label&quot;: &quot;#3&quot;,
+      &quot;words&quot;: 3,
+      &quot;shingles&quot;: 1
+    }
+  ],
+  &quot;pairCount&quot;: 3,
+  &quot;groups&quot;: [
+    {
+      &quot;members&quot;: [
+        0,
+        1
+      ],
+      &quot;labels&quot;: [
+        &quot;#1&quot;,
+        &quot;#2&quot;
+      ],
+      &quot;keep&quot;: 0,
+      &quot;minSimilarity&quot;: 1
+    }
+  ],
+  &quot;duplicateCount&quot;: 1,
+  &quot;uniqueCount&quot;: 2,
+  &quot;pairs&quot;: [
+    {
+      &quot;a&quot;: 0,
+      &quot;b&quot;: 1,
+      &quot;jaccard&quot;: 1,
+      &quot;minhash&quot;: 1,
+      &quot;cosine&quot;: 1,
+      &quot;labelA&quot;: &quot;#1&quot;,
+      &quot;labelB&quot;: &quot;#2&quot;
+    }
+  ]
+}</pre></div></details><details class="tool" id="ai_token_count" data-q="ai_token_count count tokens count llm tokens in a text or text file with the openai tiktoken tokenizers (&quot;o200k_base&quot;, default, used by gpt-4o and the o-series; or &quot;cl100k_base&quot;, used by gpt-4/3.5 and text-embedding-3). also returns characters and words, and whether the text fits in common context windows (8k, 32k, 128k, 200k, 1m: e.g. &quot;fits in 200k: yes&quot;). claude's tokenizer is not public, so for claude the count is an estimate (typically within ~10-20%; claude usually needs a little more), returned as a rough range. runs locally, no api calls. give &quot;text&quot; or &quot;path&quot; (file path or base64). large texts (many mb) take a few seconds."><summary><code>ai_token_count</code><span>Count tokens</span></summary><div class="tool-body"><p>Count LLM tokens in a text or text file with the OpenAI tiktoken tokenizers (&quot;o200k_base&quot;, default, used by GPT-4o and the o-series; or &quot;cl100k_base&quot;, used by GPT-4/3.5 and text-embedding-3). Also returns characters and words, and whether the text fits in common context windows (8k, 32k, 128k, 200k, 1M: e.g. &quot;fits in 200k: yes&quot;). Claude's tokenizer is not public, so for Claude the count is an estimate (typically within ~10-20%; Claude usually needs a little more), returned as a rough range. Runs locally, no API calls. Give &quot;text&quot; or &quot;path&quot; (file path or base64). Large texts (many MB) take a few seconds.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>text</code></td><td>string</td><td>The text (inline).</td></tr><tr><td><code>path</code></td><td>string</td><td>Or: a UTF-8 text/markdown file, as a local path or base64 (raw or a data: URI).</td></tr><tr><td><code>encoding</code></td><td>&quot;o200k_base&quot; | &quot;cl100k_base&quot;<br><small>default &quot;o200k_base&quot;</small></td><td>Tokenizer: &quot;o200k_base&quot; (GPT-4o / o-series, default) or &quot;cl100k_base&quot; (GPT-4 / GPT-3.5 / text-embedding-3).</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;text&quot;: &quot;hello world&quot;
+}</pre><p class="muted">Result</p><pre>{
+  &quot;tokens&quot;: 2,
+  &quot;words&quot;: 2,
+  &quot;characters&quot;: 11
+}</pre><p class="muted">Example</p><pre>{
+  &quot;path&quot;: &quot;notes.md&quot;,
+  &quot;encoding&quot;: &quot;cl100k_base&quot;
+}</pre></div></details><details class="tool" id="ai_web_fetch" data-q="ai_web_fetch fetch a web page as markdown fetch a web page (http/https) and return its readable content as clean markdown, with title, byline, final url after redirects and a word count. uses mozilla readability to keep the main article (falls back to the whole page), or a css &quot;selector&quot; you give. respects robots.txt (refuses pages disallowed for the s3eidat-tools-mcp user agent), only reads html and text responses, stops at 5 mb and 20 seconds, follows up to 5 redirects, and refuses private, local and loopback addresses unless allowprivate is true. does not run javascript, so pages that build their content in the browser may come back nearly empty. inline markdown is cut at maxchars (default 200k); &quot;output&quot; saves it to a file."><summary><code>ai_web_fetch</code><span>Fetch a web page as Markdown</span></summary><div class="tool-body"><p>Fetch a web page (http/https) and return its readable content as clean Markdown, with title, byline, final URL after redirects and a word count. Uses Mozilla Readability to keep the main article (falls back to the whole page), or a CSS &quot;selector&quot; you give. Respects robots.txt (refuses pages disallowed for the s3eidat-tools-mcp user agent), only reads HTML and text responses, stops at 5 MB and 20 seconds, follows up to 5 redirects, and refuses private, local and loopback addresses unless allowPrivate is true. Does not run JavaScript, so pages that build their content in the browser may come back nearly empty. Inline Markdown is cut at maxChars (default 200k); &quot;output&quot; saves it to a file.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>url</code> <b class="req">required</b></td><td>string</td><td>The page to fetch (http:// or https://).</td></tr><tr><td><code>selector</code></td><td>string</td><td>CSS selector: convert only the matching elements instead of the Readability main content.</td></tr><tr><td><code>readable</code></td><td>boolean<br><small>default true</small></td><td>Keep only the main content (default true). False converts the whole page body.</td></tr><tr><td><code>includeLinks</code></td><td>boolean<br><small>default true</small></td><td>Keep links (made absolute) and images. False turns links into plain text and drops images.</td></tr><tr><td><code>allowPrivate</code></td><td>boolean<br><small>default false</small></td><td>Allow private, local and loopback hosts (e.g. a dev server on localhost). Default false.</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline Markdown after this many characters, with a note (a file written with &quot;output&quot; is never cut). Default 200000.</td></tr><tr><td><code>output</code></td><td>string</td><td>Write the Markdown to this file (or folder ending in &quot;/&quot;) and return its path instead of the inline text.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;url&quot;: &quot;https://en.wikipedia.org/wiki/Markdown&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;url&quot;: &quot;https://example.com/docs/page&quot;,
+  &quot;selector&quot;: &quot;main&quot;,
+  &quot;includeLinks&quot;: false
+}</pre></div></details><details class="tool" id="ai_xlsx_to_markdown" data-q="ai_xlsx_to_markdown excel (.xlsx/.csv) to markdown tables turn an excel .xlsx workbook (or a .csv/.tsv file) into markdown tables, one &quot;## sheet&quot; section per sheet, or only the sheet you name. the first used row is the table header; empty rows and columns around the data are dropped. formulas show their cached result (as last saved by excel), dates are iso (2026-10-30, or 2026-10-30t14:05:00), merged cells show their value once, hyperlinks become markdown links. each sheet shows at most maxrows data rows (default 200) and says how many were left out. old binary .xls is not supported. accepts a local path or base64. runs locally."><summary><code>ai_xlsx_to_markdown</code><span>Excel (.xlsx/.csv) to Markdown tables</span></summary><div class="tool-body"><p>Turn an Excel .xlsx workbook (or a .csv/.tsv file) into Markdown tables, one &quot;## sheet&quot; section per sheet, or only the sheet you name. The first used row is the table header; empty rows and columns around the data are dropped. Formulas show their cached result (as last saved by Excel), dates are ISO (2026-10-30, or 2026-10-30T14:05:00), merged cells show their value once, hyperlinks become Markdown links. Each sheet shows at most maxRows data rows (default 200) and says how many were left out. Old binary .xls is not supported. Accepts a local path or base64. Runs locally.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>file</code> <b class="req">required</b></td><td>string</td><td>The .xlsx or .csv file: a local file path (absolute, or relative to the server's --root) or base64 data (raw or a data: URI).</td></tr><tr><td><code>sheet</code></td><td>string</td><td>Only this sheet: its name, or its 1-based position (e.g. &quot;2&quot;). Default: every sheet.</td></tr><tr><td><code>maxRows</code></td><td>integer<br><small>default 200</small></td><td>Data rows to show per sheet (after the header). Default 200.</td></tr><tr><td><code>format</code></td><td>&quot;auto&quot; | &quot;xlsx&quot; | &quot;csv&quot;<br><small>default &quot;auto&quot;</small></td><td>Input format. &quot;auto&quot; tells .xlsx (a ZIP) from CSV by its bytes.</td></tr><tr><td><code>maxChars</code></td><td>integer<br><small>default 200000</small></td><td>Cut the inline Markdown after this many characters, with a note (a file written with &quot;output&quot; is never cut). Default 200000.</td></tr><tr><td><code>output</code></td><td>string</td><td>Write the Markdown to this file (or folder ending in &quot;/&quot;) and return its path instead of the inline text.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;budget.xlsx&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;sales.xlsx&quot;,
+  &quot;sheet&quot;: &quot;Q3&quot;,
+  &quot;maxRows&quot;: 50
+}</pre><p class="muted">Example</p><pre>{
+  &quot;file&quot;: &quot;contacts.csv&quot;
+}</pre></div></details><details class="tool" id="ai_zip" data-q="ai_zip zip create / extract / list work with zip archives locally. action &quot;create&quot;: zip files and folders (given as paths; folders keep their own name as the top folder, symlinks are skipped) into one .zip. action &quot;extract&quot;: unpack a .zip (path or base64) into the &quot;output&quot; folder; entries with &quot;..&quot;, absolute paths or drive letters are refused (zip-slip protection), existing files are kept unless overwrite is true. action &quot;list&quot;: entry names with sizes, no extraction. limits: total uncompressed size 500 mb and 10000 files by default (maxtotalmb / maxfiles). encrypted zips are not supported."><summary><code>ai_zip</code><span>ZIP create / extract / list</span></summary><div class="tool-body"><p>Work with ZIP archives locally. action &quot;create&quot;: zip files and folders (given as paths; folders keep their own name as the top folder, symlinks are skipped) into one .zip. action &quot;extract&quot;: unpack a .zip (path or base64) into the &quot;output&quot; folder; entries with &quot;..&quot;, absolute paths or drive letters are refused (zip-slip protection), existing files are kept unless overwrite is true. action &quot;list&quot;: entry names with sizes, no extraction. Limits: total uncompressed size 500 MB and 10000 files by default (maxTotalMB / maxFiles). Encrypted ZIPs are not supported.</p><table><thead><tr><th>Input</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>action</code> <b class="req">required</b></td><td>&quot;create&quot; | &quot;extract&quot; | &quot;list&quot;</td><td></td></tr><tr><td><code>files</code></td><td>string[]</td><td>create: files and folders to add (local paths).</td></tr><tr><td><code>zip</code></td><td>string</td><td>extract / list: the ZIP archive, a local path or base64.</td></tr><tr><td><code>output</code></td><td>string</td><td>create: the .zip path (or a folder ending in &quot;/&quot;). extract: the folder to extract into. Default: the server output folder.</td></tr><tr><td><code>level</code></td><td>integer<br><small>default 6</small></td><td>create: compression level 0 (store) to 9 (smallest). Default 6.</td></tr><tr><td><code>overwrite</code></td><td>boolean<br><small>default false</small></td><td>extract: replace files that already exist in the output folder. Default false (they are skipped).</td></tr><tr><td><code>maxTotalMB</code></td><td>number<br><small>default 500</small></td><td>Cap on the total uncompressed size, MB. Default 500.</td></tr><tr><td><code>maxFiles</code></td><td>integer<br><small>default 10000</small></td><td>Cap on the number of entries. Default 10000.</td></tr></tbody></table><p class="muted">Example</p><pre>{
+  &quot;action&quot;: &quot;create&quot;,
+  &quot;files&quot;: [
+    &quot;/projects/site&quot;,
+    &quot;/notes/readme.txt&quot;
+  ],
+  &quot;output&quot;: &quot;/backups/site.zip&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;action&quot;: &quot;list&quot;,
+  &quot;zip&quot;: &quot;/downloads/archive.zip&quot;
+}</pre><p class="muted">Example</p><pre>{
+  &quot;action&quot;: &quot;extract&quot;,
+  &quot;zip&quot;: &quot;/downloads/archive.zip&quot;,
+  &quot;output&quot;: &quot;/downloads/archive/&quot;
 }</pre></div></details></section><script>
 const q=document.getElementById('q');q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();
 document.querySelectorAll('.tool').forEach(d=>{d.hidden=v&&!v.split(/\s+/).every(w=>d.dataset.q.includes(w))});

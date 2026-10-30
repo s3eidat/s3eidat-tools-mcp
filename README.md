@@ -159,7 +159,7 @@ reads its inputs and runs it through three meta-tools.
 ## Tools
 
 <!-- tools:start -->
-**136 tools.** Full reference: [docs/tools.md](docs/tools.md).
+**162 tools.** Full reference: [docs/tools.md](docs/tools.md).
 
 | Group | Count | Tools |
 |---|---|---|
@@ -172,6 +172,7 @@ reads its inputs and runs it through three meta-tools.
 | Everyday & security | 15 | `crypto_file_decrypt`, `crypto_file_encrypt`, `crypto_stego_hide`, `crypto_stego_reveal`, `crypto_text_decrypt`, `crypto_text_encrypt`, `password_check`, `password_generate`, `prayer_times`, `qibla_direction`, `random_dice`, `random_pick`, `random_teams`, `secret_santa_draw`, `time_world_clock` |
 | QR & barcodes | 4 | `barcode_generate`, `qr_generate`, `qr_read`, `qr_wifi` |
 | Document makers | 7 | `doc_attendance_sheet`, `doc_business_cards`, `doc_calendar`, `doc_invoice`, `doc_labels`, `doc_receipt`, `doc_resume` |
+| For AI agents | 26 | `ai_chart`, `ai_chunk_text`, `ai_create_pptx`, `ai_create_xlsx`, `ai_csv_profile`, `ai_detect_language`, `ai_diagram`, `ai_docx_to_markdown`, `ai_extract_entities`, `ai_file_identify`, `ai_html_to_markdown`, `ai_image_diff`, `ai_json_schema_infer`, `ai_json_schema_validate`, `ai_markdown_to_docx`, `ai_markdown_to_pdf`, `ai_media_info`, `ai_ocr`, `ai_pdf_to_markdown`, `ai_pptx_to_markdown`, `ai_sql_query`, `ai_text_similarity`, `ai_token_count`, `ai_web_fetch`, `ai_xlsx_to_markdown`, `ai_zip` |
 <!-- tools:end -->
 
 Every tool's description links the matching web tool on https://s3eidat.github.io for people who prefer a visual version.

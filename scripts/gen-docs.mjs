@@ -4,7 +4,7 @@
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { z } from 'zod';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -16,8 +16,8 @@ globalThis.Date = class extends RealDate {
   constructor(...a) { super(...(a.length ? a : [FROZEN])); }
   static now() { return FROZEN; }
 };
-const { loadTools, webUrl } = await import(join(root, 'dist/registry.js'));
-const { DEFAULT_MAX_BYTES } = await import(join(root, 'dist/util/context.js'));
+const { loadTools, webUrl } = await import(pathToFileURL(join(root, 'dist/registry.js')).href);
+const { DEFAULT_MAX_BYTES } = await import(pathToFileURL(join(root, 'dist/util/context.js')).href);
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const tools = await loadTools();
 

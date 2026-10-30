@@ -176,3 +176,32 @@ File inputs: local path or base64. File outputs: written to the given `output` p
 - `doc_receipt`: Receipt PDF (web: https://s3eidat.github.io/receipt-maker/)
 - `doc_resume`: Resume / CV PDF (web: https://s3eidat.github.io/resume-builder/)
 
+## For AI agents
+
+- `ai_chart`: Chart to SVG/PNG
+- `ai_chunk_text`: Chunk text for RAG
+- `ai_create_pptx`: Create a PowerPoint deck
+- `ai_create_xlsx`: Create an Excel workbook (.xlsx)
+- `ai_csv_profile`: Profile a table (CSV, JSON, XLSX)
+- `ai_detect_language`: Detect language
+- `ai_diagram`: Diagram to SVG/PNG
+- `ai_docx_to_markdown`: Word (.docx) to Markdown
+- `ai_extract_entities`: Extract entities
+- `ai_file_identify`: Identify a file type
+- `ai_html_to_markdown`: HTML to Markdown
+- `ai_image_diff`: Compare two images
+- `ai_json_schema_infer`: Infer a JSON Schema from samples
+- `ai_json_schema_validate`: Validate JSON against a JSON Schema
+- `ai_markdown_to_docx`: Markdown to Word (.docx)
+- `ai_markdown_to_pdf`: Markdown to PDF
+- `ai_media_info`: Audio/video metadata
+- `ai_ocr`: OCR (image or scanned PDF to text)
+- `ai_pdf_to_markdown`: PDF to Markdown
+- `ai_pptx_to_markdown`: PowerPoint (.pptx) to Markdown
+- `ai_sql_query`: SQL query over tables
+- `ai_text_similarity`: Text similarity and near-duplicates
+- `ai_token_count`: Count tokens
+- `ai_web_fetch`: Fetch a web page as Markdown
+- `ai_xlsx_to_markdown`: Excel (.xlsx/.csv) to Markdown tables
+- `ai_zip`: ZIP create / extract / list
+

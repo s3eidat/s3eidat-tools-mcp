@@ -37,7 +37,7 @@ If the server was started with `--compact`, you will only see `s3eidat_find_tool
 | Make a PDF smaller | `pdf_compress` |
 | Stamp text/logo, add page numbers | `pdf_watermark`, `pdf_page_numbers` |
 | Read or clean PDF metadata | `pdf_metadata_read`, `pdf_metadata_write` |
-| Get the text out of a PDF | `pdf_to_text` (scanned PDFs have no text: use an OCR tool if the server has one) |
+| Get the text out of a PDF | `pdf_to_text`, or `ai_pdf_to_markdown` to keep headings and lists (scanned PDFs have no text: use `ai_ocr`) |
 | Photos/scans → one PDF | `pdf_from_images` |
 | PDF pages → PNG/JPEG | `pdf_to_images` |
 | Put a signature image on a PDF | `pdf_sign_image` |
@@ -73,6 +73,16 @@ If the server was started with `--compact`, you will only see `s3eidat_find_tool
 | Hide a message in an image | `crypto_stego_hide`, `crypto_stego_reveal` |
 | QR codes and barcodes | `qr_generate`, `qr_wifi`, `qr_read`, `barcode_generate` |
 | Documents as PDF | `doc_invoice`, `doc_receipt`, `doc_business_cards`, `doc_labels`, `doc_calendar`, `doc_resume`, `doc_attendance_sheet` |
+| Read a web page (uses the network) | `ai_web_fetch` (clean markdown; respects robots.txt; no JavaScript-only pages) |
+| Any document → markdown you can read | `ai_html_to_markdown`, `ai_pdf_to_markdown`, `ai_docx_to_markdown`, `ai_xlsx_to_markdown`, `ai_pptx_to_markdown` |
+| Text in images or scanned PDFs (English, Arabic) | `ai_ocr` (offline) |
+| Fit text in a context window, split it for search/RAG | `ai_token_count`, `ai_chunk_text` |
+| Near-duplicates, language, emails/phones/dates/money in text | `ai_text_similarity`, `ai_detect_language`, `ai_extract_entities` |
+| Questions over CSV / Excel / JSON data | `ai_sql_query` (read-only SELECT across several tables), `ai_csv_profile` |
+| JSON Schemas | `ai_json_schema_infer` (from samples), `ai_json_schema_validate` |
+| Make Word, Excel, PowerPoint, PDF from content | `ai_markdown_to_docx`, `ai_create_xlsx`, `ai_create_pptx`, `ai_markdown_to_pdf` (Latin script only) |
+| Charts and diagrams | `ai_chart` (simple spec or Vega-Lite → SVG/PNG), `ai_diagram` (`A -> B: label` text → SVG/PNG) |
+| Zip, what is this file, compare images, audio/video info | `ai_zip`, `ai_file_identify`, `ai_image_diff`, `ai_media_info` |
 
 Do the arithmetic with the calculator tools instead of in your head: they use the same rounding and conventions as the
 website the user may compare with. Random tools (`random_pick`, `random_dice`, `random_teams`, `secret_santa_draw`) use
@@ -87,6 +97,9 @@ Pass one result's `path` straight into the next tool:
 3. Pull a table out of a report: `pdf_to_text` (pages) → reshape → `json_to_csv`.
 4. Sign and send: `pdf_form_fields` → `pdf_form_fill` → `pdf_sign_image` → `pdf_compress`.
 5. Wi-Fi poster: `qr_wifi` (PDF card) or `qr_generate` → `pdf_from_images`.
+6. Scanned contract to editable Word: `ai_ocr` (write .txt) → tidy into markdown → `ai_markdown_to_docx`.
+7. Spreadsheet to a report: `ai_csv_profile` → `ai_sql_query` → `ai_chart` (PNG) → `ai_create_pptx` with the chart image.
+8. Long document Q&A: `ai_pdf_to_markdown` → `ai_token_count` → `ai_chunk_text` if it doesn't fit.
 
 Write intermediate files to a temp folder and only the final file where the user asked.
 
