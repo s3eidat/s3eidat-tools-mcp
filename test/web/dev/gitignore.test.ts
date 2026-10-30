@@ -34,7 +34,7 @@ describe('gitignore_generate tool', () => {
     expect(r.text).toContain('__pycache__/');
     const ctx = tempCtx();
     const w = await call<{ path: string }>(tool, { templates: ['macos'], output: ctx.outDir + '/proj/' }, ctx);
-    expect(w.path.endsWith('/proj/.gitignore')).toBe(true);
+    expect(w.path.replaceAll('\\', '/').endsWith('/proj/.gitignore')).toBe(true);
     expect(readFileSync(w.path, 'utf8')).toContain('.DS_Store');
     expect((await call<{ available: unknown[] }>(tool, { list: true })).available).toHaveLength(T.length);
     await expect(call(tool, { templates: ['cobol-on-mars'] })).rejects.toThrow(/Unknown template/);

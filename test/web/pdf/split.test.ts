@@ -30,6 +30,6 @@ describe('pdf_split / pdf_extract_pages (pdf-split self-test)', () => {
     expect(await Promise.all(ev.files.map((f) => widthsOf(f.path)))).toEqual(['100,200', '300']);
     expect(readdirSync(ev.folder).sort()).toEqual(['Book-part-01.pdf', 'Book-part-02.pdf']);
     const sg = await call<{ files: { path: string }[] }>(split, { file: src, mode: 'single' }, ctx);
-    expect(sg.files.map((f) => f.path.split('/').pop())).toEqual(['Book-page-001.pdf', 'Book-page-002.pdf', 'Book-page-003.pdf']);
+    expect(sg.files.map((f) => f.path.split(/[\\/]/).pop())).toEqual(['Book-page-001.pdf', 'Book-page-002.pdf', 'Book-page-003.pdf']);
   });
 });
